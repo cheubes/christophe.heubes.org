@@ -21,8 +21,13 @@ div, body{
   width: 100%;
 }
 
+.profile-picture {
+  box-shadow: 2px 2px 4px black;
+}
+
 a {
   color: black;
+  text-shadow: 2px 2px 4px dimgrey;
 }
 
 a:hover {
