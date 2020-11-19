@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+  {% include head.html %}
+  <body>
+    {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+    {% for page in pages %}
+        &nbsp;<a href="{{ page.url }}" class="{{ page.lang }}">{{ page.flag }}</a>&nbsp;
+    {% endfor %}
+
+    <div class="container-fluid">
+      <div class="row align-items-center vh-100">
+        <div class="col-md-4 text-center">
+          <img class="rounded-circle profile-picture" src="/img/photo.jpg" alt="Christophe Heubès"/>
+        </div>
+        <div class="col-md-2 text-center">
+          <a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram fa-5x"></i></a>
+        </div>
+        <div class="col-md-2 text-center">
+          <a href="https://www.instagram.com/christophe.inthecity/" target="_blank"><i class="fab fa-instagram fa-5x"></i></a>
+        </div>
+        <div class="col-md-2 text-center">
+          <a href="https://samettof.org/" target="_blank"><i class="far fa-compass fa-5x"></i></a>
+        </div>
+        <div class="col-md-2 text-center">
+          <a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify fa-5x"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
