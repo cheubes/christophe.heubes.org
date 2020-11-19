@@ -27,9 +27,12 @@ div, body{
 
 a {
   color: black;
-  text-shadow: 2px 2px 4px dimgrey;
 }
 
 a:hover {
   color: dimgrey;
+}
+
+#lang {
+  font-size: 20px;
 }
