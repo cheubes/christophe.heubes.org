@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+
+{% include head.html %}
+
+{% if page.dataset == "uw" %}
+  {% assign dataset = site.data.uw-photos %}
+  {% assign instagram = 'https://www.instagram.com/christophe.uw/' %}
+{% endif %}
+
+<body>
+  {% include header.html %}
+  <main role="main" class="container-fluid">
+
+    <div class="container gallery-container">
+
+      <p class="text-center"><a href="{{ instagram }}" target="_blank"><i class="fab fa-instagram"></i> {{ page.description }}</a></p>
+
+      <div class="photo-gallery">
+        <div class="row align-items-center">
+          {% for item in dataset %}
+            {% if page.lang == "fr" %}
+              {% assign caption = item.fr-caption %}
+              {% assign location = item.fr-location %}
+            {% endif %}
+            {% if page.lang == "en" %}
+              {% assign caption = item.en-caption %}
+              {% assign location = item.en-location %}
+            {% endif %}
+            <div class="col-sm-6 col-md-4">
+              <a class="lightbox" href="{{ item.link }}" target="_blank"><img src="/img/photos/{{ page.dataset }}/{{ item.img }}" alt="{{ caption }} - {{ location }}"></a>
+              <div class="carousel-caption">{{ caption }}<br/>{{ location }}</div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  {% include footer.html %}
+
+</body>
+
+</html>
