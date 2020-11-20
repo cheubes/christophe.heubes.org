@@ -2,12 +2,7 @@ html, body{
   height: 100%;
 }
 body {
-  background-image: url(../img/bg.jpg) ;
-  background-position: center center;
-  background-repeat:  no-repeat;
-  background-attachment: fixed;
-  background-size:  cover;
-  background-color: #000;
+  background-color: #FFF;
 }
 
 div, body{
@@ -23,6 +18,11 @@ div, body{
 
 .profile-picture {
   box-shadow: 2px 2px 4px black;
+}
+
+main {
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 a {
