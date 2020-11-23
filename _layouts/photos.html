@@ -11,6 +11,10 @@
   {% assign dataset = site.data.itc-photos %}
   {% assign instagram = 'https://www.instagram.com/christophe.inthecity/' %}
 {% endif %}
+{% if page.dataset == "misc" %}
+  {% assign dataset = site.data.misc-photos %}
+  {% assign instagram = 'https://www.instagram.com/christophe.uw/' %}
+{% endif %}
 
 <body>
   {% include header.html %}
