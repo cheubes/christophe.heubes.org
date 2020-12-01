@@ -36,7 +36,7 @@
               {% assign location = item.en-location %}
             {% endif %}
             <div class="col-sm-6 col-md-4">
-              <a class="lightbox" href="{{ item.link }}" target="_blank"><img src="/img/photos/{{ page.dataset }}/{{ item.img }}" alt="{{ caption }} - {{ location }}"></a>
+              <a class="lightbox" href="{{ item.link }}" target="_blank"><img src="/img/photos/{{ page.dataset }}/{{ item.img }}" alt="{{ caption }} - {{ location }}" loading="lazy"></a>
               <div class="carousel-caption photo-caption">{{ caption }}<br/>{{ location }}</div>
             </div>
           {% endfor %}
