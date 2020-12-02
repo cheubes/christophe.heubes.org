@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+
+{% include head.html %}
+
+<body>
+
+  {% include header.html %}
+  <main role="main" class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-3 text-center home-tile">
+        <a href="{{ page.folder }}uw-photos">
+          <i class="fas fa-camera-retro fa-5x"></i>
+          <br />&nbsp;
+          <p>{{ page.uw-photo-desc }}</p>
+        </a>
+      </div>
+      <div class="col-md-3 text-center home-tile">
+        <a href="{{ page.folder }}itc-photos">
+          <i class="fas fa-camera-retro fa-5x"></i>
+          <br />&nbsp;
+          <p>{{ page.itc-photo-desc }}</p>
+        </a>
+      </div>
+      <div class="col-md-3 text-center home-tile">
+        <a href="{{ page.folder }}misc-photos">
+          <i class="fas fa-camera-retro fa-5x"></i>
+          <br />&nbsp;
+          <p>{{ page.misc-photo-desc }}</p>
+        </a>
+      </div>
+      <div class="col-md-3 text-center home-tile">
+        <a href="https://samettof.org/" target="_blank">
+          <i class="fas fa-globe-europe fa-5x"></i>
+          <br />&nbsp;
+          <p>{{ page.samettof-desc }}</p>
+        </a>
+      </div>
+      <div class="col-md-3 text-center home-tile">
+        <a href="https://open.spotify.com/user/42christophe/" target="_blank">
+          <i class="fas fa-music fa-5x"></i>
+          <br />&nbsp;
+          <p>{{ page.music-desc }}</p>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  {% include footer.html %}
+
+</body>
+
+</html>

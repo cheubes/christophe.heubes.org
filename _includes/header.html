@@ -1,0 +1,18 @@
+<nav class="navbar navbar-light bg-light fixed-top">
+  {% if page.lang == "fr" %}
+    {% assign home = '/' %}
+  {% endif %}
+  {% if page.lang == "en" %}
+    {% assign home = '/en/' %}
+  {% endif %}
+  <div class="navbar-brand">
+    <a href="{{ home }}"><img src="/img/photo.jpg" class="rounded-circle profile-picture" width="40" height="40" alt="" loading="lazy"></a>
+    <h1 class="navbar-brand ml-2">{{ page.h1 }}</h1>
+  </div>
+  <div id="lang">
+    {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+    {% for page in pages %}
+        &nbsp;<a href="{{ page.url }}" class="{{ page.lang }}">{{ page.flag }}</a>&nbsp;
+    {% endfor %}
+  </div>
+</nav>
