@@ -1,15 +1,19 @@
 <footer class="navbar navbar-light bg-light fixed-bottom">
-
-  <div class="navbar-brand float-left" id="social-media">
+  <div id="social-media">
+    <a href="https://christophe.heubes.com" target="_blank"><img src="/assets/img/com.jpg" class="rounded-circle" /></a>
     <a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram ml-3"></i></a>
     <a href="https://www.instagram.com/christophe.inthecity/" target="_blank"><i class="fab fa-instagram ml-3"></i></a>
     <a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify ml-3"></i></a>
   </div>
-
   <div class="mt-2 mt-md-0" id="license">
     <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}" target="_blank">
       <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
     </a>
   </div>
-
+  <div id="lang">
+    {%- assign pages=site.pages | where:"ref", page.ref | sort: 'lang' -%}
+    {%- for page in pages -%}
+        &nbsp;<a href="{{ page.url }}">{{ page.flag }}</a>&nbsp;
+    {%- endfor -%}
+  </div>
 </footer>

@@ -5,46 +5,15 @@
 
 <body>
 
-  {% include header.html %}
-  <main role="main" class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-3 text-center home-tile">
-        <a href="{{ page.folder }}uw-photos">
-          <i class="fas fa-camera-retro fa-5x"></i>
-          <br />&nbsp;
-          <p>{{ page.uw-photo-desc }}</p>
-        </a>
-      </div>
-      <div class="col-md-3 text-center home-tile">
-        <a href="{{ page.folder }}itc-photos">
-          <i class="fas fa-camera-retro fa-5x"></i>
-          <br />&nbsp;
-          <p>{{ page.itc-photo-desc }}</p>
-        </a>
-      </div>
-      <div class="col-md-3 text-center home-tile">
-        <a href="{{ page.folder }}misc-photos">
-          <i class="fas fa-camera-retro fa-5x"></i>
-          <br />&nbsp;
-          <p>{{ page.misc-photo-desc }}</p>
-        </a>
-      </div>
-      <div class="col-md-3 text-center home-tile">
-        <a href="https://samettof.org/" target="_blank">
-          <i class="fas fa-globe-europe fa-5x"></i>
-          <br />&nbsp;
-          <p>{{ page.samettof-desc }}</p>
-        </a>
-      </div>
-      <div class="col-md-3 text-center home-tile">
-        <a href="https://open.spotify.com/user/42christophe/" target="_blank">
-          <i class="fas fa-music fa-5x"></i>
-          <br />&nbsp;
-          <p>{{ page.music-desc }}</p>
-        </a>
-      </div>
+  <div id="vcard" class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center"><img id="profile-picture" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès"/></div>
+      <div class="col-md-2 text-center py-3">&nbsp;</div>
+      <div class="col-md-2 text-center py-3"><a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram fa-5x"></i></a></div>
+      <div class="col-md-2 text-center py-3"><a href="https://www.instagram.com/christophe.inthecity/" target="_blank"><i class="fab fa-instagram fa-5x"></i></a></div>
+      <div class="col-md-2 text-center py-3"><a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify fa-5x"></i></a></div>
     </div>
-  </main>
+  </div>
 
   {% include footer.html %}
 
