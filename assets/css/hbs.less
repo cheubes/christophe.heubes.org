@@ -1,0 +1,73 @@
+@blue: #2C374C;
+@gold: #C7B299;
+@light-grey: #ACB2B8;
+@grey: #666;
+@dark-grey: #444;
+
+html, body{
+  height: 100%;
+  font-family: Ubuntu, sans-serif;
+  text-align: justify;
+  color: @grey;
+}
+body {
+  background-color: #FFF;
+}
+
+div, body{
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-weight: bolder;
+}
+
+a {
+  color: @dark-grey;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+#vcard {
+  background-image: url(/assets/img/bg.jpg) ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-size:  cover;
+  background-color: #FFF;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-shadow: 2px 2px 4px dimgrey;
+  box-shadow: 0px 3px 4px black;
+}
+
+#profile-picture {
+  height: 150px;
+  width: 150px;
+  box-shadow: 2px 2px 4px black;
+}
+
+#photo-gallery {
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.portfolio {
+  .row {
+    margin-bottom: 50px;
+    border-top: 1px solid grey;
+    padding: 15px 0;
+    .icon {
+      font-size: 48px;
+      display:flex;
+      align-items:center;
+    }
+    .desc {
+      display:flex;
+      align-items:center;
+    }
+  }
+}
