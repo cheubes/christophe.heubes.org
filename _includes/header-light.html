@@ -1,0 +1,15 @@
+{%- if page.lang == "fr" -%}
+  {%- assign home = '/' -%}
+{%- endif -%}
+{%- if page.lang == "en" -%}
+  {%- assign home = '/en/' -%}
+{%- endif %}
+<div id="vcard-light" class="container-fluid">
+  <div class="row align-items-center">
+    <div class="col-md-4 text-center"><a href="{{ home }}"><img id="profile-picture-light" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès"/></a></div>
+    <div class="col-md-2 text-center py-3">&nbsp;</div>
+    <div class="col-md-2 text-center py-3"><a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></div>
+    <div class="col-md-2 text-center py-3"><a href="https://www.instagram.com/christophe.inthecity/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></div>
+    <div class="col-md-2 text-center py-3"><a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify fa-2x"></i></a></div>
+  </div>
+</div>
