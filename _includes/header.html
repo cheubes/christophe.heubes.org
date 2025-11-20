@@ -3,13 +3,26 @@
 {%- endif -%}
 {%- if page.lang == "en" -%}
   {%- assign home = '/en/' -%}
-{%- endif %}
-<div id="vcard" class="container-fluid">
+{%- endif -%}
+
+{%- if page.ref == "home" -%}
+  {%- assign card-id = 'vcard' -%}
+  {%- assign profile-id = 'profile-picture' -%}
+  {%- assign icons-size-class = 'fa-5x' -%}
+{%- else -%}
+  {%- assign card-id = 'vcard-light' -%}
+  {%- assign profile-id = 'profile-picture-light' -%}
+  {%- assign icons-size-class = 'fa-2x' -%}
+{%- endif -%}
+
+<div id="{{ card-id }}" class="container-fluid">
   <div class="row align-items-center">
-    <div class="col-md-4 text-center"><a href="{{ home }}"><img id="profile-picture" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès"/></a></div>
-    <div class="col-md-2 text-center py-3">&nbsp;</div>
-    <div class="col-md-2 text-center py-3"><a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram fa-5x"></i></a></div>
-    <div class="col-md-2 text-center py-3"><a href="https://www.instagram.com/christophe.inthecity/" target="_blank"><i class="fab fa-instagram fa-5x"></i></a></div>
-    <div class="col-md-2 text-center py-3"><a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify fa-5x"></i></a></div>
+    <div class="col-md-4 text-center"><a href="{{ home }}"><img id="{{ profile-id }}" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès"/></a></div>
+    <div class="col-md-8 text-right py-3">
+      <a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram {{ icons-size-class }}"></i></a>
+      <a href="https://www.instagram.com/christophe.hbs/" target="_blank"><i class="fab fa-instagram {{ icons-size-class }}"></i></a>
+      <a href="https://www.goodreads.com/christophehbs/" target="_blank"><i class="fas fa-book-open {{ icons-size-class }}"></i></a>
+      <a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify {{ icons-size-class }}"></i></a>
+    </div>
   </div>
 </div>
