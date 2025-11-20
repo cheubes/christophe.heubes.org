@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+
+{% include head.html %}
+
+<body>
+
+  {% include header.html %}
+
+  <div id="not-found" class="container-fluid align-middle text-center">
+    <p class="font-weight-bold fa-5x">404</p>
+    <p class="text-uppercase font-weight-bold fa-2x">{{ page.message }}</p>
+  </div>
+  {% include footer.html %}
+
+</body>
+
+{% include scripts.html %}
+
+</html>
