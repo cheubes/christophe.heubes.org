@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+
+{% include head.html %}
+
+<body>
+
+  {% include header-light.html %}
+
+  <div id="technical-drawing-gallery" class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div><div class="col-md-10 px-5"><p>{{ page.introduction }}</p></div><div class="col-md-1">&nbsp;</div>
+    </div>
+    <div class="row align-items-center">
+      {% for item in site.data.technical-drawing -%}
+      {%- if page.lang == "fr" -%}{%- assign drawing-title=item.fr-title -%}{%- endif -%}
+      {%- if page.lang == "en" -%}{%- assign drawing-title=item.en-title -%}{%- endif -%}
+      <div class="col-md-1">&nbsp;</div><div class="col-md-10 px-5"><hr /></div><div class="col-md-1">&nbsp;</div>
+      <div class="col-md-2 px-5">&nbsp;</div>
+      <div class="col-md-8 px-5">
+        <div id="slider-{{ item.id }}" class="beer-slider" data-beer-label="2020">
+          <img src="/technical-drawing/{{ item.id }}-2020.jpg" alt="{{ drawing-title }}">
+          <div class="beer-reveal" data-beer-label="{{ item.org-year }}">
+            <img src="/technical-drawing/{{ item.id }}-org.jpg" alt="{{ drawing-title }}">
+          </div>
+        </div>
+        <h4 class="text-center font-weight-bolder"><a href="/technical-drawing/{{ item.id }}-2020.jpg">{{ drawing-title }} <i class="align-middle fa-solid fa-magnifying-glass-plus"></i></a></h4>
+      </div>
+      <div class="col-md-2">&nbsp;</div>
+      {% endfor -%}
+    </div><!-- /.row -->
+  </div>
+
+  {% include footer.html %}
+
+  <!-- BeerSlider library -->
+  <script src="/assets/dist/js/BeerSlider.js" type="text/javascript"></script>
+  <!-- BeerSlider init -->
+  <script>
+    {% for item in site.data.technical-drawing -%}
+    new BeerSlider( document.getElementById( "slider-{{ item.id }}" ) );
+    {% endfor -%}
+  </script>
+
+</body>
+
+{% include scripts.html %}
+
+</html>
