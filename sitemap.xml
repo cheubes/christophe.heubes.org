@@ -5,7 +5,7 @@ sitemap:
   exclude: 'yes'
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   {% for page in site.pages %}
     {% if page.title %}
       {% unless page.sitemap.exclude == "yes" or page.name == "feed.xml" %}
@@ -27,6 +27,13 @@ sitemap:
           <priority>{{ page.sitemap.priority }}</priority>
         {% else %}
           <priority>0.3</priority>
+        {% endif %}
+        {% if page.ref == "technical-drawing" %}
+          {% for item in site.data.technical-drawing -%}
+            <image:image>
+              <image:loc>{{ site.url }}/technical-drawing/{{ item.id }}-2020.jpg</image:loc>
+            </image:image>
+          {% endfor -%}
         {% endif %}
       </url>
       {% endunless %}
