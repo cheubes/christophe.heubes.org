@@ -21,6 +21,10 @@ sitemap:
             {%- else -%}
               <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
             {%- endif -%}
+            {%- if page.ref == "home" %}
+            <image:image><image:loc>{{ site.url }}/assets/img/photo.jpg</image:loc></image:image>
+            <image:image><image:loc>{{ site.url }}/assets/img/bg.jpg</image:loc></image:image>
+            {%- endif -%}
             {%- if page.ref == "technical-drawing" -%}
               {%- for item in site.data.technical-drawing %}
             <image:image><image:loc>{{ site.url }}/technical-drawing/{{ item.id }}-2020.jpg</image:loc></image:image>
