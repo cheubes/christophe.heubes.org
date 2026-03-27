@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E '\\\\.\\(html|md|liquid\\)$')",
+      "Bash(brew list:*)",
+      "Bash(python3 -c \"import PIL; print\\(''''pillow ok''''\\)\")",
+      "Bash(mdls /Users/christophe/github/Perso/christophe.heubes.org/under-water/2020-08-baleine-morea-polynesie-francaise-A.jpg)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Bash(mdls $f)",
+      "Bash(done)"
+    ]
+  }
+}

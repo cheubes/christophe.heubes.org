@@ -1,0 +1,45 @@
+# Galerie Under Water
+# Format :
+# - file: nom-du-fichier.jpg
+#   title-fr: "Description en français"
+#   title-en: "Description in English"
+
+- file: 2024-07-raies-mobula-acores-01.jpg
+  title-fr: "Raies mobula, Açores."
+  title-en: "Mobula rays, Azores."
+
+- file: 2024-07-raies-mobula-acores-02.jpg
+  title-fr: "Raies mobula, Açores."
+  title-en: "Mobula rays, Azores."
+
+- file: 2024-07-raies-mobula-acores-03.jpg
+  title-fr: "Raies mobula, Açores."
+  title-en: "Mobula rays, Azores."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-C-01.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-C-02.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-C-03.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-B-01.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-B-02.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-B-03.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
+
+- file: 2020-08-baleine-morea-polynesie-francaise-A.jpg
+  title-fr: "Baleine, Moorea, Polynésie Française."
+  title-en: "Whale, Moorea, French Polynesia."
