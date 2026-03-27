@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+
+{% include head.html %}
+
+<body>
+
+  {% include header.html %}
+
+  <div id="street-art-gallery" class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div><div class="col-md-10 px-5"><p>{{ page.introduction }}</p></div><div class="col-md-1">&nbsp;</div>
+    </div>
+    <div class="row g-2 px-5 py-4">
+      {% for photo in site.data.street-art %}
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="gallery-thumb"
+             data-src="/street-art/{{ photo.file }}"
+             data-caption="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
+             data-index="{{ forloop.index0 }}">
+          <img src="/street-art/{{ photo.file }}"
+               alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
+               class="img-fluid">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="modal fade" id="lightbox" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content bg-dark border-0">
+        <div class="modal-body p-0 position-relative">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close" style="z-index:10"></button>
+          <button id="lightbox-prev" class="btn btn-dark position-absolute start-0 top-50 translate-middle-y ms-1" style="z-index:10; font-size:1.5rem; line-height:1">&#8249;</button>
+          <button id="lightbox-next" class="btn btn-dark position-absolute end-0 top-50 translate-middle-y me-1" style="z-index:10; font-size:1.5rem; line-height:1">&#8250;</button>
+          <div class="text-center px-5 py-4">
+            <img src="" id="lightbox-img" class="img-fluid" alt="" style="max-height:80vh">
+            <p id="lightbox-caption" class="text-white-50 mt-2 mb-0 small"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+  <script>
+    var photos = [];
+    var currentIndex = 0;
+
+    document.querySelectorAll('.gallery-thumb').forEach(function(thumb, index) {
+      photos.push({ src: thumb.dataset.src, caption: thumb.dataset.caption });
+      thumb.addEventListener('click', function() {
+        currentIndex = index;
+        showPhoto(currentIndex);
+        var modal = new bootstrap.Modal(document.getElementById('lightbox'));
+        modal.show();
+      });
+    });
+
+    function showPhoto(index) {
+      document.getElementById('lightbox-img').src = photos[index].src;
+      document.getElementById('lightbox-caption').textContent = photos[index].caption || '';
+      document.getElementById('lightbox-prev').style.visibility = index === 0 ? 'hidden' : 'visible';
+      document.getElementById('lightbox-next').style.visibility = index === photos.length - 1 ? 'hidden' : 'visible';
+    }
+
+    document.getElementById('lightbox-prev').addEventListener('click', function() {
+      if (currentIndex > 0) { currentIndex--; showPhoto(currentIndex); }
+    });
+
+    document.getElementById('lightbox-next').addEventListener('click', function() {
+      if (currentIndex < photos.length - 1) { currentIndex++; showPhoto(currentIndex); }
+    });
+
+    document.getElementById('lightbox').addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; showPhoto(currentIndex); }
+      if (e.key === 'ArrowRight' && currentIndex < photos.length - 1) { currentIndex++; showPhoto(currentIndex); }
+    });
+  </script>
+
+</body>
+
+{% include scripts.html %}
+
+</html>

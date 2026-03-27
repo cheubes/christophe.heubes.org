@@ -1,0 +1,57 @@
+# Galerie Street Art
+# Format :
+# - file: nom-du-fichier.jpg
+#   title-fr: "Description en français"
+#   title-en: "Description in English"
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-nesta-01.jpg
+  title-fr: "Œuvre de Nesta sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Nesta on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-nesta-02.jpg
+  title-fr: "Œuvre de Nesta sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Nesta on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-nesta-03.jpg
+  title-fr: "Œuvre de Nesta sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Nesta on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-dan23-01.jpg
+  title-fr: "Œuvre de Dan23 sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Dan23 on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-dan23-02.jpg
+  title-fr: "Œuvre de Dan23 sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Dan23 on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-dan23-03.jpg
+  title-fr: "Œuvre de Dan23 sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Dan23 on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-nubian-01.jpg
+  title-fr: "Œuvre de Nubian sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Nubian on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-nubian-02.jpg
+  title-fr: "Œuvre de Nubian sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Nubian on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-nubian-03.jpg
+  title-fr: "Œuvre de Nubian sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by Nubian on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-rnst-01.jpg
+  title-fr: "Œuvre de RNST sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by RNST on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-rnst-02.jpg
+  title-fr: "Œuvre de RNST sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by RNST on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: dans-ses-arteres-coule-la-vie-fluctuart-rnst-03.jpg
+  title-fr: "Œuvre de RNST sur la carte du métro parisien pour l'exposition &#147;Dans ses artères coule la vie&#148; à Fluctuart."
+  title-en: "Artwork by RNST on the Paris subway map for the exhibition &#147;Dans ses artères coule la vie&#148; at Fluctuart."
+
+- file: the-naked-mona-lisa-pboy.jpg
+  title-fr: "The naked Mona Lisa par pboy."
+  title-en: "The naked Mona Lisa by pboy."
