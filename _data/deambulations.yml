@@ -1,0 +1,41 @@
+# Galerie Déambulations
+# Format :
+# - file: nom-du-fichier.jpg
+#   title-fr: "Description en français"
+#   title-en: "Description in English"
+
+- file: 2026-03-cathedrale-notre-dame-de-paris-02.jpg
+  title-fr: "La cathédrale Notre-Dame de Paris, mars 2026."
+  title-en: "Notre-Dame Cathedral, Paris, March 2026."
+
+- file: 2026-03-lever-de-soleil-sur-les-quais-de-seine.jpg
+  title-fr: "Lever de soleil sur les quais de Seine, Paris, mars 2026."
+  title-en: "Sunrise over the banks of the Seine, Paris, March 2026."
+
+- file: 2026-03-cathedrale-notre-dame-de-paris-01.jpg
+  title-fr: "La cathédrale Notre-Dame de Paris, mars 2026."
+  title-en: "Notre-Dame Cathedral, Paris, March 2026."
+
+- file: 2025-12-tour-effeil.jpg
+  title-fr: "La Tour Eiffel, Paris, décembre 2025."
+  title-en: "The Eiffel Tower, Paris, December 2025."
+
+- file: 2025-12-la-france-renaissante.jpg
+  title-fr: "Statue de La France Renaissante, Paris, décembre 2025."
+  title-en: "Statue of La France Renaissante, Paris, December 2025."
+
+- file: 2025-10-lever-de-soleil-sur-les-quais-de-seine-02.jpg
+  title-fr: "Lever de soleil sur les quais de Seine, Paris, octobre 2025."
+  title-en: "Sunrise over the banks of the Seine, Paris, October 2025."
+
+- file: 2025-11-grande-arche-de-la-defense.jpg
+  title-fr: "La Grande Arche de la Défense, novembre 2025."
+  title-en: "The Grande Arche de la Défense, November 2025."
+
+- file: 2025-10-lever-de-soleil-sur-les-quais-de-seine-01.jpg
+  title-fr: "Lever de soleil sur les quais de Seine, Paris, octobre 2025."
+  title-en: "Sunrise over the banks of the Seine, Paris, October 2025."
+
+- file: 2025-09-tour-saintt-jacques.jpg
+  title-fr: "La Tour Saint-Jacques, Paris, septembre 2025."
+  title-en: "The Tour Saint-Jacques, Paris, September 2025."
