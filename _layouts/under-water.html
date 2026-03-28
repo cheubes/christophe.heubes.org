@@ -9,15 +9,16 @@
 
   <div id="under-water-gallery" class="container-fluid">
     <div class="row g-2 py-4" style="padding-left: 10%; padding-right: 10%">
+      <h1>{{ page.h1 }}</h1>
       <p>{{ page.introduction }}</p>
       <hr />
       {% for photo in site.data.under-water %}
       <div class="col-4">
         <div class="gallery-thumb"
-             data-src="/under-water/{{ photo.file }}"
+             data-src="/content/under-water/{{ photo.file }}"
              data-caption="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
              data-index="{{ forloop.index0 }}">
-          <img src="/under-water/{{ photo.file }}"
+          <img src="/content/under-water/{{ photo.file }}"
                alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
                class="img-fluid">
         </div>

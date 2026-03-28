@@ -27,12 +27,22 @@ sitemap:
             {%- endif -%}
             {%- if page.ref == "technical-drawing" -%}
               {%- for item in site.data.technical-drawing %}
-            <image:image><image:loc>{{ site.url }}/technical-drawing/{{ item.id }}-2020.jpg</image:loc></image:image>
+            <image:image><image:loc>{{ site.url }}/content/technical-drawing/{{ item.id }}-2020.jpg</image:loc></image:image>
               {%- endfor -%}
             {%- endif -%}
             {%- if page.ref == "street-art" -%}
               {%- for item in site.data.street-art %}
-            <image:image><image:loc>{{ site.url }}/street-art/{{ item.file }}</image:loc></image:image>
+            <image:image><image:loc>{{ site.url }}/content/street-art/{{ item.file }}</image:loc></image:image>
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if page.ref == "under-water" -%}
+              {%- for item in site.data.under-water %}
+            <image:image><image:loc>{{ site.url }}/content/under-water/{{ item.file }}</image:loc></image:image>
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if page.ref == "deambulations" -%}
+              {%- for item in site.data.deambulations %}
+            <image:image><image:loc>{{ site.url }}/content/deambulations/{{ item.file }}</image:loc></image:image>
               {%- endfor -%}
             {%- endif -%}
             {%- assign alternates=site.pages | where:"ref", page.ref | sort: 'lang' -%}
