@@ -17,12 +17,12 @@
 
 <div id="{{ card-id }}" class="container-fluid">
   <div class="row align-items-center">
-    <div class="col-md-4 text-center"><a href="{{ home }}"><img id="{{ profile-id }}" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès"/></a></div>
+    <div class="col-md-4 text-center"><a href="{{ home }}" aria-label="{% if page.lang == 'fr' %}Accueil{% else %}Home{% endif %}"><img id="{{ profile-id }}" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès"/></a></div>
     <div class="col-md-8 text-end py-3">
-      <a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram {{ icons-size-class }}"></i></a>
-      <a href="https://www.instagram.com/christophe.hbs/" target="_blank"><i class="fab fa-instagram {{ icons-size-class }}"></i></a>
-      <a href="https://www.goodreads.com/christophehbs/" target="_blank"><i class="fas fa-book-open {{ icons-size-class }}"></i></a>
-      <a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify {{ icons-size-class }}"></i></a>
+      <a href="https://www.instagram.com/christophe.uw/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @christophe.uw"><i class="fab fa-instagram {{ icons-size-class }}"></i></a>
+      <a href="https://www.instagram.com/christophe.hbs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @christophe.hbs"><i class="fab fa-instagram {{ icons-size-class }}"></i></a>
+      <a href="https://www.goodreads.com/christophehbs/" target="_blank" rel="noopener noreferrer" aria-label="Goodreads"><i class="fas fa-book-open {{ icons-size-class }}"></i></a>
+      <a href="https://open.spotify.com/user/42christophe/" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fab fa-spotify {{ icons-size-class }}"></i></a>
     </div>
   </div>
 </div>

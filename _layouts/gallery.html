@@ -8,7 +8,7 @@
   {% include header.html %}
 
   <div id="{{ page.gallery }}-gallery" class="container-fluid">
-    <div class="row g-2 py-4" style="padding-left: 10%; padding-right: 10%">
+    <div class="row g-2 py-4 gallery-content">
       <h1>{{ page.h1 }}</h1>
       <p>{{ page.introduction }}</p>
       <hr />
@@ -21,7 +21,7 @@
              data-index="{{ forloop.index0 }}">
           <img src="/content/{{ page.gallery }}/{{ photo.file }}"
                alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
-               class="img-fluid">
+               class="img-fluid" loading="lazy">
         </div>
       </div>
       {% endfor %}
@@ -33,11 +33,11 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content bg-dark border-0">
         <div class="modal-body p-0 position-relative">
-          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close" style="z-index:10"></button>
-          <button id="lightbox-prev" class="btn btn-dark position-absolute start-0 top-50 translate-middle-y ms-1" style="z-index:10; font-size:1.5rem; line-height:1">&#8249;</button>
-          <button id="lightbox-next" class="btn btn-dark position-absolute end-0 top-50 translate-middle-y me-1" style="z-index:10; font-size:1.5rem; line-height:1">&#8250;</button>
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="{% if page.lang == 'fr' %}Fermer{% else %}Close{% endif %}"></button>
+          <button id="lightbox-prev" class="btn btn-dark position-absolute start-0 top-50 translate-middle-y ms-1">&#8249;</button>
+          <button id="lightbox-next" class="btn btn-dark position-absolute end-0 top-50 translate-middle-y me-1">&#8250;</button>
           <div class="text-center px-5 py-4">
-            <img src="" id="lightbox-img" class="img-fluid" alt="" style="max-height:80vh">
+            <img src="" id="lightbox-img" class="img-fluid" alt="">
             <p id="lightbox-caption" class="text-white-50 mt-2 mb-0 small"></p>
           </div>
         </div>
@@ -49,8 +49,8 @@
 
   <script src="/assets/dist/js/gallery.js"></script>
 
-</body>
+  {% include scripts.html %}
 
-{% include scripts.html %}
+</body>
 
 </html>

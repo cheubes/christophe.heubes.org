@@ -1,13 +1,30 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="{{ page.description }}">
-  <meta name="author" content="Christophe Heubès">
+  <meta name="author" content="{{ site.author }}">
 
   <title>{{ page.title }}</title>
 
-  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+  <!-- Open Graph -->
+  {% assign og_image = page.image | default: "/assets/img/bg.jpg" %}
+  {% if page.lang == "fr" %}{% assign og_locale = "fr_FR" %}{% else %}{% assign og_locale = "en_US" %}{% endif %}
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title"       content="{{ page.title }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:image"       content="{{ site.url }}{{ og_image }}">
+  <meta property="og:locale"      content="{{ og_locale }}">
+  {% assign alt_pages = site.pages | where:"ref", page.ref %}
+  {% for alt in alt_pages %}{% if alt.lang != page.lang %}
+  <meta property="og:locale:alternate" content="{% if alt.lang == 'fr' %}fr_FR{% else %}en_US{% endif %}">
+  {% endif %}{% endfor %}
+
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; img-src 'self' https://i.creativecommons.org; connect-src 'self' https://ka-f.fontawesome.com;">
 
   {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
   {% for page in pages %}
@@ -15,14 +32,17 @@
   {% endfor %}
 
   <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin>
+  <link rel="preconnect" href="https://ka-f.fontawesome.com" crossorigin>
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu" />
-  <script src="https://kit.fontawesome.com/7dfeb2d2f7.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/7dfeb2d2f7.js" crossorigin="anonymous" defer></script>
 
   <!-- CSS -->
   <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="/assets/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-  <link href="/assets/css/hbs.less" rel="stylesheet/less" type="text/css">
-  <script src="/assets/dist/js/less.min.js" type="text/javascript"></script>
+  <script src="/assets/dist/js/bootstrap.bundle.min.js" type="text/javascript" defer></script>
+  <link href="/assets/dist/css/hbs.css" rel="stylesheet">
   <link href="/assets/dist/css/BeerSlider.css" rel="stylesheet">
 
 </head>

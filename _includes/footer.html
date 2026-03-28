@@ -1,20 +1,20 @@
 <footer class="navbar navbar-light bg-light fixed-bottom ms-3 me-3">
   <div id="social-media">
-    <a href="https://christophe.heubes.com" target="_blank"><img src="/assets/img/com.jpg" class="rounded-circle" /></a>
-    <a href="https://www.instagram.com/christophe.uw/" target="_blank"><i class="fab fa-instagram ms-3"></i></a>
-    <a href="https://www.instagram.com/christophe.hbs/" target="_blank"><i class="fab fa-instagram ms-3"></i></a>
-    <a href="https://www.goodreads.com/christophehbs/" target="_blank"><i class="fas fa-book-open ms-3"></i></a>
-    <a href="https://open.spotify.com/user/42christophe/" target="_blank"><i class="fab fa-spotify ms-3"></i></a>
+    <a href="https://christophe.heubes.com" target="_blank" rel="noopener noreferrer" aria-label="christophe.heubes.com"><img src="/assets/img/com.jpg" class="rounded-circle" /></a>
+    <a href="https://www.instagram.com/christophe.uw/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @christophe.uw"><i class="fab fa-instagram ms-3"></i></a>
+    <a href="https://www.instagram.com/christophe.hbs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @christophe.hbs"><i class="fab fa-instagram ms-3"></i></a>
+    <a href="https://www.goodreads.com/christophehbs/" target="_blank" rel="noopener noreferrer" aria-label="Goodreads"><i class="fas fa-book-open ms-3"></i></a>
+    <a href="https://open.spotify.com/user/42christophe/" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fab fa-spotify ms-3"></i></a>
   </div>
   <div class="mt-2 mt-md-0" id="license">
-    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}" target="_blank">
-      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" />
+    <a rel="license noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}" target="_blank" aria-label="{% if page.lang == 'fr' %}Licence Creative Commons BY-NC-SA 4.0{% else %}Creative Commons License BY-NC-SA 4.0{% endif %}">
+      <img alt="Creative Commons License" style="border-width:0" src="/assets/img/cc-by-nc-sa.png" />
     </a>
   </div>
   <div id="lang">
     {%- assign pages=site.pages | where:"ref", page.ref | sort: 'lang' -%}
     {%- for page in pages -%}
-        &nbsp;<a href="{{ page.url }}">{{ page.flag }}</a>&nbsp;
+        &nbsp;<a href="{{ page.url }}" aria-label="{% if page.lang == 'fr' %}Français{% else %}English{% endif %}">{{ page.flag }}</a>&nbsp;
     {%- endfor -%}
   </div>
 </footer>
