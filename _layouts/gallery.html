@@ -7,18 +7,19 @@
 
   {% include header.html %}
 
-  <div id="deambulations-gallery" class="container-fluid">
+  <div id="{{ page.gallery }}-gallery" class="container-fluid">
     <div class="row g-2 py-4" style="padding-left: 10%; padding-right: 10%">
       <h1>{{ page.h1 }}</h1>
       <p>{{ page.introduction }}</p>
       <hr />
-      {% for photo in site.data.deambulations %}
+      {% assign gallery_data = site.data[page.gallery] %}
+      {% for photo in gallery_data %}
       <div class="col-4">
         <div class="gallery-thumb"
-             data-src="/content/deambulations/{{ photo.file }}"
+             data-src="/content/{{ page.gallery }}/{{ photo.file }}"
              data-caption="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
              data-index="{{ forloop.index0 }}">
-          <img src="/content/deambulations/{{ photo.file }}"
+          <img src="/content/{{ page.gallery }}/{{ photo.file }}"
                alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
                class="img-fluid">
         </div>
@@ -46,40 +47,7 @@
 
   {% include footer.html %}
 
-  <script>
-    var photos = [];
-    var currentIndex = 0;
-
-    document.querySelectorAll('.gallery-thumb').forEach(function(thumb, index) {
-      photos.push({ src: thumb.dataset.src, caption: thumb.dataset.caption });
-      thumb.addEventListener('click', function() {
-        currentIndex = index;
-        showPhoto(currentIndex);
-        var modal = new bootstrap.Modal(document.getElementById('lightbox'));
-        modal.show();
-      });
-    });
-
-    function showPhoto(index) {
-      document.getElementById('lightbox-img').src = photos[index].src;
-      document.getElementById('lightbox-caption').textContent = photos[index].caption || '';
-      document.getElementById('lightbox-prev').style.visibility = index === 0 ? 'hidden' : 'visible';
-      document.getElementById('lightbox-next').style.visibility = index === photos.length - 1 ? 'hidden' : 'visible';
-    }
-
-    document.getElementById('lightbox-prev').addEventListener('click', function() {
-      if (currentIndex > 0) { currentIndex--; showPhoto(currentIndex); }
-    });
-
-    document.getElementById('lightbox-next').addEventListener('click', function() {
-      if (currentIndex < photos.length - 1) { currentIndex++; showPhoto(currentIndex); }
-    });
-
-    document.getElementById('lightbox').addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; showPhoto(currentIndex); }
-      if (e.key === 'ArrowRight' && currentIndex < photos.length - 1) { currentIndex++; showPhoto(currentIndex); }
-    });
-  </script>
+  <script src="/assets/dist/js/gallery.js"></script>
 
 </body>
 
