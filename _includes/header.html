@@ -1,17 +1,19 @@
 {%- if page.lang == "fr" -%}
   {%- assign home = '/' -%}
+  {%- assign lang_prefix = '' -%}
 {%- endif -%}
 {%- if page.lang == "en" -%}
   {%- assign home = '/en/' -%}
+  {%- assign lang_prefix = '/en' -%}
 {%- endif -%}
 
 {%- if page.ref != "home" -%}
 <header id="site-header">
   <nav class="header-icons">
-    <a href="/under-water">🤿</a>
-    <a href="/street-art">🎨</a>
-    <a href="/deambulations">🚶</a>
-    <a href="/technical-drawing">📐</a>
+    <a href="{{ lang_prefix }}/under-water">🤿</a>
+    <a href="{{ lang_prefix }}/street-art">🎨</a>
+    <a href="{{ lang_prefix }}/deambulations">🚶</a>
+    <a href="{{ lang_prefix }}/technical-drawing">📐</a>
     <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer">🌏</a>
   </nav>
   <a href="{{ home }}" class="header-identity" aria-label="{% if page.lang == 'fr' %}Accueil{% else %}Home{% endif %}">
