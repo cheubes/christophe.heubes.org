@@ -1,82 +1,323 @@
-@blue: #2C374C;
-@gold: #C7B299;
-@light-grey: #ACB2B8;
-@grey: #666;
-@dark-grey: #444;
+// --- Dark Cinematic Palette ---
+@bg:           #0d0d0d;
+@surface:      #161616;
+@text:         #f0ece4;
+@text-muted:   #8a8278;
+@gold:         #C7B299;
+@gold-bright:  #e8d5b7;
 
-html, body{
+// Compatibilité BeerSlider / technical-drawing
+@blue:         #2C374C;
+@light-grey:   #ACB2B8;
+
+// --- Base ---
+
+html, body {
   height: 100%;
   font-family: Ubuntu, sans-serif;
-  text-align: justify;
-  color: @grey;
-}
-body {
-  background-color: #FFF;
+  color: @text;
+  background-color: @bg;
 }
 
-div, body{
+body {
+  background-color: @bg;
+}
+
+div, body {
   margin: 0;
   padding: 0;
 }
 
+h1, h2, h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: @text;
+}
+
 h1 {
-  font-weight: bolder;
+  font-weight: 600;
 }
 
 a {
-  color: @dark-grey;
+  color: @gold;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: black;
+  color: @gold-bright;
   text-decoration: none;
 }
 
-#vcard {
-  background-image: url(/assets/img/bg.jpg) ;
+// --- Hero (home page) ---
+
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/assets/img/bg.jpg);
   background-position: center center;
-  background-repeat:  no-repeat;
-  background-size:  cover;
-  background-color: #FFF;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  text-shadow: 2px 2px 4px dimgrey;
-  box-shadow: 0px 3px 4px black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  #hero-profile-picture {
+    height: 100px;
+    width: 100px;
+    border: 2px solid @gold;
+    box-shadow: 0 0 20px rgba(199, 178, 153, 0.25);
+    margin-bottom: 1.5rem;
+    object-fit: cover;
+  }
+
+  .hero-name {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: @text;
+    margin: 0;
+  }
+
+  .hero-separator {
+    width: 80px;
+    height: 1px;
+    background: @gold;
+    margin: 1.5rem auto;
+  }
+
+  .hero-gallery-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+
+    a {
+      font-size: 2.2rem;
+      line-height: 1;
+      opacity: 0.75;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      color: inherit;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.2);
+        color: inherit;
+      }
+    }
+  }
 }
 
-#profile-picture {
-  height: 150px;
-  width: 150px;
-  box-shadow: 2px 2px 4px black;
+#hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: @text-muted;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
 }
 
-#vcard-light {
-  background-image: url(/assets/img/bg.jpg) ;
-  background-position: center center;
-  background-repeat:  no-repeat;
-  background-size:  cover;
-  background-color: #FFF;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-shadow: 2px 2px 4px dimgrey;
-  box-shadow: 0px 3px 4px black;
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
 }
 
-#profile-picture-light {
-  height: 40px;
-  width: 40px;
-  box-shadow: 2px 2px 4px black;
+@media (max-width: 768px) {
+  #hero { background-attachment: scroll; }
 }
 
-#technical-drawing-gallery {
-  padding-top: 50px;
-  padding-bottom: 100px;
+// --- Bandes galerie (home page) ---
+
+.gallery-band {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  min-height: 300px;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+
+  .gallery-band-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .gallery-band-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.50);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s ease;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .gallery-band-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: @text;
+    margin-bottom: 0.75rem;
+  }
+
+  .gallery-band-desc {
+    font-family: Ubuntu, sans-serif;
+    font-size: 1rem;
+    color: @text;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
+
+  .gallery-band-arrow {
+    color: @gold;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s ease;
+  }
+
+  &:hover {
+    .gallery-band-img { transform: scale(1.04); }
+    .gallery-band-overlay { background: rgba(0, 0, 0, 0.35); }
+    .gallery-band-arrow { color: @gold-bright; }
+  }
 }
 
-.gallery-content {
-  padding-left: 10%;
-  padding-right: 10%;
+// --- Header slim (pages non-home) ---
+
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #111111;
+  border-bottom: 1px solid rgba(199, 178, 153, 0.15);
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .header-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+
+    img {
+      height: 38px;
+      width: 38px;
+      object-fit: cover;
+      border: 1px solid @gold;
+    }
+
+    .header-name {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: @text;
+    }
+  }
+
+  .header-icons {
+    a {
+      color: @text-muted;
+      margin-left: 1rem;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+
+      &:hover { color: @gold; }
+    }
+  }
+}
+
+// --- Pages galeries ---
+
+#deambulations-gallery,
+#street-art-gallery,
+#under-water-gallery {
+  padding-top: 2rem;
+  padding-bottom: 120px;
+
+  .gallery-content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  p { color: @text-muted; font-size: 0.95rem; }
+
+  hr { border-color: rgba(199, 178, 153, 0.2); }
+
+  .gallery-thumb {
+    cursor: pointer;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    border: 1px solid transparent;
+    transition: border-color 0.25s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      border-color: @gold;
+
+      img { transform: scale(1.04); }
+    }
+  }
+}
+
+// --- Lightbox ---
+
+#lightbox {
+  .modal-content {
+    background-color: #000;
+    border: 1px solid rgba(199, 178, 153, 0.15);
+  }
+
+  #lightbox-caption {
+    color: @text-muted;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
 }
 
 #lightbox-prev,
@@ -84,63 +325,78 @@ a:hover {
   z-index: 10;
   font-size: 1.5rem;
   line-height: 1;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(199, 178, 153, 0.2);
+  color: @text;
+  transition: background 0.2s ease;
+
+  &:hover { background: rgba(199, 178, 153, 0.15); }
 }
 
-#lightbox .btn-close {
-  z-index: 10;
-}
+#lightbox .btn-close { z-index: 10; }
 
-#lightbox-img {
-  max-height: 80vh;
-}
+#lightbox-img { max-height: 82vh; }
 
-#deambulations-gallery,
-#street-art-gallery,
-#under-water-gallery {
-  padding-top: 30px;
-  padding-bottom: 100px;
+// --- Footer ---
 
-  .gallery-thumb {
-    cursor: pointer;
-    overflow: hidden;
-    aspect-ratio: 3 / 4;
+footer#site-footer {
+  background-color: @surface;
+  border-top: 1px solid rgba(199, 178, 153, 0.2);
+  padding-left: 1rem;
+  padding-right: 1rem;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.2s ease;
+  &.navbar { background-color: @surface !important; }
 
-      &:hover {
-        transform: scale(1.04);
-      }
-    }
+  a {
+    color: @text-muted;
+    transition: color 0.2s ease;
+
+    &:hover { color: @gold; }
+  }
+
+  img.rounded-circle {
+    height: 24px;
+    width: 24px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+
+    &:hover { opacity: 1; }
   }
 }
+
+// --- Dessins techniques ---
+
+#technical-drawing-gallery {
+  padding-top: 50px;
+  padding-bottom: 120px;
+  color: @text;
+
+  h4 a {
+    color: @gold;
+
+    &:hover { color: @gold-bright; }
+  }
+}
+
+// --- Page 404 ---
 
 #not-found {
-  background-image: url(/assets/img/bg.jpg) ;
+  position: relative;
+  background-image: url(/assets/img/bg.jpg);
   background-position: center center;
-  background-repeat:  no-repeat;
-  margin-top: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 200px;
   padding-bottom: 400px;
-  text-shadow: 2px 2px 4px dimgrey;
-}
+  color: @text;
 
-.portfolio {
-  .row {
-    margin-bottom: 50px;
-    border-top: 1px solid grey;
-    padding: 15px 0;
-    .icon {
-      font-size: 48px;
-      display:flex;
-      align-items:center;
-    }
-    .desc {
-      display:flex;
-      align-items:center;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
   }
+
+  p { position: relative; z-index: 1; }
 }

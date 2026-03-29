@@ -1,1 +1,368 @@
-html,body{height:100%;font-family:Ubuntu,sans-serif;text-align:justify;color:#666}body{background-color:#FFF}div,body{margin:0;padding:0}h1{font-weight:bolder}a{color:#444;text-decoration:none}a:hover{color:black;text-decoration:none}#vcard{background-image:url(/assets/img/bg.jpg);background-position:center center;background-repeat:no-repeat;background-size:cover;background-color:#FFF;padding-top:50px;padding-bottom:50px;text-shadow:2px 2px 4px dimgrey;box-shadow:0px 3px 4px black}#profile-picture{height:150px;width:150px;box-shadow:2px 2px 4px black}#vcard-light{background-image:url(/assets/img/bg.jpg);background-position:center center;background-repeat:no-repeat;background-size:cover;background-color:#FFF;padding-top:5px;padding-bottom:5px;text-shadow:2px 2px 4px dimgrey;box-shadow:0px 3px 4px black}#profile-picture-light{height:40px;width:40px;box-shadow:2px 2px 4px black}#technical-drawing-gallery{padding-top:50px;padding-bottom:100px}.gallery-content{padding-left:10%;padding-right:10%}#lightbox-prev,#lightbox-next{z-index:10;font-size:1.5rem;line-height:1}#lightbox .btn-close{z-index:10}#lightbox-img{max-height:80vh}#deambulations-gallery,#street-art-gallery,#under-water-gallery{padding-top:30px;padding-bottom:100px}#deambulations-gallery .gallery-thumb,#street-art-gallery .gallery-thumb,#under-water-gallery .gallery-thumb{cursor:pointer;overflow:hidden;aspect-ratio:3 / 4}#deambulations-gallery .gallery-thumb img,#street-art-gallery .gallery-thumb img,#under-water-gallery .gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .2s ease}#deambulations-gallery .gallery-thumb img:hover,#street-art-gallery .gallery-thumb img:hover,#under-water-gallery .gallery-thumb img:hover{transform:scale(1.04)}#not-found{background-image:url(/assets/img/bg.jpg);background-position:center center;background-repeat:no-repeat;margin-top:5px;padding-top:200px;padding-bottom:400px;text-shadow:2px 2px 4px dimgrey}.portfolio .row{margin-bottom:50px;border-top:1px solid grey;padding:15px 0}.portfolio .row .icon{font-size:48px;display:flex;align-items:center}.portfolio .row .desc{display:flex;align-items:center}
+html,
+body {
+  height: 100%;
+  font-family: Ubuntu, sans-serif;
+  color: #f0ece4;
+  background-color: #0d0d0d;
+}
+body {
+  background-color: #0d0d0d;
+}
+div,
+body {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #f0ece4;
+}
+h1 {
+  font-weight: 600;
+}
+a {
+  color: #C7B299;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #e8d5b7;
+  text-decoration: none;
+}
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/assets/img/bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  z-index: 1;
+}
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1rem;
+}
+#hero #hero-profile-picture {
+  height: 100px;
+  width: 100px;
+  border: 2px solid #C7B299;
+  box-shadow: 0 0 20px rgba(199, 178, 153, 0.25);
+  margin-bottom: 1.5rem;
+  object-fit: cover;
+}
+#hero .hero-name {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f0ece4;
+  margin: 0;
+}
+#hero .hero-separator {
+  width: 80px;
+  height: 1px;
+  background: #C7B299;
+  margin: 1.5rem auto;
+}
+#hero .hero-gallery-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+#hero .hero-gallery-nav a {
+  font-size: 2.2rem;
+  line-height: 1;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  color: inherit;
+}
+#hero .hero-gallery-nav a:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  color: inherit;
+}
+#hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #8a8278;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+@media (max-width: 768px) {
+  #hero {
+    background-attachment: scroll;
+  }
+}
+.gallery-band {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  min-height: 300px;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+.gallery-band .gallery-band-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+.gallery-band .gallery-band-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease;
+  padding: 2rem;
+  text-align: center;
+}
+.gallery-band .gallery-band-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f0ece4;
+  margin-bottom: 0.75rem;
+}
+.gallery-band .gallery-band-desc {
+  font-family: Ubuntu, sans-serif;
+  font-size: 1rem;
+  color: #f0ece4;
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  line-height: 1.6;
+}
+.gallery-band .gallery-band-arrow {
+  color: #C7B299;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+.gallery-band:hover .gallery-band-img {
+  transform: scale(1.04);
+}
+.gallery-band:hover .gallery-band-overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+.gallery-band:hover .gallery-band-arrow {
+  color: #e8d5b7;
+}
+#site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #111111;
+  border-bottom: 1px solid rgba(199, 178, 153, 0.15);
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#site-header .header-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+#site-header .header-identity img {
+  height: 38px;
+  width: 38px;
+  object-fit: cover;
+  border: 1px solid #C7B299;
+}
+#site-header .header-identity .header-name {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #f0ece4;
+}
+#site-header .header-icons a {
+  color: #8a8278;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+#site-header .header-icons a:hover {
+  color: #C7B299;
+}
+#deambulations-gallery,
+#street-art-gallery,
+#under-water-gallery {
+  padding-top: 2rem;
+  padding-bottom: 120px;
+}
+#deambulations-gallery .gallery-content,
+#street-art-gallery .gallery-content,
+#under-water-gallery .gallery-content {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+#deambulations-gallery h1,
+#street-art-gallery h1,
+#under-water-gallery h1 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin-bottom: 0.5rem;
+}
+#deambulations-gallery p,
+#street-art-gallery p,
+#under-water-gallery p {
+  color: #8a8278;
+  font-size: 0.95rem;
+}
+#deambulations-gallery hr,
+#street-art-gallery hr,
+#under-water-gallery hr {
+  border-color: rgba(199, 178, 153, 0.2);
+}
+#deambulations-gallery .gallery-thumb,
+#street-art-gallery .gallery-thumb,
+#under-water-gallery .gallery-thumb {
+  cursor: pointer;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  border: 1px solid transparent;
+  transition: border-color 0.25s ease;
+}
+#deambulations-gallery .gallery-thumb img,
+#street-art-gallery .gallery-thumb img,
+#under-water-gallery .gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+#deambulations-gallery .gallery-thumb:hover,
+#street-art-gallery .gallery-thumb:hover,
+#under-water-gallery .gallery-thumb:hover {
+  border-color: #C7B299;
+}
+#deambulations-gallery .gallery-thumb:hover img,
+#street-art-gallery .gallery-thumb:hover img,
+#under-water-gallery .gallery-thumb:hover img {
+  transform: scale(1.04);
+}
+#lightbox .modal-content {
+  background-color: #000;
+  border: 1px solid rgba(199, 178, 153, 0.15);
+}
+#lightbox #lightbox-caption {
+  color: #8a8278;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+#lightbox-prev,
+#lightbox-next {
+  z-index: 10;
+  font-size: 1.5rem;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(199, 178, 153, 0.2);
+  color: #f0ece4;
+  transition: background 0.2s ease;
+}
+#lightbox-prev:hover,
+#lightbox-next:hover {
+  background: rgba(199, 178, 153, 0.15);
+}
+#lightbox .btn-close {
+  z-index: 10;
+}
+#lightbox-img {
+  max-height: 82vh;
+}
+footer#site-footer {
+  background-color: #161616;
+  border-top: 1px solid rgba(199, 178, 153, 0.2);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+footer#site-footer.navbar {
+  background-color: #161616 !important;
+}
+footer#site-footer a {
+  color: #8a8278;
+  transition: color 0.2s ease;
+}
+footer#site-footer a:hover {
+  color: #C7B299;
+}
+footer#site-footer img.rounded-circle {
+  height: 24px;
+  width: 24px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+footer#site-footer img.rounded-circle:hover {
+  opacity: 1;
+}
+#technical-drawing-gallery {
+  padding-top: 50px;
+  padding-bottom: 120px;
+  color: #f0ece4;
+}
+#technical-drawing-gallery h4 a {
+  color: #C7B299;
+}
+#technical-drawing-gallery h4 a:hover {
+  color: #e8d5b7;
+}
+#not-found {
+  position: relative;
+  background-image: url(/assets/img/bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 200px;
+  padding-bottom: 400px;
+  color: #f0ece4;
+}
+#not-found::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+#not-found p {
+  position: relative;
+  z-index: 1;
+}
