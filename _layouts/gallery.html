@@ -9,9 +9,11 @@
 
   <div id="{{ page.gallery }}-gallery" class="container-fluid">
     <div class="row g-2 py-4 gallery-content">
-      <h1>{{ page.h1 }}</h1>
-      <p>{{ page.introduction }}</p>
-      <hr />
+      <div class="col-12 mb-2">
+        <h1>{{ page.h1 }}</h1>
+        <p>{{ page.introduction }}</p>
+        <hr />
+      </div>
       {% assign gallery_data = site.data[page.gallery] %}
       {% for photo in gallery_data %}
       <div class="col-4">
@@ -25,7 +27,7 @@
         </div>
       </div>
       {% endfor %}
-    </div>
+    </div><!-- /.row -->
   </div>
 
   <!-- Lightbox -->

@@ -5,46 +5,76 @@
 
 <body>
 
-  {% include header.html %}
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="portfolio col-md-6 px-5 py-5">
-        <a href="{{ page.permalink }}under-water">
-          <div class="row">
-            <div class="col-md-2 icon align-middle">🤿</div>
-            <div class="col-md-10 desc align-middle">{{ page.about-under-water }}</div>
-          </div>
-        </a>
-        <a href="{{ page.permalink }}street-art">
-          <div class="row">
-            <div class="col-md-2 icon align-middle">🎨</div>
-            <div class="col-md-10 desc align-middle">{{ page.about-street-art }}</div>
-          </div>
-        </a>
-        <a href="{{ page.permalink }}deambulations">
-          <div class="row">
-            <div class="col-md-2 icon align-middle">🚶</div>
-            <div class="col-md-10 desc align-middle">{{ page.about-deambulations }}</div>
-          </div>
-        </a>
-      </div>
-      <div class="portfolio col-md-6 px-5 py-5">
-        <a href="{{ page.permalink }}technical-drawing">
-          <div class="row">
-            <div class="col-md-2 icon align-middle">📐</div>
-            <div class="col-md-10">{{ page.about-technical-drawing }}</div>
-          </div>
-        </a>
-        <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer">
-          <div class="row">
-            <div class="col-md-2 icon align-middle">🌏</div>
-            <div class="col-md-10 desc align-middle">{{ page.about-s-t }}</div>
-          </div>
-        </a>
-      </div>
+  <!-- Hero : plein écran avec bg.jpg + overlay sombre -->
+  <section id="hero">
+    <div class="hero-content">
+      <a href="{{ page.url }}" aria-label="{% if page.lang == 'fr' %}Accueil{% else %}Home{% endif %}">
+        <img id="hero-profile-picture" class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès" />
+      </a>
+      <div class="hero-separator"></div>
+      <nav class="hero-gallery-nav">
+        <a href="{{ page.permalink }}under-water">🤿</a>
+        <a href="{{ page.permalink }}street-art">🎨</a>
+        <a href="{{ page.permalink }}deambulations">🚶</a>
+        <a href="{{ page.permalink }}technical-drawing">📐</a>
+        <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer">🌏</a>
+      </nav>
     </div>
-  </div>
+    <div id="hero-scroll-indicator" aria-hidden="true">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Bandes cinématiques : une par section -->
+
+  {%- assign uw_page = site.pages | where: "ref", "under-water" | where: "lang", page.lang | first -%}
+  <a class="gallery-band" href="{{ page.permalink }}under-water">
+    <img class="gallery-band-img" src="/content/under-water/gallery-band-bg.jpg" alt="{{ uw_page.h1 }}" />
+    <div class="gallery-band-overlay">
+      <p class="gallery-band-title">{{ uw_page.h1 }}</p>
+      <p class="gallery-band-desc">{{ uw_page.introduction | strip_html }}</p>
+      <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
+    </div>
+  </a>
+
+  {%- assign sa_page = site.pages | where: "ref", "street-art" | where: "lang", page.lang | first -%}
+  <a class="gallery-band" href="{{ page.permalink }}street-art">
+    <img class="gallery-band-img" src="/content/street-art/gallery-band-bg.jpg" alt="{{ sa_page.h1 }}" />
+    <div class="gallery-band-overlay">
+      <p class="gallery-band-title">{{ sa_page.h1 }}</p>
+      <p class="gallery-band-desc">{{ sa_page.introduction | strip_html }}</p>
+      <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
+    </div>
+  </a>
+
+  {%- assign dea_page = site.pages | where: "ref", "deambulations" | where: "lang", page.lang | first -%}
+  <a class="gallery-band" href="{{ page.permalink }}deambulations">
+    <img class="gallery-band-img" src="/content/deambulations/gallery-band-bg.jpg" alt="{{ dea_page.h1 }}" />
+    <div class="gallery-band-overlay">
+      <p class="gallery-band-title">{{ dea_page.h1 }}</p>
+      <p class="gallery-band-desc">{{ dea_page.introduction | strip_html }}</p>
+      <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
+    </div>
+  </a>
+
+  {%- assign td_page = site.pages | where: "ref", "technical-drawing" | where: "lang", page.lang | first -%}
+  <a class="gallery-band" href="{{ page.permalink }}technical-drawing">
+    <img class="gallery-band-img" src="/content/technical-drawing/gallery-band-bg.jpg" alt="{{ td_page.h1 }}" />
+    <div class="gallery-band-overlay">
+      <p class="gallery-band-title">{{ td_page.h1 }}</p>
+      <p class="gallery-band-desc">{{ td_page.introduction | strip_html }}</p>
+      <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
+    </div>
+  </a>
+
+  <a class="gallery-band" href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer">
+    <img class="gallery-band-img" src="/content/st-gallery-band-bg.jpg" alt="🌏 samettof.org" />
+    <div class="gallery-band-overlay" style="background: rgba(0,0,0,0.1);">
+      <p class="gallery-band-title">🌏 samettof.org</p>
+      <p class="gallery-band-desc">{{ page.about-s-t | strip_html }}</p>
+      <span class="gallery-band-arrow">{% if page.lang == "fr" %}Visiter{% else %}Visit{% endif %} &rarr;</span>
+    </div>
+  </a>
 
   {% include footer.html %}
 
