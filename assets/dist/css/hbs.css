@@ -339,6 +339,10 @@ footer#site-footer img.rounded-circle:hover {
   padding-bottom: 120px;
   color: #f0ece4;
 }
+#technical-drawing-gallery .beer-slider[data-beer-label]:after,
+#technical-drawing-gallery .beer-reveal[data-beer-label]:after {
+  color: #1a1a1a;
+}
 #technical-drawing-gallery h4 a {
   color: #C7B299;
 }
