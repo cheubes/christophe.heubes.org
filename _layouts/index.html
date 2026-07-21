@@ -13,11 +13,11 @@
       </a>
       <div class="hero-separator"></div>
       <nav class="hero-gallery-nav">
-        <a href="{{ page.permalink }}under-water">🤿</a>
-        <a href="{{ page.permalink }}street-art">🎨</a>
-        <a href="{{ page.permalink }}deambulations">🚶</a>
-        <a href="{{ page.permalink }}technical-drawing">📐</a>
-        <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer">🌏</a>
+        <a href="{{ page.permalink }}under-water" aria-label="{% if page.lang == 'fr' %}Photos sous-marines{% else %}Underwater Photos{% endif %}"><i class="fas fa-water"></i></a>
+        <a href="{{ page.permalink }}street-art" aria-label="Street Art"><i class="fas fa-palette"></i></a>
+        <a href="{{ page.permalink }}deambulations" aria-label="{% if page.lang == 'fr' %}Déambulations{% else %}Wanderings{% endif %}"><i class="fas fa-person-walking"></i></a>
+        <a href="{{ page.permalink }}technical-drawing" aria-label="{% if page.lang == 'fr' %}Dessins Techniques{% else %}Technical Drawings{% endif %}"><i class="fas fa-compass-drafting"></i></a>
+        <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer" aria-label="samettof.org"><i class="fas fa-earth-asia"></i></a>
       </nav>
     </div>
     <div id="hero-scroll-indicator" aria-hidden="true">
@@ -31,7 +31,7 @@
   <a class="gallery-band" href="{{ page.permalink }}under-water">
     <img class="gallery-band-img" src="/content/under-water/gallery-band-bg.jpg" alt="{{ uw_page.h1 }}" />
     <div class="gallery-band-overlay">
-      <p class="gallery-band-title">{{ uw_page.h1 }}</p>
+      <p class="gallery-band-title"><i class="fas fa-water"></i> {{ uw_page.h1 }}</p>
       <p class="gallery-band-desc">{{ uw_page.introduction | strip_html }}</p>
       <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
     </div>
@@ -41,7 +41,7 @@
   <a class="gallery-band" href="{{ page.permalink }}street-art">
     <img class="gallery-band-img" src="/content/street-art/gallery-band-bg.jpg" alt="{{ sa_page.h1 }}" />
     <div class="gallery-band-overlay">
-      <p class="gallery-band-title">{{ sa_page.h1 }}</p>
+      <p class="gallery-band-title"><i class="fas fa-palette"></i> {{ sa_page.h1 }}</p>
       <p class="gallery-band-desc">{{ sa_page.introduction | strip_html }}</p>
       <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
     </div>
@@ -51,7 +51,7 @@
   <a class="gallery-band" href="{{ page.permalink }}deambulations">
     <img class="gallery-band-img" src="/content/deambulations/gallery-band-bg.jpg" alt="{{ dea_page.h1 }}" />
     <div class="gallery-band-overlay">
-      <p class="gallery-band-title">{{ dea_page.h1 }}</p>
+      <p class="gallery-band-title"><i class="fas fa-person-walking"></i> {{ dea_page.h1 }}</p>
       <p class="gallery-band-desc">{{ dea_page.introduction | strip_html }}</p>
       <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
     </div>
@@ -61,16 +61,16 @@
   <a class="gallery-band" href="{{ page.permalink }}technical-drawing">
     <img class="gallery-band-img" src="/content/technical-drawing/gallery-band-bg.jpg" alt="{{ td_page.h1 }}" />
     <div class="gallery-band-overlay">
-      <p class="gallery-band-title">{{ td_page.h1 }}</p>
+      <p class="gallery-band-title"><i class="fas fa-compass-drafting"></i> {{ td_page.h1 }}</p>
       <p class="gallery-band-desc">{{ td_page.introduction | strip_html }}</p>
       <span class="gallery-band-arrow">{% if page.lang == "fr" %}Voir la galerie{% else %}View gallery{% endif %} &rarr;</span>
     </div>
   </a>
 
   <a class="gallery-band" href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer">
-    <img class="gallery-band-img" src="/content/st-gallery-band-bg.jpg" alt="🌏 samettof.org" />
+    <img class="gallery-band-img" src="/content/st-gallery-band-bg.jpg" alt="samettof.org" />
     <div class="gallery-band-overlay" style="background: rgba(0,0,0,0.1);">
-      <p class="gallery-band-title">🌏 samettof.org</p>
+      <p class="gallery-band-title"><i class="fas fa-earth-asia"></i> samettof.org</p>
       <p class="gallery-band-desc">{{ page.about-s-t | strip_html }}</p>
       <span class="gallery-band-arrow">{% if page.lang == "fr" %}Visiter{% else %}Visit{% endif %} &rarr;</span>
     </div>
