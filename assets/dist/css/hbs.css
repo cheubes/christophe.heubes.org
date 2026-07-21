@@ -334,6 +334,9 @@ footer#site-footer img.rounded-circle {
 footer#site-footer img.rounded-circle:hover {
   opacity: 1;
 }
+footer#site-footer #license {
+  font-size: 0.75rem;
+}
 #technical-drawing-gallery {
   padding-top: 50px;
   padding-bottom: 120px;
