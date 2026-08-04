@@ -1,5 +1,8 @@
 ---
 
+sitemap:
+  lastmod: 2026-08-04
+
 layout: technical-drawing-detail
 ref: technical-drawing-palier-rigide-de-50-02
 permalink: /en/technical-drawing/palier-rigide-de-50-02/

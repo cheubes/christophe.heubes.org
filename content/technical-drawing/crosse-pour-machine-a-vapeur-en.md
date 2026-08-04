@@ -1,5 +1,8 @@
 ---
 
+sitemap:
+  lastmod: 2026-08-04
+
 layout: technical-drawing-detail
 ref: technical-drawing-crosse-pour-machine-a-vapeur
 permalink: /en/technical-drawing/crosse-pour-machine-a-vapeur/

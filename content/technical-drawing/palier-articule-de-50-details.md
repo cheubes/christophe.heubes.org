@@ -1,5 +1,8 @@
 ---
 
+sitemap:
+  lastmod: 2026-08-04
+
 layout: technical-drawing-detail
 ref: technical-drawing-palier-articule-de-50-details
 permalink: /technical-drawing/palier-articule-de-50-details/

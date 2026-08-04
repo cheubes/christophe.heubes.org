@@ -1,5 +1,8 @@
 ---
 
+sitemap:
+  lastmod: 2026-08-04
+
 layout: technical-drawing-detail
 ref: technical-drawing-boite-de-vitesses-pour-fraiseuse
 permalink: /technical-drawing/boite-de-vitesses-pour-fraiseuse/

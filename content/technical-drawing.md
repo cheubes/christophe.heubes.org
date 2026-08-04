@@ -2,7 +2,7 @@
 
 sitemap:
   priority: 0.7
-  lastmod: 2025-11-20
+  lastmod: 2026-08-04
 
 layout: technical-drawing
 ref: technical-drawing

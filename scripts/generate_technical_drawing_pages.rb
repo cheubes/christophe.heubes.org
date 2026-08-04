@@ -12,8 +12,10 @@
 #   ruby scripts/generate_technical_drawing_pages.rb
 
 require "yaml"
+require "date"
 
 root = File.expand_path("..", __dir__)
+lastmod = Date.today.iso8601
 drawings = YAML.load_file(File.join(root, "_data/technical-drawing.yml"))
 output_dir = File.join(root, "content/technical-drawing")
 
@@ -32,6 +34,9 @@ drawings.each do |item|
 
     front_matter = <<~MARKDOWN
       ---
+
+      sitemap:
+        lastmod: #{lastmod}
 
       layout: technical-drawing-detail
       ref: technical-drawing-#{id}

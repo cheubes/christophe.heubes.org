@@ -1,5 +1,8 @@
 ---
 
+sitemap:
+  lastmod: 2026-08-04
+
 layout: technical-drawing-detail
 ref: technical-drawing-couloir-pivotant
 permalink: /en/technical-drawing/couloir-pivotant/
