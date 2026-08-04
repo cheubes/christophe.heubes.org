@@ -25,10 +25,9 @@ sitemap:
             <image:image><image:loc>{{ site.url }}/assets/img/photo.jpg</image:loc></image:image>
             <image:image><image:loc>{{ site.url }}/assets/img/bg.jpg</image:loc></image:image>
             {%- endif -%}
-            {%- if page.ref == "technical-drawing" -%}
-              {%- for item in site.data.technical-drawing %}
-            <image:image><image:loc>{{ site.url }}/content/technical-drawing/{{ item.id }}-2020.jpg</image:loc></image:image>
-              {%- endfor -%}
+            {%- if page.drawing-id %}
+            <image:image><image:loc>{{ site.url }}/content/technical-drawing/{{ page.drawing-id }}-org.jpg</image:loc></image:image>
+            <image:image><image:loc>{{ site.url }}/content/technical-drawing/{{ page.drawing-id }}-2020.jpg</image:loc></image:image>
             {%- endif -%}
             {%- if page.ref == "street-art" -%}
               {%- for item in site.data.street-art %}
