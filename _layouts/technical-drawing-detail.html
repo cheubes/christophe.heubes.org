@@ -48,6 +48,42 @@
     </div>
   </div>
 
+  <!-- Structured data: photo credit for Google Images -->
+  <script type="application/ld+json">
+  {%- assign drawing-item = site.data.technical-drawing | where: "id", page.drawing-id | first %}
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "{{ site.url }}/#christophe-heubes",
+        "name": {{ site.author | jsonify }},
+        "url": "{{ site.url }}/"
+      },
+      {
+        "@type": "ImageObject",
+        "contentUrl": "{{ site.url }}/content/technical-drawing/{{ page.drawing-id }}-org.jpg",
+        "name": {{ page.drawing-title | jsonify }},
+        "creator": { "@id": "{{ site.url }}/#christophe-heubes" },
+        "creditText": {{ site.author | jsonify }},
+        "copyrightNotice": "CC {{ site.author }}",
+        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}",
+        "dateCreated": "{{ drawing-item.org-year }}"
+      },
+      {
+        "@type": "ImageObject",
+        "contentUrl": "{{ site.url }}/content/technical-drawing/{{ page.drawing-id }}-2020.jpg",
+        "name": {{ page.drawing-title | jsonify }},
+        "creator": { "@id": "{{ site.url }}/#christophe-heubes" },
+        "creditText": {{ site.author | jsonify }},
+        "copyrightNotice": "CC {{ site.author }}",
+        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}",
+        "dateCreated": "2020"
+      }
+    ]
+  }
+  </script>
+
   {% include footer.html %}
 
   {% include scripts.html %}
