@@ -10,7 +10,7 @@
   <div id="{{ page.gallery }}-gallery" class="container-fluid">
     <div class="row g-2 py-4 gallery-content">
       <div class="col-12 mb-2">
-        <h1><i class="fas {{ page.icon }}"></i> {{ page.h1 }}</h1>
+        <h1><i class="fas {{ page.icon }}"></i> {{ page.h1 }} {% if page.lang == 'fr' %}par{% else %}by{% endif %} Christophe Heubès</h1>
         <p>{{ page.introduction }}</p>
         <hr />
       </div>
@@ -41,6 +41,7 @@
           <div class="text-center px-5 py-4">
             <img src="" id="lightbox-img" class="img-fluid" alt="">
             <p id="lightbox-caption" class="text-white-50 mt-2 mb-0 small"></p>
+            <p class="text-white-50 mb-0 small fst-italic">{% if page.lang == 'fr' %}Photo par Christophe Heubès{% else %}Photo by Christophe Heubès{% endif %}</p>
           </div>
         </div>
       </div>
