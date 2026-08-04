@@ -48,6 +48,30 @@
     </div>
   </div>
 
+  <!-- Structured data: photo credit for Google Images -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "{{ site.url }}/#christophe-heubes",
+        "name": {{ site.author | jsonify }},
+        "url": "{{ site.url }}/"
+      }{% for photo in gallery_data %},
+      {
+        "@type": "ImageObject",
+        "contentUrl": "{{ site.url }}/content/{{ page.gallery }}/{{ photo.file }}",
+        "name": {% if page.lang == 'fr' %}{{ photo.title-fr | replace: '&#147;', '“' | replace: '&#148;', '”' | jsonify }}{% else %}{{ photo.title-en | replace: '&#147;', '“' | replace: '&#148;', '”' | jsonify }}{% endif %},
+        "creator": { "@id": "{{ site.url }}/#christophe-heubes" },
+        "creditText": {{ site.author | jsonify }},
+        "copyrightNotice": "© {{ site.author }}",
+        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}"
+      }{% endfor %}
+    ]
+  }
+  </script>
+
   {% include footer.html %}
 
   <script src="/assets/dist/js/gallery.js"></script>
