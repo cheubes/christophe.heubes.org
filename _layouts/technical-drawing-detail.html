@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="{{ page.lang }}">
+
+{% include head.html %}
+
+<body>
+
+  {% include header.html %}
+
+  {%- assign gallery-url = '/technical-drawing/' -%}
+  {%- if page.lang == 'en' -%}{%- assign gallery-url = '/en/technical-drawing/' -%}{%- endif -%}
+
+  <div id="technical-drawing-detail" class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div>
+      <div class="col-md-10 px-5">
+        <a href="{{ gallery-url }}" class="back-link"><i class="fas fa-arrow-left"></i> {% if page.lang == 'fr' %}Retour aux dessins techniques{% else %}Back to technical drawings{% endif %}</a>
+        <h1>{{ page.drawing-title }}</h1>
+      </div>
+      <div class="col-md-1">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div>
+      <div class="col-md-10 px-3 text-center">
+        <figure>
+          <img src="/content/technical-drawing/{{ page.drawing-id }}-org.jpg" alt="{{ page.drawing-title }}" class="img-fluid" loading="lazy">
+          <figcaption>{% if page.lang == 'fr' %}Dessin original réalisé par Claude Heubès lors de ses études à l&#39;ENSAM{% else %}Original drawing made by Claude Heubès during his studies at ENSAM{% endif %}</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-1">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div>
+      <div class="col-md-10 px-3 text-center">
+        <figure>
+          <img src="/content/technical-drawing/{{ page.drawing-id }}-2020.jpg" alt="{{ page.drawing-title }}" class="img-fluid" loading="lazy">
+          <figcaption>{% if page.lang == 'fr' %}Reproduction numérique réalisée par Christophe Heubès en 2020{% else %}Digital reproduction made by Christophe Heubès in 2020{% endif %}</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-1">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div>
+      <div class="col-md-10 px-5">
+        <a href="{{ gallery-url }}" class="back-link"><i class="fas fa-arrow-left"></i> {% if page.lang == 'fr' %}Retour aux dessins techniques{% else %}Back to technical drawings{% endif %}</a>
+      </div>
+      <div class="col-md-1">&nbsp;</div>
+    </div>
+  </div>
+
+  {% include footer.html %}
+
+  {% include scripts.html %}
+
+</body>
+
+</html>
