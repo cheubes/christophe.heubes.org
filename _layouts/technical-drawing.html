@@ -54,7 +54,7 @@
         "name": {{ drawing-title | jsonify }},
         "creator": { "@id": "{{ site.url }}/#christophe-heubes" },
         "creditText": {{ site.author | jsonify }},
-        "copyrightNotice": "© {{ site.author }}",
+        "copyrightNotice": "CC {{ site.author }}",
         "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}",
         "dateCreated": "2020"
       },
@@ -64,7 +64,7 @@
         "name": {{ drawing-title | jsonify }},
         "creator": { "@id": "{{ site.url }}/#christophe-heubes" },
         "creditText": {{ site.author | jsonify }},
-        "copyrightNotice": "© {{ site.author }}",
+        "copyrightNotice": "CC {{ site.author }}",
         "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}",
         "dateCreated": "{{ item.org-year }}"
       }

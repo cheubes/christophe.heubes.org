@@ -66,7 +66,7 @@
         "name": {% if page.lang == 'fr' %}{{ photo.title-fr | replace: '&#147;', '“' | replace: '&#148;', '”' | jsonify }}{% else %}{{ photo.title-en | replace: '&#147;', '“' | replace: '&#148;', '”' | jsonify }}{% endif %},
         "creator": { "@id": "{{ site.url }}/#christophe-heubes" },
         "creditText": {{ site.author | jsonify }},
-        "copyrightNotice": "© {{ site.author }}",
+        "copyrightNotice": "CC {{ site.author }}",
         "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}"
       }{% endfor %}
     ]
