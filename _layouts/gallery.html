@@ -17,14 +17,15 @@
       {% assign gallery_data = site.data[page.gallery] %}
       {% for photo in gallery_data %}
       <div class="col-4">
-        <div class="gallery-thumb"
+        <figure class="gallery-thumb"
              data-src="/content/{{ page.gallery }}/{{ photo.file }}"
              data-caption="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
              data-index="{{ forloop.index0 }}">
           <img src="/content/{{ page.gallery }}/{{ photo.file }}"
                alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
                class="img-fluid" loading="lazy">
-        </div>
+          <figcaption class="visually-hidden">{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}</figcaption>
+        </figure>
       </div>
       {% endfor %}
     </div><!-- /.row -->
