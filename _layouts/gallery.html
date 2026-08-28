@@ -20,13 +20,14 @@
       {% assign gallery_data = site.data[page.gallery] %}
       {% for photo in gallery_data %}
       {% assign slug = photo.file | split: '.' | first %}
+      {% assign ext = photo.file | split: '.' | last %}
       <div class="col-4">
         <a href="{{ page.gallery_url }}{{ slug }}/" class="gallery-thumb{% if slug == page.photo_slug %} gallery-thumb-active{% endif %}"
              data-src="/content/{{ page.gallery }}/{{ photo.file }}"
              data-caption="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
              data-slug="{{ slug }}"
              {% if slug == page.photo_slug %}aria-current="page"{% endif %}>
-          <img src="/content/{{ page.gallery }}/{{ photo.file }}"
+          <img src="/content/{{ page.gallery }}/{{ slug }}-thumb.{{ ext }}"
                alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
                class="img-fluid" loading="lazy">
         </a>
