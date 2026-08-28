@@ -18,4 +18,6 @@ h1: Christophe Heubès
 
 about-s-t: Avec mes deux comparses Sam et Ti' Crab nous voyageons dès que nous le pouvons autour du monde, principalement pour plonger. Retrouvez nos conseils pour préparer vos voyages.
 
+about-social-graphs: Un outil pour explorer et visualiser des graphes de relations sociales.
+
 ---

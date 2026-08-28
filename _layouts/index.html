@@ -3,6 +3,11 @@
 
 {% include head.html %}
 
+{%- assign social_graphs_url = 'https://social-graphs.heubes.io/' -%}
+{%- if page.lang == "fr" -%}
+  {%- assign social_graphs_url = 'https://social-graphs.heubes.io/fr/' -%}
+{%- endif -%}
+
 <body>
 
   <!-- Hero : plein écran avec bg.jpg + overlay sombre -->
@@ -18,6 +23,7 @@
         <a href="{{ page.permalink }}deambulations" aria-label="{% if page.lang == 'fr' %}Déambulations{% else %}Wanderings{% endif %}"><i class="fas fa-person-walking"></i></a>
         <a href="{{ page.permalink }}technical-drawing" aria-label="{% if page.lang == 'fr' %}Dessins Techniques{% else %}Technical Drawings{% endif %}"><i class="fas fa-compass-drafting"></i></a>
         <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer" aria-label="samettof.org"><i class="fas fa-earth-asia"></i></a>
+        <a href="{{ social_graphs_url }}" target="_blank" rel="noopener noreferrer" aria-label="social-graphs.heubes.io"><i class="fas fa-diagram-project"></i></a>
       </nav>
     </div>
     <div id="hero-scroll-indicator" aria-hidden="true">
@@ -72,6 +78,15 @@
     <div class="gallery-band-overlay" style="background: rgba(0,0,0,0.1);">
       <p class="gallery-band-title"><i class="fas fa-earth-asia"></i> samettof.org</p>
       <p class="gallery-band-desc">{{ page.about-s-t | strip_html }}</p>
+      <span class="gallery-band-arrow">{% if page.lang == "fr" %}Visiter{% else %}Visit{% endif %} &rarr;</span>
+    </div>
+  </a>
+
+  <a class="gallery-band" href="{{ social_graphs_url }}" target="_blank" rel="noopener noreferrer">
+    <img class="gallery-band-img" src="/content/social-graph-band-bg.jpg" alt="social-graphs.heubes.io" />
+    <div class="gallery-band-overlay" style="background: rgba(0,0,0,0.1);">
+      <p class="gallery-band-title"><i class="fas fa-diagram-project"></i> social-graphs.heubes.io</p>
+      <p class="gallery-band-desc">{{ page.about-social-graphs | strip_html }}</p>
       <span class="gallery-band-arrow">{% if page.lang == "fr" %}Visiter{% else %}Visit{% endif %} &rarr;</span>
     </div>
   </a>

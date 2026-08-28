@@ -7,6 +7,11 @@
   {%- assign lang_prefix = '/en' -%}
 {%- endif -%}
 
+{%- assign social_graphs_url = 'https://social-graphs.heubes.io/' -%}
+{%- if page.lang == "fr" -%}
+  {%- assign social_graphs_url = 'https://social-graphs.heubes.io/fr/' -%}
+{%- endif -%}
+
 {%- if page.ref != "home" -%}
 <header id="site-header">
   <nav class="header-icons">
@@ -15,6 +20,7 @@
     <a href="{{ lang_prefix }}/deambulations" aria-label="{% if page.lang == 'fr' %}Déambulations{% else %}Wanderings{% endif %}"><i class="fas fa-person-walking"></i></a>
     <a href="{{ lang_prefix }}/technical-drawing" aria-label="{% if page.lang == 'fr' %}Dessins Techniques{% else %}Technical Drawings{% endif %}"><i class="fas fa-compass-drafting"></i></a>
     <a href="https://www.samettof.org/" target="_blank" rel="noopener noreferrer" aria-label="samettof.org"><i class="fas fa-earth-asia"></i></a>
+    <a href="{{ social_graphs_url }}" target="_blank" rel="noopener noreferrer" aria-label="social-graphs.heubes.io"><i class="fas fa-diagram-project"></i></a>
   </nav>
   <a href="{{ home }}" class="header-identity" aria-label="{% if page.lang == 'fr' %}Accueil{% else %}Home{% endif %}">
     <img class="rounded-circle" src="/assets/img/photo.jpg" alt="Christophe Heubès" />
