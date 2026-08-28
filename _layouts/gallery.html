@@ -12,27 +12,32 @@
       <div class="col-12 mb-2">
         <h1><i class="fas {{ page.icon }}"></i> {{ page.h1 }} {% if page.lang == 'fr' %}par{% else %}by{% endif %} Christophe Heubès</h1>
         <p>{{ page.introduction }}</p>
+        {% if page.photo_slug %}
+        <p class="lead">{{ page.photo_caption }}</p>
+        {% endif %}
         <hr />
       </div>
       {% assign gallery_data = site.data[page.gallery] %}
       {% for photo in gallery_data %}
+      {% assign slug = photo.file | split: '.' | first %}
       <div class="col-4">
-        <figure class="gallery-thumb"
+        <a href="{{ page.gallery_url }}{{ slug }}/" class="gallery-thumb{% if slug == page.photo_slug %} gallery-thumb-active{% endif %}"
              data-src="/content/{{ page.gallery }}/{{ photo.file }}"
              data-caption="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
-             data-index="{{ forloop.index0 }}">
+             data-slug="{{ slug }}"
+             {% if slug == page.photo_slug %}aria-current="page"{% endif %}>
           <img src="/content/{{ page.gallery }}/{{ photo.file }}"
                alt="{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}"
                class="img-fluid" loading="lazy">
-          <figcaption class="visually-hidden">{% if page.lang == 'fr' %}{{ photo.title-fr }}{% else %}{{ photo.title-en }}{% endif %}</figcaption>
-        </figure>
+        </a>
       </div>
       {% endfor %}
     </div><!-- /.row -->
   </div>
 
   <!-- Lightbox -->
-  <div class="modal fade" id="lightbox" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="lightbox" tabindex="-1" aria-hidden="true"
+       data-view-url="{{ page.gallery_url }}" data-open-slug="{{ page.photo_slug }}">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content bg-dark border-0">
         <div class="modal-body p-0 position-relative">
@@ -59,7 +64,7 @@
         "@id": "{{ site.url }}/#christophe-heubes",
         "name": {{ site.author | jsonify }},
         "url": "{{ site.url }}/"
-      }{% for photo in gallery_data %},
+      }{% for photo in gallery_data %}{% assign photo_slug = photo.file | split: '.' | first %}{% if page.photo_slug == nil or page.photo_slug == photo_slug %},
       {
         "@type": "ImageObject",
         "contentUrl": "{{ site.url }}/content/{{ page.gallery }}/{{ photo.file }}",
@@ -68,14 +73,14 @@
         "creditText": {{ site.author | jsonify }},
         "copyrightNotice": "CC {{ site.author }}",
         "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.{{ page.lang }}"
-      }{% endfor %}
+      }{% endif %}{% endfor %}
     ]
   }
   </script>
 
   {% include footer.html %}
 
-  <script src="/assets/dist/js/gallery.js"></script>
+  <script src="/assets/dist/js/gallery.js" defer></script>
 
   {% include scripts.html %}
 

@@ -24,7 +24,7 @@
   <link rel="shortcut icon" href="/favicon.ico">
 
   <!-- Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; img-src 'self' https://i.creativecommons.org; connect-src 'self' https://ka-f.fontawesome.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://kit.fontawesome.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; img-src 'self' data: https://i.creativecommons.org; connect-src 'self' https://ka-f.fontawesome.com;">
 
   {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
   {% for page in pages %}

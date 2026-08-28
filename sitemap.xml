@@ -44,6 +44,9 @@ sitemap:
             <image:image><image:loc>{{ site.url }}/content/deambulations/{{ item.file }}</image:loc></image:image>
               {%- endfor -%}
             {%- endif -%}
+            {%- if page.photo_slug %}
+            <image:image><image:loc>{{ site.url }}{{ page.image }}</image:loc></image:image>
+            {%- endif -%}
             {%- assign alternates=site.pages | where:"ref", page.ref | sort: 'lang' -%}
             {%- for alternate in alternates reversed %}
             <xhtml:link rel="alternate" hreflang="{{alternate.lang}}" href="{{site.url }}{{alternate.url}}" />
