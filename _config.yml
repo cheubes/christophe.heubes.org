@@ -2,3 +2,8 @@ url:         "https://christophe.heubes.org"
 title:       "Christophe Heubès"
 author:      "Christophe Heubès"
 description: "Christophe Heubès - Photos, Musique, Plongée, Voyages"
+
+exclude:
+  - specs/
+  - scripts/
+  - CLAUDE.md
