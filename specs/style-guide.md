@@ -54,7 +54,7 @@ Pas d'échelle d'espacement custom : la grille et les classes utilitaires de Boo
 - Plein écran (`100vh`, minimum 500 px), image de fond `assets/img/bg.jpg` (1920 × 1080 px) avec un voile sombre (`rgba(0, 0, 0, 0.62)`) par‑dessus, `background-attachment: fixed` (désactivé sur mobile, ≤ 768 px, pour éviter les artefacts de rendu).
 - Portrait circulaire (`assets/img/photo.jpg`, 512 × 512 px), bordure `@gold`, lien vers l'accueil.
 - Séparateur horizontal fin, `@gold`, 80 px de large.
-- Navigation du hero : icônes en ligne, une par section plus les deux liens externes (voir "Sites soeurs" dans `functional-specifications.md`), `@text-muted` au repos, `@gold` et léger agrandissement au survol.
+- Navigation du hero : icônes en ligne, une par section plus les trois liens externes (voir "Sites soeurs" dans `functional-specifications.md`), `@text-muted` au repos, `@gold` et léger agrandissement au survol.
 - Indicateur de défilement (chevron animé, rebond vertical continu) en bas de viewport.
 
 ### Bandes cinématiques (accueil)
@@ -67,10 +67,10 @@ Pas d'échelle d'espacement custom : la grille et les classes utilitaires de Boo
 ### En‑tête compact (pages hors accueil)
 
 - Position collante (`sticky`) en haut de page, fond `#111111`, bordure basse fine `@gold` à 15 % d'opacité.
-- Répartition : icônes de navigation (mêmes que le hero, sans les liens externes vers les sites soeurs dans l'ordre... voir note ci‑dessous) à gauche, portrait circulaire cliquable vers l'accueil à droite.
+- Répartition : icônes de navigation (identiques à celles du hero, sites soeurs compris, voir note ci‑dessous) à gauche, portrait circulaire cliquable vers l'accueil à droite.
 - Absent sur l'accueil (`page.ref != "home"`), qui a son propre hero.
 
-Note : l'en‑tête inclut en réalité les six mêmes liens que le hero (quatre sections plus les deux sites soeurs), dans le même ordre. Ne pas réduire cette liste sans vérifier `functional-specifications.md` (section "Sites soeurs").
+Note : l'en‑tête inclut en réalité les sept mêmes liens que le hero (quatre sections plus les trois sites soeurs), dans le même ordre. Ne pas réduire cette liste sans vérifier `functional-specifications.md` (section "Sites soeurs").
 
 ### Pied de page
 
@@ -135,6 +135,7 @@ Font Awesome, chargé via Kit distant (voir `technical-specifications.md`), pas 
 | Déambulations | `fa-person-walking` |
 | Dessins techniques | `fa-compass-drafting` |
 | Lien vers samettof.org | `fa-earth-asia` |
+| Lien vers dataviz.heubes.io | `fa-chart-simple` |
 | Lien vers social-graphs.heubes.io | `fa-diagram-project` |
 | Instagram | `fa-instagram` (Brands) |
 | Goodreads | `fa-book-open` |

@@ -17,6 +17,11 @@
   {%- assign samettof_url = 'https://www.samettof.org/en/' -%}
 {%- endif -%}
 
+{%- assign dataviz_url = 'https://dataviz.heubes.io/' -%}
+{%- if page.lang == "fr" -%}
+  {%- assign dataviz_url = 'https://dataviz.heubes.io/fr/' -%}
+{%- endif -%}
+
 {%- if page.ref != "home" -%}
 <header id="site-header">
   <nav class="header-icons">
@@ -25,6 +30,7 @@
     <a href="{{ lang_prefix }}/deambulations" aria-label="{% if page.lang == 'fr' %}Déambulations{% else %}Wanderings{% endif %}"><i class="fas fa-person-walking"></i></a>
     <a href="{{ lang_prefix }}/technical-drawing" aria-label="{% if page.lang == 'fr' %}Dessins Techniques{% else %}Technical Drawings{% endif %}"><i class="fas fa-compass-drafting"></i></a>
     <a href="{{ samettof_url }}" target="_blank" rel="noopener noreferrer" aria-label="samettof.org"><i class="fas fa-earth-asia"></i></a>
+    <a href="{{ dataviz_url }}" target="_blank" rel="noopener noreferrer" aria-label="dataviz.heubes.io"><i class="fas fa-chart-simple"></i></a>
     <a href="{{ social_graphs_url }}" target="_blank" rel="noopener noreferrer" aria-label="social-graphs.heubes.io"><i class="fas fa-diagram-project"></i></a>
   </nav>
   <a href="{{ home }}" class="header-identity" aria-label="{% if page.lang == 'fr' %}Accueil{% else %}Home{% endif %}">

@@ -45,7 +45,7 @@ Le contenu (photos, dessins, textes) est produit par l'auteur directement dans l
 
 ### Navigation
 
-- Page d'accueil : navigation par icônes dans le hero, une par section, plus deux liens externes vers les sites soeurs (voir ci‑dessous).
+- Page d'accueil : navigation par icônes dans le hero, une par section, plus trois liens externes vers les sites soeurs (voir ci‑dessous).
 - Toute autre page : en‑tête compact et collant en haut de page, avec les mêmes icônes de navigation, plus un lien vers l'accueil (photo de profil).
 - Pied de page fixe, présent sur toutes les pages : liens vers les réseaux sociaux de l'auteur, licence Creative Commons, sélecteur de langue (voir `style-guide.md`).
 
@@ -55,8 +55,9 @@ L'auteur maintient plusieurs sites, chacun documenté par son propre `specs/` : 
 
 | Site | Contenu | Emplacement du lien |
 |---|---|---|
-| `samettof.org` | Carnets de voyage de plongée de l'auteur et de ses deux comparses | Hero, bande cinématique accueil |
-| `social-graphs.heubes.io` | Outil d'exploration de graphes de relations sociales | Hero, bande cinématique accueil |
+| `samettof.org` | Carnets de voyage de plongée de l'auteur et de ses deux comparses | Hero, bande cinématique accueil, en‑tête compact |
+| `dataviz.heubes.io` | Explorations visuelles interactives de données ouvertes | Hero, bande cinématique accueil, en‑tête compact |
+| `social-graphs.heubes.io` | Outil d'exploration de graphes de relations sociales | Hero, bande cinématique accueil, en‑tête compact |
 | `christophe.heubes.com` | Site professionnel de l'auteur | Icône dans le pied de page |
 | Instagram (`@christophe.uw`, `@christophe.hbs`), Goodreads | Réseaux sociaux personnels | Pied de page |
 

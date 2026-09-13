@@ -17,6 +17,8 @@ h1: Christophe Heubès
 
 about-s-t: With my two buddies Sam and Ti 'Crab we travel around the world whenever we can, mainly for diving. Find our advice for preparing your trips.
 
+about-dataviz: Interactive visual explorations of open datasets, from biodiversity to climate, heritage and space.
+
 about-social-graphs: A tool to explore and visualize social relationship graphs.
 
 ---

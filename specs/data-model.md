@@ -163,6 +163,7 @@ drawing-title: Attelage pour crochet de traction
 |---|---|
 | `h1` | Nom affiché dans le hero |
 | `about-s-t` | Texte de la bande cinématique vers `samettof.org` (voir "Sites soeurs" dans `functional-specifications.md`) |
+| `about-dataviz` | Texte de la bande cinématique vers `dataviz.heubes.io` |
 | `about-social-graphs` | Texte de la bande cinématique vers `social-graphs.heubes.io` |
 
 ## Page 404
