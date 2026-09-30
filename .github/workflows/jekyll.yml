@@ -53,7 +53,7 @@ jobs:
         continue-on-error: true
         run: >
           bundle exec htmlproofer ./_site
-          --ignore-urls "https://fonts.googleapis.com,https://fonts.gstatic.com,https://ka-f.fontawesome.com,https://www.goodreads.com/christophehbs/"
+          --ignore-urls "https://fonts.googleapis.com,https://fonts.gstatic.com,https://ka-f.fontawesome.com,https://www.goodreads.com/christophehbs/,https://www.instagram.com/christophe.uw/,https://www.instagram.com/christophe.hbs/"
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v5

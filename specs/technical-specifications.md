@@ -39,7 +39,7 @@
 - **Domaine :** `christophe.heubes.org` (fichier `CNAME` à la racine)
 - **Déploiement :** automatique, via GitHub Actions (`.github/workflows/jekyll.yml`), déclenché sur push sur la branche `master`, ou manuellement (`workflow_dispatch`)
 - **Build :** `bundle exec jekyll build`, exécuté explicitement dans le workflow plutôt que délégué à l'intégration native GitHub Pages. Cette différence a une conséquence directe sur les plugins : un build GitHub Pages natif tourne en mode *safe*, qui ignore `_plugins/` ; ce workflow custom ne l'est pas, donc `_plugins/gallery_photo_pages.rb` et `_plugins/less_compiler.rb` s'exécutent bien à chaque déploiement (voir "Architecture").
-- **Vérification des liens :** `html-proofer` tourne sur `_site/` après le build, en `continue-on-error` (rapporte les liens morts sans faire échouer le déploiement) ; une liste de domaines externes est explicitement ignorée (Google Fonts, Font Awesome Kit, Goodreads).
+- **Vérification des liens :** `html-proofer` tourne sur `_site/` après le build, en `continue-on-error` (rapporte les liens morts sans faire échouer le déploiement) ; une liste de domaines externes est explicitement ignorée (Google Fonts, Font Awesome Kit, Goodreads, Instagram) ; Instagram répond systématiquement 429 (rate limiting) aux requêtes venant de la CI.
 
 ---
 
