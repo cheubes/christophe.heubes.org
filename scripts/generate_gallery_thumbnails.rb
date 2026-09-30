@@ -5,9 +5,11 @@
 # view instead of the full-resolution original (the lightbox and page
 # previews keep using the original).
 #
-# Uses sips, bundled with macOS, so no new dependency is needed. Mirrors the
-# less_compiler.rb approach for hbs.css: generated locally, committed to the
-# repo, nothing added to the Jekyll build.
+# Uses sips, bundled with macOS, for resizing, then exiftool (Homebrew) to
+# copy the original's author and license metadata: sips only carries part of
+# it over, some of it stale. Mirrors the less_compiler.rb approach for
+# hbs.css: generated locally, committed to the repo, nothing added to the
+# Jekyll build.
 #
 # Run after adding photos to _data/*.yml, then commit the resulting
 # content/<gallery>/*-thumb.jpg files.
@@ -19,6 +21,11 @@ require "yaml"
 GALLERIES = %w[deambulations street-art under-water].freeze
 MAX_DIMENSION = 800
 QUALITY = 75
+METADATA_TAGS = %w[
+  -ICC_Profile -EXIF:Orientation -EXIF:Copyright -EXIF:Artist
+  -IPTC:all -XMP-dc:all -XMP-photoshop:Credit -XMP-photoshop:Source
+  -XMP-photoshop:Headline -XMP-xmpRights:all -IPTC:CodedCharacterSet=UTF8
+].freeze
 
 root = File.expand_path("..", __dir__)
 count = 0
@@ -35,6 +42,7 @@ GALLERIES.each do |gallery|
     next if File.exist?(thumb) && File.mtime(thumb) >= File.mtime(src)
 
     system("sips", "-Z", MAX_DIMENSION.to_s, "-s", "formatOptions", QUALITY.to_s, src, "--out", thumb, out: File::NULL)
+    system("exiftool", "-q", "-overwrite_original", "-all=", "-TagsFromFile", src, *METADATA_TAGS, thumb, exception: true)
     puts "Generated #{gallery}/#{File.basename(thumb)}"
     count += 1
   end

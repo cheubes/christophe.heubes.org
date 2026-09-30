@@ -155,6 +155,42 @@ drawing-title: Attelage pour crochet de traction
 | `drawing-id` | `<id>`, clé vers les deux fichiers image et vers l'entrée de `_data/technical-drawing.yml` |
 | `drawing-title` | Titre du dessin dans la langue de la page (recopié depuis `fr-title`/`en-title`) |
 
+## Métadonnées des images
+
+Chaque image de contenu (photo de galerie, sa vignette, les deux images d'un dessin technique) porte dans le fichier lui‑même l'auteur et la licence du site, en EXIF, IPTC et XMP, en plus du JSON‑LD de la page (voir "SEO" dans `technical-specifications.md`) : ces métadonnées suivent l'image quand elle est téléchargée ou indexée seule. Les images d'interface (`gallery-band-bg.jpg`, fonds de bande de `content/`, `assets/img/`) ne sont pas concernées.
+
+### Champs communs
+
+| Champ | Valeur |
+|---|---|
+| EXIF `Copyright` | `CC BY-NC-SA 4.0` |
+| IPTC `CodedCharacterSet` | `UTF8`, toujours requis (le nom de l'auteur est accentué) ; sans lui, les lecteurs supposent du Latin‑1 et affichent `Heubès` ou `Œuvre` corrompus |
+| IPTC `By-line`, XMP `dc:creator`, XMP `photoshop:Credit` | `Christophe Heubès` |
+| IPTC `CopyrightNotice` | `CC Christophe Heubès` (même valeur que `copyrightNotice` dans le JSON‑LD) |
+| XMP `dc:rights` | `Christophe Heubès - CC BY-NC-SA 4.0` |
+| XMP `xmpRights:Marked` | `True` |
+| XMP `xmpRights:UsageTerms` | `CC BY-NC-SA 4.0` |
+| XMP `xmpRights:WebStatement` | `https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr` |
+
+### Champs propres à chaque famille
+
+| Champ | Photo de galerie | Dessin technique |
+|---|---|---|
+| IPTC `Caption-Abstract`, XMP `dc:description` | `title-fr` de l'entrée | `fr-title` de l'entrée |
+| XMP `dc:title` | Titre court libre, sans point final (pas dérivé du `.yml`) | `fr-title` |
+| IPTC `ObjectName` | Absent | `fr-title`, raccourci à une coupure lisible s'il dépasse 64 octets (limite du champ IPTC) |
+| EXIF `Artist` | Absent | `Christophe Heubès` |
+| XMP `photoshop:Source` | `christophe.heubes.org` | `Dessin original de Claude Heubès, ENSAM, <org-year>.` pour `-org.jpg`, `Reproduction numérique 2020, d'après le dessin original de Claude Heubès, ENSAM, <org-year>.` pour `-2020.jpg` |
+
+Les vignettes portent exactement les métadonnées de leur original, recopiées par `scripts/generate_gallery_thumbnails.rb` (voir `technical-specifications.md`).
+
+### Règles d'écriture
+
+- Écrire les métadonnées avec exiftool, en écrivant IPTC et XMP dans la même commande pour qu'ils restent identiques.
+- Ne pas remplir `photoshop:AuthorsPosition` ni son équivalent IPTC `By-lineTitle` : ce champ désigne la fonction de l'auteur, pas le titre de l'image.
+- Déclarer `CodedCharacterSet=UTF8` dès la première écriture IPTC. L'ajouter après coup sur un fichier qui n'en a pas amène exiftool à réencoder les textes IPTC existants en Windows‑1252 : il faut alors réécrire ces champs (par exemple depuis leurs équivalents XMP).
+- Après toute modification IPTC d'un fichier passé par Photoshop, le champ `Photoshop:IPTCDigest` doit correspondre au nouveau contenu (`-Photoshop:IPTCDigest=new`), sans quoi les lecteurs qui suivent les recommandations MWG considèrent IPTC et XMP comme potentiellement désynchronisés.
+
 ## Page d'accueil (front matter)
 
 `index.md` (français, `permalink: /`) et `index-en.md` (anglais, `permalink: /en/`), `layout: index`, `ref: home`. En plus des champs communs (`lang`, `flag`, `title`, `description`), deux champs propres à l'accueil :
