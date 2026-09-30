@@ -25,7 +25,8 @@ build; this requires `lessc` to be installed locally (see
 
 To check for broken links, as CI does:
 
-    bundle exec htmlproofer ./_site
+    bundle exec htmlproofer ./_site \
+      --ignore-urls "https://fonts.googleapis.com,https://fonts.gstatic.com,https://ka-f.fontawesome.com,https://www.goodreads.com/christophehbs/,https://www.instagram.com/christophe.uw/,https://www.instagram.com/christophe.hbs/"
 
 ## Adding content
 
