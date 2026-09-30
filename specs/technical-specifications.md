@@ -49,7 +49,7 @@ Trois mécanismes du site suivent le même principe : générés localement par 
 
 | Mécanisme | Fichier | Rôle | Déclenchement |
 |---|---|---|---|
-| Vignettes de galerie | `scripts/generate_gallery_thumbnails.rb` | Génère `<slug>-thumb.<ext>` pour chaque photo listée dans `_data/<gallery>.yml`, via `sips` (outil macOS, aucune dépendance ajoutée), 800 px de plus grande dimension, qualité 75 | Manuel, après ajout de photos |
+| Vignettes de galerie | `scripts/generate_gallery_thumbnails.rb` | Génère `<slug>-thumb.<ext>` pour chaque photo listée dans `_data/<gallery>.yml`, via `sips` (outil macOS), 800 px de plus grande dimension, qualité 75 ; recopie ensuite les métadonnées auteur/licence de l'original avec `exiftool` (Homebrew, requis localement), `sips` n'en conservant qu'une partie (voir "Métadonnées des images" dans `data-model.md`) | Manuel, après ajout de photos |
 | Pages de détail des dessins techniques | `scripts/generate_technical_drawing_pages.rb` | Génère les fichiers Markdown `content/technical-drawing/<id>.md` et `<id>-en.md` à partir de `_data/technical-drawing.yml` | Manuel, après modification de `_data/technical-drawing.yml` |
 | Compilation LESS → CSS | `_plugins/less_compiler.rb` | Recompile `assets/dist/css/hbs.css` depuis `assets/css/hbs.less` si la source est plus récente que le fichier compilé | Hook Jekyll (`pre_render`), à chaque `jekyll serve`/`jekyll build` local |
 

@@ -33,7 +33,9 @@ To check for broken links, as CI does:
 - **Photo galleries** (diving, street art, wanderings): add the image file
   under `content/<gallery>/` and a matching entry in `_data/<gallery>.yml`,
   then run `ruby scripts/generate_gallery_thumbnails.rb` to generate the grid
-  thumbnail.
+  thumbnail (requires `exiftool`, which copies the original's author and
+  license metadata onto the thumbnail; see "Métadonnées des images" in
+  `specs/data-model.md` for the expected fields).
 - **Technical drawings**: add the original and 2020 reproduction images
   under `content/technical-drawing/` and a matching entry in
   `_data/technical-drawing.yml`, then run
