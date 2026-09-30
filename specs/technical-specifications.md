@@ -126,7 +126,7 @@ Contrairement à d'autres projets de l'auteur, il n'existe pas de fichier centra
 - Alternates `hreflang` entre les versions FR et EN d'une même page (`ref` commun, voir `data-model.md`), dans `<head>` et dans `sitemap.xml`.
 - **`sitemap.xml`** : contrairement à un plugin `jekyll-sitemap`, c'est une page Jekyll comme une autre (`sitemap.xml` à la racine, `layout: null`, boucle Liquid sur `site.pages`), qui se génère elle‑même au build. Elle liste une entrée par `ref` (une seule des deux langues, dédupliquée en filtrant `page.lang == "fr"`, l'alternate `hreflang` de l'autre langue étant ajouté dans la même entrée `<url>`), et inclut des extensions `image:image` pour les photos d'une galerie et les deux images d'un dessin technique.
   - Le champ de front matter `sitemap.priority` (voir `data-model.md`) n'est actuellement lu par aucun code du site : `sitemap.xml` ne s'appuie que sur `sitemap.lastmod` et `sitemap.exclude`. À garder à l'esprit si `sitemap.xml` est modifié : ce champ n'a aujourd'hui qu'une valeur indicative.
-- Un bloc JSON‑LD `ImageObject` (auteur, mention de crédit, licence CC) est ajouté sur les pages de galerie et de dessin technique, distinct de tout plugin.
+- Un bloc JSON‑LD `ImageObject` (auteur, mention de crédit, licence CC, `acquireLicensePage` pointant vers le même deed CC que `license`, exigé par Google Images pour le badge "Licensable") est ajouté sur les pages de galerie et de dessin technique, distinct de tout plugin.
 - `robots.txt` autorise l'indexation du site, exclut `/404.html`, référence `sitemap.xml`.
 - Un fichier de vérification Google Search Console (`googlecd7d75cfc4cbdf0c.html`) est présent à la racine.
 
