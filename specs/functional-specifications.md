@@ -47,7 +47,7 @@ Content (photos, drawings, texts) is produced by the author directly in the repo
 
 - Home page: icon navigation in the hero, one per section, plus three external links to the sister sites (see below).
 - Any other page: compact header, sticky at the top of the page, with the same navigation icons, plus a link to the home page (profile picture).
-- Fixed footer, present on every page: links to the author's social networks, Creative Commons license, language switcher (see `style-guide.md`).
+- Fixed footer, present on every page: links to the author's social networks, license (CC0 1.0, see `LICENSE`), language switcher (see `style-guide.md`).
 
 ### Sister sites
 

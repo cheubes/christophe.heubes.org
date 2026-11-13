@@ -76,7 +76,7 @@ Note: the header actually includes the same seven links as the hero (four sectio
 
 - Fixed (`position: fixed`, bottom of the screen), `@surface` background, thin top border in `@gold` at 20% opacity.
 - **Left**: social network links (circular portrait to `christophe.heubes.com`, Font Awesome icons Instagram ×2, Goodreads).
-- **Center**: Creative Commons license (four Font Awesome Brands icons: `fa-creative-commons`, `fa-creative-commons-by`, `fa-creative-commons-nc-eu`, `fa-creative-commons-sa`, followed by the text "CC BY-NC-SA 4.0"), linking to `deed.fr` or `deed.en` depending on the current language.
+- **Center**: Creative Commons CC0 1.0 public domain dedication (two Font Awesome Brands icons: `fa-creative-commons`, `fa-creative-commons-zero`, followed by the text "CC0 1.0"), linking to the CC0 `deed.fr` or `deed.en` depending on the current language.
 - **Right**: language switcher, one link per language available for the current page (shared `ref`, see `data-model.md`), displayed as a flag emoji (🇫🇷/🇬🇧) with an explicit `aria-label`.
 
 ### Photo gallery grid (tiles)
@@ -139,7 +139,7 @@ Font Awesome, loaded through a remote Kit (see `technical-specifications.md`), n
 | Link to social-graphs.heubes.io | `fa-diagram-project` |
 | Instagram | `fa-instagram` (Brands) |
 | Goodreads | `fa-book-open` |
-| Creative Commons license | `fa-creative-commons`, `fa-creative-commons-by`, `fa-creative-commons-nc-eu`, `fa-creative-commons-sa` (Brands) |
+| CC0 1.0 license | `fa-creative-commons`, `fa-creative-commons-zero` (Brands) |
 | Scroll indicator (hero) | `fa-chevron-down` |
 | Back to the technical drawings list | `fa-arrow-left` |
 | Access to a technical drawing's detail | `fa-magnifying-glass-plus` |

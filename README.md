@@ -52,5 +52,7 @@ to `master`.
 
 ## License
 
-Content (photos, drawings) is licensed under
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+Code and content (photos, drawings) are dedicated to the public domain
+under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/),
+see [`LICENSE`](LICENSE). Third-party libraries vendored in `assets/dist/`
+(Bootstrap, BeerSlider, less.js) keep their own licenses.

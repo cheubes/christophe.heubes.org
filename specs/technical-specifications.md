@@ -126,7 +126,7 @@ Unlike other projects by the author, there is no centralized file of interface s
 - `hreflang` alternates between the FR and EN versions of a same page (shared `ref`, see `data-model.md`), in `<head>` and in `sitemap.xml`.
 - **`sitemap.xml`**: unlike a `jekyll-sitemap` plugin, it is a Jekyll page like any other (`sitemap.xml` at the root, `layout: null`, Liquid loop over `site.pages`), which generates itself at build time. It lists one entry per `ref` (only one of the two languages, deduplicated by filtering on `page.lang == "fr"`, the `hreflang` alternate of the other language being added in the same `<url>` entry), and includes `image:image` extensions for the photos of a gallery and the two images of a technical drawing.
   - The `sitemap.priority` front matter field (see `data-model.md`) is currently read by no code of the site: `sitemap.xml` only relies on `sitemap.lastmod` and `sitemap.exclude`. Keep this in mind if `sitemap.xml` is changed: this field currently has informational value only.
-- A JSON-LD `ImageObject` block (author, credit line, CC license, `acquireLicensePage` pointing to the same CC deed as `license`, required by Google Images for the "Licensable" badge) is added on gallery and technical drawing pages, independently of any plugin.
+- A JSON-LD `ImageObject` block (author, credit line, CC0 1.0 license, `acquireLicensePage` pointing to the same CC0 deed as `license`, required by Google Images for the "Licensable" badge) is added on gallery and technical drawing pages, independently of any plugin.
 - `robots.txt` allows indexing of the site, excludes `/404.html`, references `sitemap.xml`.
 - A Google Search Console verification file (`googlecd7d75cfc4cbdf0c.html`) is present at the root.
 
@@ -142,6 +142,7 @@ A CSP is declared as a `<meta>` tag in `_includes/head.html`, restricting `scrip
 /
 ├── _config.yml
 ├── CNAME
+├── LICENSE                          # CC0 1.0 Universal (code and content)
 ├── 404.md
 ├── index.md / index-en.md          # home (FR / EN)
 ├── robots.txt
