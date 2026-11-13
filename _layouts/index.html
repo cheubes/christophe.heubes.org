@@ -20,7 +20,7 @@
 
 <body>
 
-  <!-- Hero : plein écran avec bg.jpg + overlay sombre -->
+  <!-- Hero: full screen with bg.jpg + dark overlay -->
   <section id="hero">
     <div class="hero-content">
       <a href="{{ page.url }}" aria-label="{% if page.lang == 'fr' %}Accueil{% else %}Home{% endif %}">
@@ -42,7 +42,7 @@
     </div>
   </section>
 
-  <!-- Bandes cinématiques : une par section -->
+  <!-- Cinematic bands: one per section -->
 
   {%- assign uw_page = site.pages | where: "ref", "under-water" | where: "lang", page.lang | first -%}
   <a class="gallery-band" href="{{ page.permalink }}under-water">

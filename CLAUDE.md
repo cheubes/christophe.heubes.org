@@ -1,39 +1,39 @@
 # christophe.heubes.org
 
-Site personnel de Christophe Heubès : galeries photo (plongée sous‑marine, street art, déambulations urbaines) et dessins techniques réalisés par son grand‑père puis reproduits par lui. Site statique, multilingue (français / anglais), généré avec Jekyll et hébergé sur GitHub Pages.
+Personal site of Christophe Heubès: photo galleries (scuba diving, street art, urban wanderings) and technical drawings made by his grandfather and then reproduced by him. Static, multilingual site (French / English), generated with Jekyll and hosted on GitHub Pages.
 
-## Rôle de `specs/`
+## Role of `specs/`
 
-`specs/` documente les choix de conception. `specs/` est la source de vérité pour toute évolution : avant d'écrire ou de modifier du code, lire les fichiers de specs concernés par la tâche.
+`specs/` documents the design decisions. `specs/` is the source of truth for any change: before writing or modifying code, read the spec files relevant to the task.
 
-## Structure de `specs/`
+## Structure of `specs/`
 
-- **`functional-specifications.md`** : périmètre du site, visiteurs cibles, parcours utilisateurs, règles transverses (multilingue, navigation, liens vers les sites soeurs), hors périmètre.
-- **`data-model.md`** : les deux familles de contenu (galerie photo générique, dessin technique), leurs fichiers de données (`_data/*.yml`), le front matter des pages, les mécanismes de génération de page, les conventions de nommage.
-- **`technical-specifications.md`** : stack technique, hébergement/déploiement, architecture (génération des pages, routage, synchronisation d'URL de la lightbox), performance, accessibilité, SEO.
-- **`style-guide.md`** : charte graphique (couleurs, typographie, espacements), composants UI de base (en‑tête, pied de page, hero, tuiles, lightbox, comparateur avant/après), iconographie.
-- **`screens/`** : une spécification fonctionnelle par écran (objectif, contenu, interactions, états, responsive) :
-  - `home.md` — accueil du site (hero + bandes cinématiques)
-  - `gallery.md` — écran générique des trois galeries photo (plongée, street art, déambulations) et de sa lightbox
-  - `technical-drawing.md` — dessins techniques (vue liste avec comparateur avant/après, vue détail)
+- **`functional-specifications.md`**: site scope, target visitors, user journeys, cross-cutting rules (multilingual, navigation, links to sister sites), out of scope.
+- **`data-model.md`**: the two content families (generic photo gallery, technical drawing), their data files (`_data/*.yml`), page front matter, page generation mechanisms, naming conventions.
+- **`technical-specifications.md`**: technical stack, hosting/deployment, architecture (page generation, routing, lightbox URL synchronization), performance, accessibility, SEO.
+- **`style-guide.md`**: visual identity (colors, typography, spacing), core UI components (header, footer, hero, tiles, lightbox, before/after comparator), iconography.
+- **`screens/`**: one functional specification per screen (goal, content, interactions, states, responsive):
+  - `home.md`: site home page (hero + cinematic bands)
+  - `gallery.md`: generic screen of the three photo galleries (diving, street art, wanderings) and its lightbox
+  - `technical-drawing.md`: technical drawings (list view with before/after comparator, detail view)
 
-## Quand et comment utiliser ces specs
+## When and how to use these specs
 
-- **Avant toute implémentation**, lire le ou les fichiers concernés par la tâche. Les quatre specs transverses (`functional-specifications.md`, `data-model.md`, `technical-specifications.md`, `style-guide.md`) s'appliquent à tout le site ; chaque fichier de `screens/` complète avec ce qui est propre à cet écran.
-- **Les fichiers se référencent constamment entre eux** ("voir `X.md`") plutôt que de dupliquer l'information. Suivre ces renvois plutôt que de deviner : si un écran mentionne une règle définie ailleurs (le comportement multilingue, une couleur de la charte...), la source de vérité est le fichier référencé, pas l'écran qui le cite.
-- **En cas de modification d'une spec**, chercher les autres fichiers qui la référencent (`grep` du nom de fichier dans `specs/`) et vérifier qu'ils restent cohérents avec le changement.
-- **En cas de doute ou de silence des specs** sur un point nécessaire à l'implémentation, demander plutôt que de supposer : ce sont des choix de conception, pas des détails d'implémentation libres.
-- **En cas d'écart entre le code existant et une spec** : ces specs ont été écrites après coup, à partir du code en place. Un écart repéré pendant une tâche a donc deux origines possibles, à distinguer avant d'agir : soit la spec décrit mal un comportement volontaire (corriger la spec), soit le code contient un oubli ou un bug que la rédaction des specs a mis en lumière (signaler à l'utilisateur, ne pas corriger silencieusement à l'occasion d'une tâche sans rapport). Une fois qu'une spec est confirmée correcte, elle fait foi : si une implémentation ultérieure doit s'en écarter, mettre à jour la spec et expliquer pourquoi plutôt que de diverger silencieusement dans le code.
+- **Before any implementation**, read the file(s) relevant to the task. The four cross-cutting specs (`functional-specifications.md`, `data-model.md`, `technical-specifications.md`, `style-guide.md`) apply to the whole site; each file in `screens/` adds what is specific to that screen.
+- **The files constantly reference each other** ("see `X.md`") rather than duplicating information. Follow these references rather than guessing: if a screen mentions a rule defined elsewhere (multilingual behavior, a style guide color...), the source of truth is the referenced file, not the screen citing it.
+- **When modifying a spec**, look for the other files referencing it (`grep` the file name in `specs/`) and check they stay consistent with the change.
+- **When in doubt, or when the specs are silent** on a point needed for the implementation, ask rather than assume: these are design decisions, not free implementation details.
+- **When the existing code and a spec diverge**: these specs were written after the fact, from the code in place. A divergence spotted during a task therefore has two possible origins, to be told apart before acting: either the spec misdescribes an intended behavior (fix the spec), or the code contains an oversight or a bug that writing the specs brought to light (report it to the user, do not fix it silently as part of an unrelated task). Once a spec is confirmed correct, it is authoritative: if a later implementation must depart from it, update the spec and explain why rather than silently diverging in the code.
 
-## Avant chaque commit
+## Before each commit
 
-- **Vérifier l'ensemble des fichiers de `specs/`** pour cohérence, pas seulement ceux directement modifiés par ce commit.
-- **Si une ou plusieurs specs doivent être ajustées**, bloquer le commit : proposer les mises à jour nécessaires et attendre validation avant de les appliquer, puis de committer.
-- **Mettre à jour `README.md`** si nécessaire.
+- **Check all the files in `specs/`** for consistency, not only those directly modified by this commit.
+- **If one or more specs need adjusting**, block the commit: propose the necessary updates and wait for approval before applying them, then commit.
+- **Update `README.md`** if needed.
 
-## Conventions établies
+## Established conventions
 
-- Le contenu des specs (`specs/`, ce fichier) est en français : ce sont des documents de conception, pas de la documentation au sens des règles globales. Le code, les commentaires et `README.md` restent en anglais, comme le reste du dépôt.
-- Les noms de fichiers, dossiers, slugs et identifiants techniques sont en anglais, en kebab‑case (ex : `under-water`, `attelage-pour-crochet-de-traction`, `generate_gallery_thumbnails.rb` pour les scripts Ruby, qui suivent snake_case comme le reste de l'écosystème Ruby).
-- Pas de préfixe imposé sur les classes CSS (contrairement à d'autres projets de l'auteur) : les identifiants et classes sont des noms sémantiques simples (`#site-header`, `.gallery-band`, `.gallery-thumb`), voir `technical-specifications.md`.
-- Les couleurs et composants de la charte graphique sont définis une seule fois, dans `style-guide.md` : ne pas introduire de nouvelles valeurs de couleur ou de nouveaux styles de composants ailleurs sans les y ajouter d'abord.
+- Everything in the repository is written in English: specs (`specs/`), this file, `README.md`, code, comments. The only French text is the site's own French-language content, which is part of the bilingual site and must stay in French: French pages (`index.md`, `content/<gallery>.md`, `content/technical-drawing/<id>.md`...), the `title-fr`/`fr-title` fields of `_data/*.yml`, the French branch of interface strings in layouts and includes, and the French image metadata values (see "Image metadata" in `data-model.md`). Specs may quote such French strings verbatim.
+- File names, folders, slugs and technical identifiers are in kebab-case (e.g. `under-water`, `attelage-pour-crochet-de-traction`), except Ruby scripts, which follow snake_case like the rest of the Ruby ecosystem (`generate_gallery_thumbnails.rb`). Technical identifiers are in English; content slugs keep their original French name where they have one: technical drawing slugs reuse the French drawing title (`attelage-pour-crochet-de-traction`) and the `deambulations` gallery keeps its French name. These slugs are part of published URLs: do not rename them.
+- No mandatory prefix on CSS classes (unlike other projects by the author): identifiers and classes are simple semantic names (`#site-header`, `.gallery-band`, `.gallery-thumb`), see `technical-specifications.md`.
+- Style guide colors and components are defined once, in `style-guide.md`: do not introduce new color values or new component styles elsewhere without adding them there first.

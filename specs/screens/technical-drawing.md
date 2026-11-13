@@ -1,57 +1,57 @@
-# Écran : dessins techniques
+# Screen: technical drawings
 
-Deux vues distinctes, chacune avec son propre layout (voir `technical-specifications.md`) : une liste avec comparateur avant/après, et une page de détail par dessin. Documentées ici ensemble plutôt que dans deux fichiers séparés, leur complexité respective ne justifiant pas la fragmentation.
+Two distinct views, each with its own layout (see `technical-specifications.md`): a list with a before/after comparator, and a detail page per drawing. Documented here together rather than in two separate files, as their respective complexity does not justify splitting them.
 
-## Objectif
+## Goal
 
-Mettre en valeur les dessins techniques originaux de Claude Heubès (1939-1942) en les comparant à leur reproduction numérique par Christophe Heubès (2020), et permettre de consulter chaque dessin en plein format.
+Showcase Claude Heubès's original technical drawings (1939-1942) by comparing them with their digital reproduction by Christophe Heubès (2020), and let visitors view each drawing in full size.
 
-## Vue liste (`/technical-drawing/`)
+## List view (`/technical-drawing/`)
 
-### Contenu et structure
+### Content and structure
 
-- En‑tête compact commun à tout le site (voir `style-guide.md`).
-- Titre (`h1`) avec icône, suivi de "par"/"by" Claude et Christophe Heubès (les deux auteurs, contrairement aux galeries photo qui ne créditent que Christophe, voir `screens/gallery.md`), puis l'`introduction` de la section (qui peut contenir un lien HTML brut, voir `data-model.md`).
-- Une entrée par dessin de `_data/technical-drawing.yml` (voir `data-model.md`), dans l'ordre du fichier, séparées par un filet horizontal :
-  - Le comparateur avant/après (voir "Comparateur avant/après" dans `style-guide.md`), curseur positionné par défaut au centre.
-  - Le titre du dessin sous le comparateur, en lien vers sa page de détail.
-
-### Interactions
-
-- **Déplacement du curseur du comparateur** : révèle progressivement le dessin original (`<id>-org.jpg`) par‑dessus la reproduction 2020 (`<id>-2020.jpg`), à la souris, au toucher ou au clavier (curseur natif `<input type="range">`).
-- **Clic sur le titre d'un dessin** : navigue vers sa page de détail.
-- **Changement de langue** (pied de page) : bascule vers la liste dans l'autre langue ; le titre de chaque dessin change (`fr-title`/`en-title`), la position du curseur de chaque comparateur n'est pas conservée (nouvelle page, curseur réinitialisé au centre).
-
-### États
-
-- **Vide** : pas de comportement défini, `_data/technical-drawing.yml` n'étant jamais vide en pratique.
-- **Chargement des images** : contrairement aux vignettes des galeries photo, les images du comparateur (`loading="lazy"`) sont à pleine résolution dès la liste, aucune version redimensionnée n'existant pour les dessins techniques (voir `data-model.md`).
-
-### Responsive
-
-Disposition centrée sur une seule colonne (marges Bootstrap `col-md-1`/`col-md-2` de part et d'autre), quelle que soit la largeur d'écran : contrairement aux galeries photo, pas de grille à plusieurs colonnes, chaque dessin occupant toute la largeur utile disponible.
-
-## Vue détail (`/technical-drawing/<id>/`)
-
-### Contenu et structure
-
-- En‑tête compact, lien de retour vers la liste (icône + texte) répété en haut et en bas de page (voir "Page de détail" dans `style-guide.md`).
-- Titre du dessin (`drawing-title`, voir `data-model.md`).
-- Les deux images empilées verticalement, chacune en pleine largeur avec sa légende (`figcaption`) :
-  1. Dessin original (`<id>-org.jpg`), légendé "Dessin original réalisé par Claude Heubès lors de ses études à l'ENSAM" / traduction anglaise équivalente.
-  2. Reproduction numérique (`<id>-2020.jpg`), légendé "Reproduction numérique réalisée par Christophe Heubès en 2020" / équivalent anglais.
-
-Contrairement à la vue liste, les deux images ne sont pas comparées par curseur ici : consultées l'une après l'autre, en pleine résolution, pour un examen détaillé de chacune.
+- Compact header shared by the whole site (see `style-guide.md`).
+- Title (`h1`) with icon, followed by "par"/"by" Claude and Christophe Heubès (both authors, unlike the photo galleries which only credit Christophe, see `screens/gallery.md`), then the section's `introduction` (which may contain a raw HTML link, see `data-model.md`).
+- One entry per drawing of `_data/technical-drawing.yml` (see `data-model.md`), in file order, separated by a horizontal rule:
+  - The before/after comparator (see "Before/after comparator" in `style-guide.md`), slider centered by default.
+  - The drawing title below the comparator, linking to its detail page.
 
 ### Interactions
 
-- **Clic sur un lien de retour** : navigue vers la liste (`/technical-drawing/` ou `/en/technical-drawing/` selon la langue de la page).
-- **Changement de langue** (pied de page) : bascule vers le détail du même dessin (`ref` commun, voir `data-model.md`) dans l'autre langue.
+- **Moving the comparator slider**: progressively reveals the original drawing (`<id>-org.jpg`) over the 2020 reproduction (`<id>-2020.jpg`), with the mouse, touch or keyboard (native `<input type="range">` slider).
+- **Click on a drawing title**: navigates to its detail page.
+- **Language change** (footer): switches to the list in the other language; each drawing's title changes (`fr-title`/`en-title`), the slider position of each comparator is not preserved (new page, slider reset to the center).
 
-### États
+### States
 
-Aucun état particulier : page statique, contenu toujours présent (un dessin technique n'existe qu'accompagné de ses deux images et de ses deux pages de langue, voir "Conventions générales" dans `data-model.md`).
+- **Empty**: no defined behavior, `_data/technical-drawing.yml` never being empty in practice.
+- **Image loading**: unlike photo gallery thumbnails, the comparator images (`loading="lazy"`) are full resolution right from the list, as no resized version exists for technical drawings (see `data-model.md`).
 
 ### Responsive
 
-Une seule colonne centrée (mêmes marges Bootstrap que la vue liste), images en pleine largeur utile à toute taille d'écran.
+Centered single-column layout (Bootstrap `col-md-1`/`col-md-2` margins on each side), whatever the screen width: unlike the photo galleries, no multi-column grid, each drawing taking up the full available width.
+
+## Detail view (`/technical-drawing/<id>/`)
+
+### Content and structure
+
+- Compact header, back link to the list (icon + text) repeated at the top and bottom of the page (see "Detail page" in `style-guide.md`).
+- Drawing title (`drawing-title`, see `data-model.md`).
+- Both images stacked vertically, each full width with its caption (`figcaption`):
+  1. Original drawing (`<id>-org.jpg`), captioned "Dessin original réalisé par Claude Heubès lors de ses études à l'ENSAM" / equivalent English translation.
+  2. Digital reproduction (`<id>-2020.jpg`), captioned "Reproduction numérique réalisée par Christophe Heubès en 2020" / English equivalent.
+
+Unlike the list view, the two images are not compared with a slider here: they are viewed one after the other, in full resolution, for a detailed examination of each.
+
+### Interactions
+
+- **Click on a back link**: navigates to the list (`/technical-drawing/` or `/en/technical-drawing/` depending on the page language).
+- **Language change** (footer): switches to the detail of the same drawing (shared `ref`, see `data-model.md`) in the other language.
+
+### States
+
+No particular state: static page, content always present (a technical drawing only exists together with its two images and its two language pages, see "General conventions" in `data-model.md`).
+
+### Responsive
+
+Single centered column (same Bootstrap margins as the list view), images at full available width at every screen size.
