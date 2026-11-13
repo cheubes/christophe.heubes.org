@@ -1,70 +1,70 @@
-# Spécifications fonctionnelles générales
+# General functional specifications
 
-## Contexte et objectifs
+## Context and goals
 
-Le site présente le travail visuel de Christophe Heubès : trois galeries de photographies (plongée sous‑marine, street art, déambulations urbaines) et une collection de dessins techniques réalisés par son grand‑père Claude Heubès entre 1939 et 1942 lors de ses études, que Christophe a entrepris de reproduire au format numérique en 2020.
+The site presents Christophe Heubès's visual work: three photo galleries (scuba diving, street art, urban wanderings) and a collection of technical drawings made by his grandfather Claude Heubès between 1939 and 1942 during his studies, which Christophe set out to reproduce digitally in 2020.
 
-L'objectif est de permettre à un visiteur de découvrir ce travail de façon immersive : parcourir les photos en grand format, comparer les dessins techniques originaux à leur reproduction numérique, et accéder facilement aux autres projets de l'auteur.
+The goal is to let visitors discover this work in an immersive way: browse the photos in large format, compare the original technical drawings with their digital reproduction, and easily reach the author's other projects.
 
-## Périmètre du site
+## Site scope
 
-Dans le périmètre :
+In scope:
 
-- Page d'accueil présentant l'auteur et donnant accès à chaque section (voir `screens/home.md`).
-- Consultation de chacune des trois galeries photo (plongée, street art, déambulations) sous forme de grille, avec une vue plein écran par photo (voir `screens/gallery.md`).
-- Consultation de la collection de dessins techniques sous forme de liste avec comparateur avant/après, et d'une page de détail par dessin (voir `screens/technical-drawing.md`).
-- Site multilingue (français, anglais).
-- Liens vers les autres sites de l'auteur (voir "Sites soeurs" ci‑dessous).
+- Home page introducing the author and giving access to each section (see `screens/home.md`).
+- Browsing each of the three photo galleries (diving, street art, wanderings) as a grid, with a full-screen view per photo (see `screens/gallery.md`).
+- Browsing the technical drawing collection as a list with a before/after comparator, and a detail page per drawing (see `screens/technical-drawing.md`).
+- Multilingual site (French, English).
+- Links to the author's other sites (see "Sister sites" below).
 
-Voir aussi "Hors périmètre" ci‑dessous.
+See also "Out of scope" below.
 
-## Utilisateurs cibles
+## Target users
 
-Le site s'adresse à des visiteurs qui découvrent le travail photographique ou le fonds familial de dessins techniques de l'auteur : famille, relations professionnelles, curieux arrivés depuis un moteur de recherche ou un réseau social. Il n'y a pas de distinction de rôle côté visiteur : pas de compte, pas d'espace personnel, pas de contenu personnalisé.
+The site is aimed at visitors discovering the author's photographic work or the family collection of technical drawings: family, professional contacts, curious visitors coming from a search engine or a social network. There is no role distinction on the visitor side: no account, no personal space, no personalized content.
 
-Le contenu (photos, dessins, textes) est produit par l'auteur directement dans les fichiers sources du dépôt (voir `data-model.md`), pas via une interface d'administration.
+Content (photos, drawings, texts) is produced by the author directly in the repository's source files (see `data-model.md`), not through an admin interface.
 
-## Parcours utilisateurs principaux
+## Main user journeys
 
-1. Un visiteur arrive sur la page d'accueil, découvre l'auteur via le hero plein écran, et choisit une section soit depuis la navigation du hero, soit en défilant jusqu'à la bande cinématique correspondante.
-2. S'il choisit une galerie photo (plongée, street art, déambulations), il arrive sur une grille de vignettes, clique sur une photo qui l'intéresse, et parcourt les photos suivantes/précédentes en plein écran sans quitter la grille.
-3. S'il choisit les dessins techniques, il arrive sur une liste où chaque dessin se compare par un curseur avant/après (original à l'encre / reproduction numérique 2020), et peut ouvrir une page de détail dédiée à un dessin pour voir les deux images en plein format.
-4. Depuis n'importe quelle page (hors accueil), il peut revenir à l'accueil ou naviguer directement vers une autre section via l'en‑tête.
-5. Un visiteur peut aussi arriver directement sur une photo ou un dessin précis via un lien partagé, sans passer par l'accueil ni par la grille (voir "Permaliens" dans `technical-specifications.md`).
+1. A visitor lands on the home page, discovers the author through the full-screen hero, and picks a section either from the hero navigation or by scrolling down to the matching cinematic band.
+2. If they pick a photo gallery (diving, street art, wanderings), they land on a thumbnail grid, click a photo that interests them, and browse the next/previous photos full screen without leaving the grid.
+3. If they pick the technical drawings, they land on a list where each drawing can be compared with a before/after slider (original ink drawing / 2020 digital reproduction), and can open a detail page dedicated to one drawing to see both images in full size.
+4. From any page (other than home), they can go back to the home page or navigate directly to another section through the header.
+5. A visitor can also land directly on a specific photo or drawing through a shared link, without going through the home page or the grid (see "Permalinks" in `technical-specifications.md`).
 
-## Règles transverses
+## Cross-cutting rules
 
-### Multilingue
+### Multilingual
 
-- Le site est disponible en français et en anglais.
-- Le français est la langue par défaut : ses pages sont servies à la racine du site, sans préfixe (`/`, `/technical-drawing/`...). L'anglais est préfixé par `/en/`.
-- Chaque page existe en deux fichiers sources distincts (un par langue), reliés entre eux par un identifiant commun (`ref`, voir `data-model.md`) plutôt que par une traduction dynamique.
-- Un sélecteur de langue, dans le pied de page (voir `style-guide.md`), permet de basculer vers la version dans l'autre langue de la page courante.
-- Il n'existe actuellement aucun mécanisme de détection automatique de la langue du navigateur ni de mémorisation d'un choix de langue : chaque page est statique et sert la langue de son URL.
-- Il n'y a pas de contenu partiellement traduit dans ce site : chaque section (galerie ou collection de dessins) et chaque élément qu'elle contient existent systématiquement dans les deux langues, produits ensemble (voir `data-model.md`). Il n'existe donc pas de mécanisme de repli ni de message "contenu non disponible dans cette langue" : une URL qui ne correspond à aucune page générée déclenche simplement le 404 générique du site (voir "Page non trouvée" ci‑dessous), sans détection de la langue depuis le préfixe de l'URL demandée.
+- The site is available in French and English.
+- French is the default language: its pages are served at the site root, without a prefix (`/`, `/technical-drawing/`...). English is prefixed with `/en/`.
+- Each page exists as two separate source files (one per language), linked by a shared identifier (`ref`, see `data-model.md`) rather than by dynamic translation.
+- A language switcher, in the footer (see `style-guide.md`), switches to the other-language version of the current page.
+- There is currently no mechanism to automatically detect the browser language nor to remember a language choice: each page is static and serves the language of its URL.
+- There is no partially translated content on this site: every section (gallery or drawing collection) and every item it contains always exist in both languages, produced together (see `data-model.md`). There is therefore no fallback mechanism and no "content not available in this language" message: a URL that matches no generated page simply triggers the site's generic 404 (see "404 page" in `data-model.md`), with no language detection from the requested URL's prefix.
 
 ### Navigation
 
-- Page d'accueil : navigation par icônes dans le hero, une par section, plus trois liens externes vers les sites soeurs (voir ci‑dessous).
-- Toute autre page : en‑tête compact et collant en haut de page, avec les mêmes icônes de navigation, plus un lien vers l'accueil (photo de profil).
-- Pied de page fixe, présent sur toutes les pages : liens vers les réseaux sociaux de l'auteur, licence Creative Commons, sélecteur de langue (voir `style-guide.md`).
+- Home page: icon navigation in the hero, one per section, plus three external links to the sister sites (see below).
+- Any other page: compact header, sticky at the top of the page, with the same navigation icons, plus a link to the home page (profile picture).
+- Fixed footer, present on every page: links to the author's social networks, Creative Commons license, language switcher (see `style-guide.md`).
 
-### Sites soeurs
+### Sister sites
 
-L'auteur maintient plusieurs sites, chacun documenté par son propre `specs/` : ce site les referme pas, il y renvoie par des liens externes (nouvel onglet) depuis le hero de l'accueil, les bandes cinématiques de l'accueil et le pied de page.
+The author maintains several sites, each documented by its own `specs/`: this site does not contain them, it points to them with external links (new tab) from the home hero, the home cinematic bands and the footer.
 
-| Site | Contenu | Emplacement du lien |
+| Site | Content | Link location |
 |---|---|---|
-| `samettof.org` | Carnets de voyage de plongée de l'auteur et de ses deux comparses | Hero, bande cinématique accueil, en‑tête compact |
-| `dataviz.heubes.io` | Explorations visuelles interactives de données ouvertes | Hero, bande cinématique accueil, en‑tête compact |
-| `social-graphs.heubes.io` | Outil d'exploration de graphes de relations sociales | Hero, bande cinématique accueil, en‑tête compact |
-| `christophe.heubes.com` | Site professionnel de l'auteur | Icône dans le pied de page |
-| Instagram (`@christophe.uw`, `@christophe.hbs`), Goodreads | Réseaux sociaux personnels | Pied de page |
+| `samettof.org` | Diving travel logs of the author and his two companions | Hero, home cinematic band, compact header |
+| `dataviz.heubes.io` | Interactive visual explorations of open data | Hero, home cinematic band, compact header |
+| `social-graphs.heubes.io` | Social relationship graph exploration tool | Hero, home cinematic band, compact header |
+| `christophe.heubes.com` | The author's professional site | Icon in the footer |
+| Instagram (`@christophe.uw`, `@christophe.hbs`), Goodreads | Personal social networks | Footer |
 
-## Hors périmètre
+## Out of scope
 
-- Comptes utilisateurs, authentification.
-- Édition de contenu via une interface web : le contenu est créé et modifié directement dans les fichiers sources (voir `data-model.md`).
-- Contenu généré par les visiteurs (commentaires, notes, contributions).
-- Recherche ou filtrage : contrairement à d'autres projets de l'auteur, aucune des galeries n'offre de recherche ni de filtre, le volume de contenu par section ne le justifiant pas à ce jour.
-- Détection ou mémorisation automatique de la langue du visiteur (voir "Multilingue" ci‑dessus).
+- User accounts, authentication.
+- Content editing through a web interface: content is created and edited directly in the source files (see `data-model.md`).
+- Visitor-generated content (comments, ratings, contributions).
+- Search or filtering: unlike other projects by the author, none of the galleries offers search or filters, as the amount of content per section does not justify it so far.
+- Automatic detection or remembering of the visitor's language (see "Multilingual" above).

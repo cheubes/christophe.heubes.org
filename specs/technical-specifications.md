@@ -1,170 +1,170 @@
-# Spécifications techniques
+# Technical specifications
 
-## Stack technique
+## Technical stack
 
-### Génération de site
+### Site generation
 
-- **Jekyll 4.4** : layouts, includes, front matter, `_data/`, pages (pas de collections).
-- **Ruby 3.3.12** (`.ruby-version`), en plus de Jekyll utilisé pour les scripts de maintenance (voir "Scripts de maintenance locaux" ci‑dessous).
-- `webrick` (serveur de développement local), `html-proofer` (vérification de liens morts en CI, voir "Hébergement et déploiement").
-- Aucun plugin Jekyll packagé en gem (le `Gemfile` ne déclare que `jekyll`, `webrick`, `html-proofer`) : les deux extensions de build du site sont des fichiers locaux dans `_plugins/`, chargés automatiquement par Jekyll (voir "Architecture").
+- **Jekyll 4.4**: layouts, includes, front matter, `_data/`, pages (no collections).
+- **Ruby 3.3.12** (`.ruby-version`), used for the maintenance scripts in addition to Jekyll (see "Local maintenance scripts" below).
+- `webrick` (local development server), `html-proofer` (dead link checking in CI, see "Hosting and deployment").
+- No gem-packaged Jekyll plugin (the `Gemfile` only declares `jekyll`, `webrick`, `html-proofer`): the site's two build extensions are local files in `_plugins/`, loaded automatically by Jekyll (see "Architecture").
 
 ### CSS / UI
 
-- **LESS**, compilé en CSS par un hook Jekyll (`_plugins/less_compiler.rb`, voir "Scripts de maintenance locaux") plutôt qu'au moment du build : un seul fichier source, `assets/css/hbs.less`, compilé vers `assets/dist/css/hbs.css`.
-- **Bootstrap 5** : grille, cartes, modale (lightbox), composants de formulaire. Contrairement à d'autres projets de l'auteur, les fichiers sont **vendored** dans `assets/dist/`, pas chargés depuis un CDN.
-- **Font Awesome**, chargé via un Kit distant (`https://kit.fontawesome.com/7dfeb2d2f7.js`), pas via une feuille de style CDN classique.
-- **Google Fonts** : Ubuntu (corps de texte) et Raleway (titres), voir `style-guide.md`.
-- **BeerSlider** (vendored dans `assets/dist/`) : comparateur avant/après à curseur, utilisé uniquement sur la vue liste des dessins techniques (voir `screens/technical-drawing.md`).
-- Les valeurs de design (couleurs, typographie, espacements) sont définies dans `style-guide.md`, pas ici.
+- **LESS**, compiled to CSS by a Jekyll hook (`_plugins/less_compiler.rb`, see "Local maintenance scripts") rather than at build time: a single source file, `assets/css/hbs.less`, compiled to `assets/dist/css/hbs.css`.
+- **Bootstrap 5**: grid, cards, modal (lightbox), form components. Unlike other projects by the author, the files are **vendored** in `assets/dist/`, not loaded from a CDN.
+- **Font Awesome**, loaded through a remote Kit (`https://kit.fontawesome.com/7dfeb2d2f7.js`), not through a regular CDN stylesheet.
+- **Google Fonts**: Ubuntu (body text) and Raleway (headings), see `style-guide.md`.
+- **BeerSlider** (vendored in `assets/dist/`): slider-based before/after comparator, used only on the technical drawings list view (see `screens/technical-drawing.md`).
+- Design values (colors, typography, spacing) are defined in `style-guide.md`, not here.
 
 ### JavaScript
 
-- **Vanilla JS** pour toutes les interactions : la lightbox des galeries photo (`assets/dist/js/gallery.js`, voir "Permaliens" ci‑dessous) et l'initialisation de BeerSlider (script inline dans `technical-drawing.html`).
-- Pas de framework JS (pas de React, Vue, Angular), pas de bundler.
-- `assets/dist/js/less.min.js` (runtime LESS côté navigateur) est présent dans le dépôt mais n'est référencé par aucune page : fichier résiduel, à ne pas utiliser comme référence pour la compilation LESS réelle du site (voir "Scripts de maintenance locaux").
+- **Vanilla JS** for all interactions: the photo gallery lightbox (`assets/dist/js/gallery.js`, see "Permalinks" below) and the BeerSlider initialization (inline script in `technical-drawing.html`).
+- No JS framework (no React, Vue, Angular), no bundler.
+- `assets/dist/js/less.min.js` (browser-side LESS runtime) is present in the repository but referenced by no page: leftover file, not to be used as a reference for the site's actual LESS compilation (see "Local maintenance scripts").
 
-### Ce qu'on n'utilise pas
+### What we don't use
 
-- Node.js, bundler JS, framework CSS custom au‑delà de Bootstrap.
-- Base de données, backend ou API propre.
+- Node.js, JS bundler, custom CSS framework beyond Bootstrap.
+- Database, backend or own API.
 - Cookies, tracking, analytics.
-- Script de validation des données (voir "Conventions générales" dans `data-model.md`).
+- Data validation script (see "General conventions" in `data-model.md`).
 
 ---
 
-## Hébergement et déploiement
+## Hosting and deployment
 
-- **Hébergeur :** GitHub Pages
-- **Domaine :** `christophe.heubes.org` (fichier `CNAME` à la racine)
-- **Déploiement :** automatique, via GitHub Actions (`.github/workflows/jekyll.yml`), déclenché sur push sur la branche `master`, ou manuellement (`workflow_dispatch`)
-- **Build :** `bundle exec jekyll build`, exécuté explicitement dans le workflow plutôt que délégué à l'intégration native GitHub Pages. Cette différence a une conséquence directe sur les plugins : un build GitHub Pages natif tourne en mode *safe*, qui ignore `_plugins/` ; ce workflow custom ne l'est pas, donc `_plugins/gallery_photo_pages.rb` et `_plugins/less_compiler.rb` s'exécutent bien à chaque déploiement (voir "Architecture").
-- **Vérification des liens :** `html-proofer` tourne sur `_site/` après le build, en `continue-on-error` (rapporte les liens morts sans faire échouer le déploiement) ; une liste de domaines externes est explicitement ignorée (Google Fonts, Font Awesome Kit, Goodreads, Instagram) ; Instagram répond systématiquement 429 (rate limiting) aux requêtes venant de la CI.
+- **Host:** GitHub Pages
+- **Domain:** `christophe.heubes.org` (`CNAME` file at the root)
+- **Deployment:** automatic, through GitHub Actions (`.github/workflows/jekyll.yml`), triggered on push to the `master` branch, or manually (`workflow_dispatch`)
+- **Build:** `bundle exec jekyll build`, run explicitly in the workflow rather than delegated to the native GitHub Pages integration. This difference has a direct consequence on plugins: a native GitHub Pages build runs in *safe* mode, which ignores `_plugins/`; this custom workflow does not, so `_plugins/gallery_photo_pages.rb` and `_plugins/less_compiler.rb` do run on every deployment (see "Architecture").
+- **Link checking:** `html-proofer` runs on `_site/` after the build, with `continue-on-error` (reports dead links without failing the deployment); a list of external domains is explicitly ignored (Google Fonts, Font Awesome Kit, Goodreads, Instagram); Instagram consistently answers 429 (rate limiting) to requests coming from CI.
 
 ---
 
-## Scripts de maintenance locaux
+## Local maintenance scripts
 
-Trois mécanismes du site suivent le même principe : générés localement par l'auteur, leur résultat est committé dans le dépôt, rien n'est recalculé au moment du build ni en CI au‑delà de la compilation LESS.
+Three mechanisms of the site follow the same principle: generated locally by the author, their output is committed to the repository, nothing is recomputed at build time or in CI beyond the LESS compilation.
 
-| Mécanisme | Fichier | Rôle | Déclenchement |
+| Mechanism | File | Role | Trigger |
 |---|---|---|---|
-| Vignettes de galerie | `scripts/generate_gallery_thumbnails.rb` | Génère `<slug>-thumb.<ext>` pour chaque photo listée dans `_data/<gallery>.yml`, via `sips` (outil macOS), 800 px de plus grande dimension, qualité 75 ; recopie ensuite les métadonnées auteur/licence de l'original avec `exiftool` (Homebrew, requis localement), `sips` n'en conservant qu'une partie (voir "Métadonnées des images" dans `data-model.md`) | Manuel, après ajout de photos |
-| Pages de détail des dessins techniques | `scripts/generate_technical_drawing_pages.rb` | Génère les fichiers Markdown `content/technical-drawing/<id>.md` et `<id>-en.md` à partir de `_data/technical-drawing.yml` | Manuel, après modification de `_data/technical-drawing.yml` |
-| Compilation LESS → CSS | `_plugins/less_compiler.rb` | Recompile `assets/dist/css/hbs.css` depuis `assets/css/hbs.less` si la source est plus récente que le fichier compilé | Hook Jekyll (`pre_render`), à chaque `jekyll serve`/`jekyll build` local |
+| Gallery thumbnails | `scripts/generate_gallery_thumbnails.rb` | Generates `<slug>-thumb.<ext>` for each photo listed in `_data/<gallery>.yml`, with `sips` (macOS tool), 800 px on the longest side, quality 75; then copies the original's author/license metadata with `exiftool` (Homebrew, required locally), as `sips` only keeps part of it (see "Image metadata" in `data-model.md`) | Manual, after adding photos |
+| Technical drawing detail pages | `scripts/generate_technical_drawing_pages.rb` | Generates the Markdown files `content/technical-drawing/<id>.md` and `<id>-en.md` from `_data/technical-drawing.yml` | Manual, after changing `_data/technical-drawing.yml` |
+| LESS → CSS compilation | `_plugins/less_compiler.rb` | Recompiles `assets/dist/css/hbs.css` from `assets/css/hbs.less` if the source is newer than the compiled file | Jekyll hook (`pre_render`), on every local `jekyll serve`/`jekyll build` |
 
-Point d'attention pour la compilation LESS : c'est le seul des trois mécanismes qui n'est *pas* un script à exécuter explicitement, mais un hook Jekyll qui s'exécute silencieusement à chaque build. Il dépend du binaire `lessc`, qui n'est installé que sur la machine de développement (pas dans l'environnement CI du workflow de déploiement) : en CI, le hook échoue silencieusement (`system(...)` sans vérification du code de sortie) et le build continue avec le `hbs.css` déjà committé. Toute modification de `assets/css/hbs.less` doit donc être compilée localement (`bundle exec jekyll build` ou `jekyll serve` avec `lessc` installé) et son résultat committé avant de pousser, sans quoi le site déployé ne reflète pas la modification.
+Point of attention for the LESS compilation: it is the only one of the three mechanisms that is *not* a script to run explicitly, but a Jekyll hook that runs silently on every build. It depends on the `lessc` binary, which is only installed on the development machine (not in the deployment workflow's CI environment): in CI, the hook fails silently (`system(...)` without exit code check) and the build goes on with the already committed `hbs.css`. Any change to `assets/css/hbs.less` must therefore be compiled locally (`bundle exec jekyll build` or `jekyll serve` with `lessc` installed) and its output committed before pushing, otherwise the deployed site does not reflect the change.
 
 ---
 
-## Architecture (génération des pages, routage)
+## Architecture (page generation, routing)
 
-### Rendu
+### Rendering
 
-Le site est entièrement statique, généré au build par Jekyll. Aucun rendu dynamique côté serveur, aucune API propre.
+The site is fully static, generated at build time by Jekyll. No dynamic server-side rendering, no own API.
 
-### Deux mécanismes de génération de page
+### Two page generation mechanisms
 
-Les deux familles de contenu du site (voir `data-model.md`) ne génèrent pas leurs pages individuelles de la même façon :
+The site's two content families (see `data-model.md`) do not generate their individual pages the same way:
 
-- **Galeries photo** : les pages de grille (`content/<gallery>.md`) sont des pages Jekyll classiques ; les pages individuelles par photo sont générées **en mémoire à chaque build**, par `_plugins/gallery_photo_pages.rb` (`Jekyll::Generator`), à partir de `_data/<gallery>.yml`. Elles n'existent comme fichiers nulle part dans le dépôt.
-- **Dessins techniques** : la page de liste (`content/technical-drawing.md`) est une page Jekyll classique ; les pages de détail sont des **fichiers Markdown committés**, régénérés localement par `scripts/generate_technical_drawing_pages.rb` (voir ci‑dessus) plutôt qu'au build.
+- **Photo galleries**: the grid pages (`content/<gallery>.md`) are regular Jekyll pages; the individual photo pages are generated **in memory on every build**, by `_plugins/gallery_photo_pages.rb` (`Jekyll::Generator`), from `_data/<gallery>.yml`. They do not exist as files anywhere in the repository.
+- **Technical drawings**: the list page (`content/technical-drawing.md`) is a regular Jekyll page; the detail pages are **committed Markdown files**, regenerated locally by `scripts/generate_technical_drawing_pages.rb` (see above) rather than at build time.
 
-Cette asymétrie découle du commentaire du script de génération des dessins techniques, qui suppose un build GitHub Pages en mode *safe* (où `_plugins/` est ignoré). Le workflow de déploiement actuel n'est pas en mode *safe* (voir "Hébergement et déploiement") : la génération des pages de dessins techniques pourrait donc, en théorie, suivre le même mécanisme de plugin que les galeries photo. À vérifier avant toute évolution de ce point : soit cette hypothèse d'origine est encore justifiée pour une autre raison, soit les deux mécanismes pourraient être unifiés.
+This asymmetry stems from the comment in the technical drawing generation script, which assumes a GitHub Pages build in *safe* mode (where `_plugins/` is ignored). The current deployment workflow is not in *safe* mode (see "Hosting and deployment"): the technical drawing page generation could therefore, in theory, follow the same plugin mechanism as the photo galleries. To be checked before any change on this point: either this original assumption is still justified for another reason, or the two mechanisms could be unified.
 
-### Structure des URLs
+### URL structure
 
-| URL | Contenu |
+| URL | Content |
 |---|---|
-| `/` | Accueil (français, langue par défaut) |
-| `/en/` | Accueil (anglais) |
-| `/<gallery>/` | Grille d'une galerie photo (FR) ; `<gallery>` ∈ `under-water`, `street-art`, `deambulations` |
-| `/en/<gallery>/` | Grille d'une galerie photo (EN) |
-| `/<gallery>/<slug>/` | Grille avec lightbox ouverte sur une photo précise (FR) |
-| `/en/<gallery>/<slug>/` | Idem (EN) |
-| `/technical-drawing/` | Liste des dessins techniques (FR) |
-| `/en/technical-drawing/` | Liste des dessins techniques (EN) |
-| `/technical-drawing/<id>/` | Détail d'un dessin (FR) |
-| `/en/technical-drawing/<id>/` | Détail d'un dessin (EN) |
-| `/404.html` | Page non trouvée, commune aux deux langues (voir `data-model.md`) |
+| `/` | Home (French, default language) |
+| `/en/` | Home (English) |
+| `/<gallery>/` | Photo gallery grid (FR); `<gallery>` ∈ `under-water`, `street-art`, `deambulations` |
+| `/en/<gallery>/` | Photo gallery grid (EN) |
+| `/<gallery>/<slug>/` | Grid with the lightbox open on a specific photo (FR) |
+| `/en/<gallery>/<slug>/` | Same (EN) |
+| `/technical-drawing/` | Technical drawings list (FR) |
+| `/en/technical-drawing/` | Technical drawings list (EN) |
+| `/technical-drawing/<id>/` | Drawing detail (FR) |
+| `/en/technical-drawing/<id>/` | Drawing detail (EN) |
+| `/404.html` | Page not found, shared by both languages (see `data-model.md`) |
 
-### Permaliens et synchronisation d'URL de la lightbox
+### Permalinks and lightbox URL synchronization
 
-Chaque photo d'une galerie a une URL propre et permanente (`/<gallery>/<slug>/`, voir ci‑dessus), déjà générée statiquement : ce n'est pas une URL synthétique construite en JavaScript. Le clic sur une vignette (voir `screens/gallery.md`) ouvre la lightbox sur cette photo et met à jour l'URL du navigateur vers son URL dédiée via `history.pushState`, sans rechargement de page ; la navigation précédent/suivant dans la lightbox met à jour l'URL de la même façon (`history.replaceState`). La fermeture de la lightbox restaure l'URL de la grille sous‑jacente. Les boutons précédent/suivant du navigateur (`popstate`) sont gérés symétriquement : ouverture, changement de photo ou fermeture de la lightbox selon l'URL restaurée.
+Each photo of a gallery has its own permanent URL (`/<gallery>/<slug>/`, see above), already generated statically: it is not a synthetic URL built in JavaScript. Clicking a thumbnail (see `screens/gallery.md`) opens the lightbox on that photo and updates the browser URL to its dedicated URL through `history.pushState`, without reloading the page; previous/next navigation in the lightbox updates the URL the same way (`history.replaceState`). Closing the lightbox restores the underlying grid URL. The browser back/forward buttons (`popstate`) are handled symmetrically: opening, changing photo or closing the lightbox depending on the restored URL.
 
-L'accès direct à l'URL d'une photo (lien partagé, ou rechargement de la page) charge la page générée pour cette photo, qui affiche la grille avec la lightbox déjà ouverte au chargement (`data-open-slug` sur l'élément de la modale, lu par `gallery.js`).
+Direct access to a photo's URL (shared link, or page reload) loads the page generated for that photo, which displays the grid with the lightbox already open on load (`data-open-slug` on the modal element, read by `gallery.js`).
 
-### Textes d'interface
+### Interface strings
 
-Contrairement à d'autres projets de l'auteur, il n'existe pas de fichier centralisé de textes d'interface par langue : chaque libellé conditionnel (ex. "Retour aux dessins techniques" / "Back to technical drawings") est écrit directement dans les layouts et includes, sous la forme `{% if page.lang == 'fr' %}...{% else %}...{% endif %}`.
+Unlike other projects by the author, there is no centralized file of interface strings per language: each conditional label (e.g. "Retour aux dessins techniques" / "Back to technical drawings") is written directly in the layouts and includes, as `{% if page.lang == 'fr' %}...{% else %}...{% endif %}`.
 
 ---
 
 ## Performance
 
-- Vignettes de galerie et images de dessins techniques en lazy loading (`loading="lazy"` natif).
-- Vignettes générées à 800 px de plus grande dimension, qualité JPEG 75 (voir "Scripts de maintenance locaux") : la grille ne charge jamais les photos en pleine résolution, réservées à la lightbox.
-- JavaScript non bloquant (`defer` sur les scripts chargés en `<head>`).
-- Pas de cookies, pas de tracking, pas d'analytics.
+- Gallery thumbnails and technical drawing images lazy-loaded (native `loading="lazy"`).
+- Thumbnails generated at 800 px on the longest side, JPEG quality 75 (see "Local maintenance scripts"): the grid never loads full-resolution photos, which are reserved for the lightbox.
+- Non-blocking JavaScript (`defer` on scripts loaded in `<head>`).
+- No cookies, no tracking, no analytics.
 
 ---
 
-## Accessibilité
+## Accessibility
 
-- **Navigateurs cibles :** non explicitement documentés dans le code ; à défaut d'exigence connue, dernières versions stables des navigateurs évergreens (Chrome, Firefox, Safari, Edge).
-- `aria-label` explicite sur chaque lien de navigation ne portant qu'une icône (en‑tête, hero, pied de page), les icônes Font Awesome et emoji n'étant pas systématiquement annoncées de façon fiable par un lecteur d'écran.
-- Texte alternatif sur les images (photos, dessins techniques, portrait).
-- Fermeture de la lightbox : bouton de fermeture standard Bootstrap (`btn-close`), navigation clavier gauche/droite pour la photo précédente/suivante (voir `screens/gallery.md`).
-- Limite connue : le comparateur avant/après (BeerSlider) repose sur un `<input type="range">`, navigable au clavier, mais son affichage superposé des deux images n'a pas d'alternative textuelle décrivant la comparaison elle‑même au‑delà du texte alternatif de chaque image.
+- **Target browsers:** not explicitly documented in the code; absent any known requirement, latest stable versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
+- Explicit `aria-label` on every navigation link that only holds an icon (header, hero, footer), as Font Awesome icons and emoji are not always reliably announced by screen readers.
+- Alternative text on images (photos, technical drawings, portrait).
+- Closing the lightbox: standard Bootstrap close button (`btn-close`), left/right keyboard navigation for the previous/next photo (see `screens/gallery.md`).
+- Known limitation: the before/after comparator (BeerSlider) relies on an `<input type="range">`, keyboard-navigable, but its overlaid display of the two images has no text alternative describing the comparison itself beyond each image's alternative text.
 
 ---
 
 ## SEO
 
-- Rendu statique : chaque page existe indépendamment au moment du crawl.
-- Balises Open Graph de base (`og:type`, `og:url`, `og:title`, `og:description`, `og:image`, `og:locale` + `og:locale:alternate`) et lien canonique, générés manuellement dans `_includes/head.html` (pas de plugin `jekyll-seo-tag`).
-- Alternates `hreflang` entre les versions FR et EN d'une même page (`ref` commun, voir `data-model.md`), dans `<head>` et dans `sitemap.xml`.
-- **`sitemap.xml`** : contrairement à un plugin `jekyll-sitemap`, c'est une page Jekyll comme une autre (`sitemap.xml` à la racine, `layout: null`, boucle Liquid sur `site.pages`), qui se génère elle‑même au build. Elle liste une entrée par `ref` (une seule des deux langues, dédupliquée en filtrant `page.lang == "fr"`, l'alternate `hreflang` de l'autre langue étant ajouté dans la même entrée `<url>`), et inclut des extensions `image:image` pour les photos d'une galerie et les deux images d'un dessin technique.
-  - Le champ de front matter `sitemap.priority` (voir `data-model.md`) n'est actuellement lu par aucun code du site : `sitemap.xml` ne s'appuie que sur `sitemap.lastmod` et `sitemap.exclude`. À garder à l'esprit si `sitemap.xml` est modifié : ce champ n'a aujourd'hui qu'une valeur indicative.
-- Un bloc JSON‑LD `ImageObject` (auteur, mention de crédit, licence CC, `acquireLicensePage` pointant vers le même deed CC que `license`, exigé par Google Images pour le badge "Licensable") est ajouté sur les pages de galerie et de dessin technique, distinct de tout plugin.
-- `robots.txt` autorise l'indexation du site, exclut `/404.html`, référence `sitemap.xml`.
-- Un fichier de vérification Google Search Console (`googlecd7d75cfc4cbdf0c.html`) est présent à la racine.
+- Static rendering: every page exists independently at crawl time.
+- Basic Open Graph tags (`og:type`, `og:url`, `og:title`, `og:description`, `og:image`, `og:locale` + `og:locale:alternate`) and canonical link, generated manually in `_includes/head.html` (no `jekyll-seo-tag` plugin).
+- `hreflang` alternates between the FR and EN versions of a same page (shared `ref`, see `data-model.md`), in `<head>` and in `sitemap.xml`.
+- **`sitemap.xml`**: unlike a `jekyll-sitemap` plugin, it is a Jekyll page like any other (`sitemap.xml` at the root, `layout: null`, Liquid loop over `site.pages`), which generates itself at build time. It lists one entry per `ref` (only one of the two languages, deduplicated by filtering on `page.lang == "fr"`, the `hreflang` alternate of the other language being added in the same `<url>` entry), and includes `image:image` extensions for the photos of a gallery and the two images of a technical drawing.
+  - The `sitemap.priority` front matter field (see `data-model.md`) is currently read by no code of the site: `sitemap.xml` only relies on `sitemap.lastmod` and `sitemap.exclude`. Keep this in mind if `sitemap.xml` is changed: this field currently has informational value only.
+- A JSON-LD `ImageObject` block (author, credit line, CC license, `acquireLicensePage` pointing to the same CC deed as `license`, required by Google Images for the "Licensable" badge) is added on gallery and technical drawing pages, independently of any plugin.
+- `robots.txt` allows indexing of the site, excludes `/404.html`, references `sitemap.xml`.
+- A Google Search Console verification file (`googlecd7d75cfc4cbdf0c.html`) is present at the root.
 
 ### Content Security Policy
 
-Une CSP est déclarée en balise `<meta>` dans `_includes/head.html`, restreignant `script-src`/`style-src`/`font-src`/`img-src`/`connect-src` aux origines effectivement utilisées par le site (soi‑même, Font Awesome Kit, Google Fonts, Creative Commons). Toute nouvelle dépendance externe (police, script, image distante) devra être ajoutée à cette policy pour ne pas être bloquée par le navigateur.
+A CSP is declared as a `<meta>` tag in `_includes/head.html`, restricting `script-src`/`style-src`/`font-src`/`img-src`/`connect-src` to the origins actually used by the site (self, Font Awesome Kit, Google Fonts, Creative Commons). Any new external dependency (font, script, remote image) must be added to this policy so it is not blocked by the browser.
 
 ---
 
-## Structure des fichiers
+## File structure
 
 ```
 /
 ├── _config.yml
 ├── CNAME
 ├── 404.md
-├── index.md / index-en.md          # accueil (FR / EN)
+├── index.md / index-en.md          # home (FR / EN)
 ├── robots.txt
-├── sitemap.xml                      # page Jekyll auto-générée, pas un fichier statique
+├── sitemap.xml                      # self-generated Jekyll page, not a static file
 │
 ├── _layouts/
-│   ├── index.html                  # accueil : hero + bandes cinématiques
-│   ├── gallery.html                # grille de galerie photo + lightbox
-│   ├── technical-drawing.html      # liste des dessins + comparateur avant/après
+│   ├── index.html                  # home: hero + cinematic bands
+│   ├── gallery.html                # photo gallery grid + lightbox
+│   ├── technical-drawing.html      # drawings list + before/after comparator
 │   ├── technical-drawing-detail.html
 │   └── 404.html
 │
 ├── _includes/
-│   ├── head.html                   # <head> : meta, OG, CSP, hreflang, fonts, CSS
-│   ├── header.html                 # en-tête compact (pages hors accueil)
-│   ├── footer.html                 # pied de page fixe : réseaux, licence, langue
-│   └── scripts.html                # actuellement vide, point d'extension
+│   ├── head.html                   # <head>: meta, OG, CSP, hreflang, fonts, CSS
+│   ├── header.html                 # compact header (non-home pages)
+│   ├── footer.html                 # fixed footer: social networks, license, language
+│   └── scripts.html                # currently empty, extension point
 │
 ├── _plugins/
-│   ├── gallery_photo_pages.rb      # génère les pages photo individuelles au build
-│   └── less_compiler.rb            # recompile hbs.less -> hbs.css au build local
+│   ├── gallery_photo_pages.rb      # generates the individual photo pages at build time
+│   └── less_compiler.rb            # recompiles hbs.less -> hbs.css on local builds
 │
-├── scripts/                         # scripts de maintenance, exécution manuelle locale
+├── scripts/                         # maintenance scripts, run manually and locally
 │   ├── generate_gallery_thumbnails.rb
 │   └── generate_technical_drawing_pages.rb
 │
@@ -175,21 +175,21 @@ Une CSP est déclarée en balise `<meta>` dans `_includes/head.html`, restreigna
 │   └── technical-drawing.yml
 │
 ├── content/
-│   ├── <gallery>.md / <gallery>-en.md          # page de grille, une paire par galerie
+│   ├── <gallery>.md / <gallery>-en.md          # grid page, one pair per gallery
 │   ├── <gallery>/
-│   │   ├── <slug>.<ext>                        # photo originale
-│   │   ├── <slug>-thumb.<ext>                  # vignette générée
-│   │   └── gallery-band-bg.jpg                 # fond de bande cinématique (accueil)
+│   │   ├── <slug>.<ext>                        # original photo
+│   │   ├── <slug>-thumb.<ext>                  # generated thumbnail
+│   │   └── gallery-band-bg.jpg                 # cinematic band background (home)
 │   ├── technical-drawing.md / technical-drawing-en.md
 │   └── technical-drawing/
 │       ├── <id>-org.jpg
 │       ├── <id>-2020.jpg
-│       ├── <id>.md / <id>-en.md                # pages de détail, committées
+│       ├── <id>.md / <id>-en.md                # detail pages, committed
 │       └── gallery-band-bg.jpg
 │
 └── assets/
-    ├── css/hbs.less                 # source unique de styles custom
-    ├── dist/css/                    # Bootstrap, BeerSlider, hbs.css (compilé)
+    ├── css/hbs.less                 # single source of custom styles
+    ├── dist/css/                    # Bootstrap, BeerSlider, hbs.css (compiled)
     ├── dist/js/                     # Bootstrap, BeerSlider, gallery.js (lightbox)
     └── img/                         # bg.jpg (hero/404), photo.jpg (portrait), com.jpg
 ```
@@ -203,16 +203,16 @@ author:      "Christophe Heubès"
 description: "Christophe Heubès - Photos, Musique, Plongée, Voyages"
 ```
 
-Aucun plugin déclaré (voir "Génération de site" ci‑dessus). `exclude:` retire `specs/`, `scripts/` et `CLAUDE.md` du build : ce sont des fichiers de travail du dépôt, pas du contenu du site, et Jekyll les publierait sinon tels quels sous `_site/`.
+No plugin declared (see "Site generation" above). `exclude:` removes `specs/`, `scripts/` and `CLAUDE.md` from the build: they are repository working files, not site content, and Jekyll would otherwise publish them as-is under `_site/`.
 
 ---
 
-## Conventions de nommage
+## Naming conventions
 
-| Élément | Convention | Exemple |
+| Element | Convention | Example |
 |---|---|---|
-| Slugs (galerie, dessin technique) | kebab‑case anglais | `under-water`, `attelage-pour-crochet-de-traction` |
-| Fichiers Markdown/YAML/LESS | kebab‑case | `technical-drawing.yml`, `hbs.less` |
-| Scripts et plugins Ruby | snake_case | `generate_gallery_thumbnails.rb` |
-| Identifiants/classes CSS | noms sémantiques simples, pas de préfixe imposé | `#site-header`, `.gallery-band`, `.gallery-thumb` |
-| Variables JS | camelCase | `showModal()`, `lightboxEl` |
+| Slugs (gallery, technical drawing) | kebab-case; technical drawing slugs reuse the French drawing title, `deambulations` keeps its French name (published URLs, not to be renamed) | `under-water`, `deambulations`, `attelage-pour-crochet-de-traction` |
+| Markdown/YAML/LESS files | kebab-case | `technical-drawing.yml`, `hbs.less` |
+| Ruby scripts and plugins | snake_case | `generate_gallery_thumbnails.rb` |
+| CSS identifiers/classes | simple semantic names, no mandatory prefix | `#site-header`, `.gallery-band`, `.gallery-thumb` |
+| JS variables | camelCase | `showModal()`, `lightboxEl` |

@@ -1,19 +1,19 @@
-# Charte graphique
+# Style guide
 
-## Couleurs
+## Colors
 
-### Palette "Dark Cinematic"
+### "Dark Cinematic" palette
 
-Contrairement à d'autres projets de l'auteur, la palette n'est pas exposée en variables CSS natives (`--custom-property`) mais en variables LESS (`@variable`), définies une seule fois en tête de `assets/css/hbs.less` :
+Unlike other projects by the author, the palette is not exposed as native CSS variables (`--custom-property`) but as LESS variables (`@variable`), defined once at the top of `assets/css/hbs.less`:
 
-| Rôle | Variable | Hex |
+| Role | Variable | Hex |
 |---|---|---|
-| Fond général des pages | `@bg` | `#0d0d0d` |
-| Fond du pied de page | `@surface` | `#161616` |
-| Texte courant, titres | `@text` | `#f0ece4` |
-| Texte secondaire, icônes de navigation au repos | `@text-muted` | `#8a8278` |
-| Accent, liens, éléments actifs | `@gold` | `#C7B299` |
-| Accent au survol | `@gold-bright` | `#e8d5b7` |
+| Page background | `@bg` | `#0d0d0d` |
+| Footer background | `@surface` | `#161616` |
+| Body text, headings | `@text` | `#f0ece4` |
+| Secondary text, navigation icons at rest | `@text-muted` | `#8a8278` |
+| Accent, links, active elements | `@gold` | `#C7B299` |
+| Hover accent | `@gold-bright` | `#e8d5b7` |
 
 ```less
 @bg:           #0d0d0d;
@@ -24,124 +24,124 @@ Contrairement à d'autres projets de l'auteur, la palette n'est pas exposée en 
 @gold-bright:  #e8d5b7;
 ```
 
-Deux variables supplémentaires sont déclarées dans le fichier source (`@blue: #2C374C`, `@light-grey: #ACB2B8`), avec un commentaire les présentant comme une "compatibilité BeerSlider / technical-drawing" : à l'usage, elles ne sont référencées nulle part ailleurs dans `hbs.less`. Le comparateur avant/après (voir "Comparateur avant/après" ci‑dessous) garde en réalité l'habillage par défaut, non thémé, de la bibliothèque BeerSlider. Ne pas supposer que ces deux variables pilotent un composant existant : les traiter comme réservées, pas comme actives.
+Two additional variables are declared in the source file (`@blue: #2C374C`, `@light-grey: #ACB2B8`), with a comment presenting them as "BeerSlider / technical-drawing compatibility": in practice, they are referenced nowhere else in `hbs.less`. The before/after comparator (see "Before/after comparator" below) actually keeps the default, unthemed look of the BeerSlider library. Do not assume these two variables drive an existing component: treat them as reserved, not active.
 
-### Utilisation
+### Usage
 
-Fond `@bg` sur `html`/`body`. Titres et corps de texte en `@text`. Les liens sont en `@gold` par défaut, `@gold-bright` au survol (transition `color 0.2s ease`). Les icônes de navigation (en‑tête, hero) sont en `@text-muted` au repos, `@gold` au survol.
+`@bg` background on `html`/`body`. Headings and body text in `@text`. Links are `@gold` by default, `@gold-bright` on hover (`color 0.2s ease` transition). Navigation icons (header, hero) are `@text-muted` at rest, `@gold` on hover.
 
-## Typographie
+## Typography
 
-- **Corps de texte** : Ubuntu (Google Fonts), `font-family: Ubuntu, sans-serif` sur `html`/`body`.
-- **Titres** (`h1`-`h3`) : Raleway (Google Fonts), graisse 600, `letter-spacing: 0.05em`.
+- **Body text**: Ubuntu (Google Fonts), `font-family: Ubuntu, sans-serif` on `html`/`body`.
+- **Headings** (`h1`-`h3`): Raleway (Google Fonts), weight 600, `letter-spacing: 0.05em`.
 
-| Usage | Police | Graisse | Notes |
+| Usage | Font | Weight | Notes |
 |---|---|---|---|
-| Titres de section, hero (`h1`) | Raleway | 600 | Majuscules, `letter-spacing` large sur le hero et les bandes cinématiques (voir ci‑dessous) |
-| Corps de texte, introductions | Ubuntu | 400 | |
-| Texte secondaire (légendes, métadonnées) | Ubuntu | 400 | Couleur `@text-muted` |
+| Section titles, hero (`h1`) | Raleway | 600 | Uppercase, wide `letter-spacing` on the hero and the cinematic bands (see below) |
+| Body text, introductions | Ubuntu | 400 | |
+| Secondary text (captions, metadata) | Ubuntu | 400 | `@text-muted` color |
 
-Polices chargées via Google Fonts avec `rel="preconnect"` (voir `technical-specifications.md`), graisses 300/400/500/600 (Raleway) et 400/700 (Ubuntu).
+Fonts loaded through Google Fonts with `rel="preconnect"` (see `technical-specifications.md`), weights 300/400/500/600 (Raleway) and 400/700 (Ubuntu).
 
-## Espacements et grille
+## Spacing and grid
 
-Pas d'échelle d'espacement custom : la grille et les classes utilitaires de Bootstrap 5 (`container-fluid`, `row`/`col-*`, `g-*`) sont utilisées telles quelles.
+No custom spacing scale: Bootstrap 5's grid and utility classes (`container-fluid`, `row`/`col-*`, `g-*`) are used as-is.
 
-## Composants UI de base
+## Core UI components
 
-### Hero (accueil uniquement)
+### Hero (home only)
 
-- Plein écran (`100vh`, minimum 500 px), image de fond `assets/img/bg.jpg` (1920 × 1080 px) avec un voile sombre (`rgba(0, 0, 0, 0.62)`) par‑dessus, `background-attachment: fixed` (désactivé sur mobile, ≤ 768 px, pour éviter les artefacts de rendu).
-- Portrait circulaire (`assets/img/photo.jpg`, 512 × 512 px), bordure `@gold`, lien vers l'accueil.
-- Séparateur horizontal fin, `@gold`, 80 px de large.
-- Navigation du hero : icônes en ligne, une par section plus les trois liens externes (voir "Sites soeurs" dans `functional-specifications.md`), `@text-muted` au repos, `@gold` et léger agrandissement au survol.
-- Indicateur de défilement (chevron animé, rebond vertical continu) en bas de viewport.
+- Full screen (`100vh`, minimum 500 px), background image `assets/img/bg.jpg` (1920 × 1080 px) with a dark overlay (`rgba(0, 0, 0, 0.62)`) on top, `background-attachment: fixed` (disabled on mobile, ≤ 768 px, to avoid rendering artifacts).
+- Circular portrait (`assets/img/photo.jpg`, 512 × 512 px), `@gold` border, link to the home page.
+- Thin horizontal separator, `@gold`, 80 px wide.
+- Hero navigation: inline icons, one per section plus the three external links (see "Sister sites" in `functional-specifications.md`), `@text-muted` at rest, `@gold` and slight enlargement on hover.
+- Scroll indicator (animated chevron, continuous vertical bounce) at the bottom of the viewport.
 
-### Bandes cinématiques (accueil)
+### Cinematic bands (home)
 
-- Une bande par section (galeries, dessins techniques, sites soeurs), pleine largeur, 50 % de la hauteur de viewport (minimum 300 px), image de fond en `object-fit: cover` (voir "Images" ci‑dessous pour le ratio recommandé).
-- Voile sombre semi‑transparent (`rgba(0, 0, 0, 0.50)`), assombri légèrement au survol pour les liens externes.
-- Contenu centré : titre en majuscules (Raleway 600, `letter-spacing: 0.15em`), description (Ubuntu, `@text`, largeur max 600 px), texte d'appel à l'action en `@gold` ("Voir la galerie →" / "Visiter →" pour les liens externes).
-- Au survol : léger zoom de l'image de fond (`scale(1.04)`), assombrissement réduit du voile.
+- One band per section (galleries, technical drawings, sister sites), full width, 50% of the viewport height (minimum 300 px), background image with `object-fit: cover` (see "Images" below for the recommended ratio).
+- Semi-transparent dark overlay (`rgba(0, 0, 0, 0.50)`), slightly darkened on hover for external links.
+- Centered content: uppercase title (Raleway 600, `letter-spacing: 0.15em`), description (Ubuntu, `@text`, max width 600 px), call-to-action text in `@gold` ("Voir la galerie →" / "Visiter →" for external links, and their English equivalents).
+- On hover: slight zoom of the background image (`scale(1.04)`), lighter overlay darkening.
 
-### En‑tête compact (pages hors accueil)
+### Compact header (non-home pages)
 
-- Position collante (`sticky`) en haut de page, fond `#111111`, bordure basse fine `@gold` à 15 % d'opacité.
-- Répartition : icônes de navigation (identiques à celles du hero, sites soeurs compris, voir note ci‑dessous) à gauche, portrait circulaire cliquable vers l'accueil à droite.
-- Absent sur l'accueil (`page.ref != "home"`), qui a son propre hero.
+- Sticky position at the top of the page, `#111111` background, thin bottom border in `@gold` at 15% opacity.
+- Layout: navigation icons (identical to the hero's, sister sites included, see note below) on the left, circular portrait linking to the home page on the right.
+- Absent on the home page (`page.ref != "home"`), which has its own hero.
 
-Note : l'en‑tête inclut en réalité les sept mêmes liens que le hero (quatre sections plus les trois sites soeurs), dans le même ordre. Ne pas réduire cette liste sans vérifier `functional-specifications.md` (section "Sites soeurs").
+Note: the header actually includes the same seven links as the hero (four sections plus the three sister sites), in the same order. Do not shorten this list without checking `functional-specifications.md` ("Sister sites" section).
 
-### Pied de page
+### Footer
 
-- Fixe (`position: fixed`, bas de l'écran), fond `@surface`, bordure haute fine `@gold` à 20 % d'opacité.
-- **Gauche** : liens réseaux sociaux (portrait circulaire vers `christophe.heubes.com`, icônes Font Awesome Instagram ×2, Goodreads).
-- **Centre** : licence Creative Commons (quatre icônes Font Awesome Brands : `fa-creative-commons`, `fa-creative-commons-by`, `fa-creative-commons-nc-eu`, `fa-creative-commons-sa`, suivies du texte "CC BY-NC-SA 4.0"), lien vers `deed.fr` ou `deed.en` selon la langue courante.
-- **Droite** : sélecteur de langue, un lien par langue disponible pour la page courante (`ref` commun, voir `data-model.md`), affiché sous forme d'emoji drapeau (🇫🇷/🇬🇧) avec `aria-label` explicite.
+- Fixed (`position: fixed`, bottom of the screen), `@surface` background, thin top border in `@gold` at 20% opacity.
+- **Left**: social network links (circular portrait to `christophe.heubes.com`, Font Awesome icons Instagram ×2, Goodreads).
+- **Center**: Creative Commons license (four Font Awesome Brands icons: `fa-creative-commons`, `fa-creative-commons-by`, `fa-creative-commons-nc-eu`, `fa-creative-commons-sa`, followed by the text "CC BY-NC-SA 4.0"), linking to `deed.fr` or `deed.en` depending on the current language.
+- **Right**: language switcher, one link per language available for the current page (shared `ref`, see `data-model.md`), displayed as a flag emoji (🇫🇷/🇬🇧) with an explicit `aria-label`.
 
-### Grille de galerie photo (tuiles)
+### Photo gallery grid (tiles)
 
-Voir `screens/gallery.md` pour le comportement complet. Éléments de style :
+See `screens/gallery.md` for the full behavior. Style elements:
 
-- Chaque vignette (`.gallery-thumb`) a un ratio fixe 3:4 (`aspect-ratio: 3 / 4`), quel que soit le ratio de la photo source, via `object-fit: cover` sur l'image.
-- Bordure transparente 1 px par défaut, `@gold` au survol ou si la vignette est celle actuellement ouverte dans la lightbox (`.gallery-thumb-active`) ; léger zoom de l'image au survol.
-- Titre de la galerie (`h1`) avec une icône Font Awesome (voir "Iconographie") suivie du texte "par"/"by" Christophe Heubès.
+- Each thumbnail (`.gallery-thumb`) has a fixed 3:4 ratio (`aspect-ratio: 3 / 4`), whatever the source photo's ratio, through `object-fit: cover` on the image.
+- Transparent 1 px border by default, `@gold` on hover or if the thumbnail is the one currently open in the lightbox (`.gallery-thumb-active`); slight image zoom on hover.
+- Gallery title (`h1`) with a Font Awesome icon (see "Iconography") followed by the text "par"/"by" Christophe Heubès.
 
-### Lightbox (galeries photo)
+### Lightbox (photo galleries)
 
-- Modale Bootstrap standard, fond noir (`#000`), bordure fine `@gold` à 15 % d'opacité.
-- Image affichée en hauteur maximale 82 % du viewport (`max-height: 82vh`).
-- Légende sous l'image : texte secondaire italique (`@text-muted`), suivie systématiquement de la mention "Photo par Christophe Heubès" / "Photo by Christophe Heubès".
-- Bouton de fermeture : composant natif Bootstrap (`btn-close btn-close-white`), pas une icône Font Awesome.
-- Navigation précédent/suivant : deux boutons superposés aux bords gauche/droite de l'image, fond semi‑transparent (`rgba(0, 0, 0, 0.5)`), masqués (`visibility: hidden`, pas retirés du DOM) sur le premier/dernier élément plutôt que désactivés.
+- Standard Bootstrap modal, black background (`#000`), thin `@gold` border at 15% opacity.
+- Image displayed at a maximum height of 82% of the viewport (`max-height: 82vh`).
+- Caption below the image: italic secondary text (`@text-muted`), always followed by the credit "Photo par Christophe Heubès" / "Photo by Christophe Heubès".
+- Close button: native Bootstrap component (`btn-close btn-close-white`), not a Font Awesome icon.
+- Previous/next navigation: two buttons overlaid on the left/right edges of the image, semi-transparent background (`rgba(0, 0, 0, 0.5)`), hidden (`visibility: hidden`, not removed from the DOM) on the first/last item rather than disabled.
 
-### Comparateur avant/après (dessins techniques)
+### Before/after comparator (technical drawings)
 
-- Bibliothèque BeerSlider, avec son habillage visuel par défaut (poignée circulaire semi‑transparente blanche, étiquettes en chip blanc semi‑transparent) : ce composant n'est **pas** thémé aux couleurs "Dark Cinematic" du reste du site (voir "Palette" ci‑dessus).
-- Étiquette de gauche : année de la reproduction numérique ("2020", fixe). Étiquette de droite : `org-year` du dessin (voir `data-model.md`), l'année de réalisation de l'original.
-- Titre du dessin sous le comparateur, en lien vers sa page de détail, avec une icône de loupe (voir "Iconographie").
+- BeerSlider library, with its default look (semi-transparent white circular handle, semi-transparent white chip labels): this component is **not** themed with the "Dark Cinematic" colors of the rest of the site (see "Palette" above).
+- Left label: year of the digital reproduction ("2020", fixed). Right label: the drawing's `org-year` (see `data-model.md`), the year the original was made.
+- Drawing title below the comparator, linking to its detail page, with a magnifying glass icon (see "Iconography").
 
-### Page de détail (dessin technique)
+### Detail page (technical drawing)
 
-- Lien de retour vers la liste (icône flèche gauche + texte), répété en haut et en bas de page.
-- Les deux images (original, reproduction) empilées verticalement plutôt que comparées par curseur, chacune avec sa légende en `figcaption` (texte secondaire italique).
+- Back link to the list (left arrow icon + text), repeated at the top and bottom of the page.
+- The two images (original, reproduction) stacked vertically rather than compared with a slider, each with its caption as `figcaption` (italic secondary text).
 
-### Page 404
+### 404 page
 
-- Image de fond `assets/img/bg.jpg`, même traitement que le hero (voile sombre, `background-attachment: fixed`).
-- "404" en grand, message en majuscules, gras, centrés verticalement.
+- Background image `assets/img/bg.jpg`, same treatment as the hero (dark overlay, `background-attachment: fixed`).
+- Large "404", uppercase bold message, vertically centered.
 
 ## Images
 
-| Image | Ratio observé | Dimensions observées |
+| Image | Observed ratio | Observed dimensions |
 |---|---|---|
-| Photo de galerie (originale) | Variable (portrait ou paysage selon la photo) | Variable |
-| Vignette de galerie (générée) | Identique à l'original (redimensionnement sans recadrage), affichée en 3:4 via `object-fit: cover` | Plus grande dimension ramenée à 800 px |
-| Fond de bande cinématique (`gallery-band-bg.jpg`) | ~3:1 | 2400 × 800 px (mesuré sur `under-water`) |
-| Fond du hero / page 404 (`bg.jpg`) | 16:9 | 1920 × 1080 px |
-| Portrait de profil (`photo.jpg`) | 1:1 | 512 × 512 px |
-| Dessin technique (original et reproduction) | ~4:3, quasi identique entre les deux versions d'un même dessin | ~2048 px de large |
+| Gallery photo (original) | Variable (portrait or landscape depending on the photo) | Variable |
+| Gallery thumbnail (generated) | Same as the original (resized without cropping), displayed as 3:4 through `object-fit: cover` | Longest side reduced to 800 px |
+| Cinematic band background (`gallery-band-bg.jpg`) | ~3:1 | 2400 × 800 px (measured on `under-water`) |
+| Hero / 404 page background (`bg.jpg`) | 16:9 | 1920 × 1080 px |
+| Profile portrait (`photo.jpg`) | 1:1 | 512 × 512 px |
+| Technical drawing (original and reproduction) | ~4:3, nearly identical between the two versions of a same drawing | ~2048 px wide |
 
-`object-fit: cover` en CSS absorbe les écarts de ratio à l'affichage plutôt que d'imposer un recadrage strict à l'ajout de contenu, à l'exception des vignettes de galerie qui sont pré‑redimensionnées par script (voir "Scripts de maintenance locaux" dans `technical-specifications.md`).
+CSS `object-fit: cover` absorbs ratio differences at display time rather than enforcing strict cropping when adding content, except for gallery thumbnails which are pre-resized by script (see "Local maintenance scripts" in `technical-specifications.md`).
 
-## Iconographie
+## Iconography
 
-Font Awesome, chargé via Kit distant (voir `technical-specifications.md`), pas de version figée par CDN explicite.
+Font Awesome, loaded through a remote Kit (see `technical-specifications.md`), no version pinned through an explicit CDN.
 
-| Usage | Icône |
+| Usage | Icon |
 |---|---|
-| Plongée sous‑marine | `fa-water` |
+| Scuba diving | `fa-water` |
 | Street art | `fa-palette` |
-| Déambulations | `fa-person-walking` |
-| Dessins techniques | `fa-compass-drafting` |
-| Lien vers samettof.org | `fa-earth-asia` |
-| Lien vers dataviz.heubes.io | `fa-chart-simple` |
-| Lien vers social-graphs.heubes.io | `fa-diagram-project` |
+| Wanderings | `fa-person-walking` |
+| Technical drawings | `fa-compass-drafting` |
+| Link to samettof.org | `fa-earth-asia` |
+| Link to dataviz.heubes.io | `fa-chart-simple` |
+| Link to social-graphs.heubes.io | `fa-diagram-project` |
 | Instagram | `fa-instagram` (Brands) |
 | Goodreads | `fa-book-open` |
-| Licence Creative Commons | `fa-creative-commons`, `fa-creative-commons-by`, `fa-creative-commons-nc-eu`, `fa-creative-commons-sa` (Brands) |
-| Indicateur de défilement (hero) | `fa-chevron-down` |
-| Retour à la liste des dessins techniques | `fa-arrow-left` |
-| Accès au détail d'un dessin technique | `fa-magnifying-glass-plus` |
-| Fermeture de la lightbox | composant natif Bootstrap (`btn-close`), pas une icône Font Awesome |
-| Sélecteur de langue | emoji drapeaux 🇫🇷/🇬🇧, pas d'icône Font Awesome |
+| Creative Commons license | `fa-creative-commons`, `fa-creative-commons-by`, `fa-creative-commons-nc-eu`, `fa-creative-commons-sa` (Brands) |
+| Scroll indicator (hero) | `fa-chevron-down` |
+| Back to the technical drawings list | `fa-arrow-left` |
+| Access to a technical drawing's detail | `fa-magnifying-glass-plus` |
+| Closing the lightbox | native Bootstrap component (`btn-close`), not a Font Awesome icon |
+| Language switcher | flag emoji 🇫🇷/🇬🇧, not a Font Awesome icon |

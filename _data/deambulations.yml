@@ -1,7 +1,7 @@
-# Galerie Déambulations
-# Format :
-# - file: nom-du-fichier.jpg
-#   title-fr: "Description en français"
+# Déambulations gallery
+# Format:
+# - file: file-name.jpg
+#   title-fr: "Description in French"
 #   title-en: "Description in English"
 
 - file: 2026-03-cathedrale-notre-dame-de-paris-02.jpg

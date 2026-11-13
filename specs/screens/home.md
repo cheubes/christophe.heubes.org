@@ -1,51 +1,51 @@
-# Écran : accueil
+# Screen: home
 
-## Objectif
+## Goal
 
-Présenter l'auteur et donner accès à chacune des sections du site (les trois galeries photo, les dessins techniques) ainsi qu'à ses sites soeurs (voir "Sites soeurs" dans `functional-specifications.md`).
+Introduce the author and give access to each section of the site (the three photo galleries, the technical drawings) as well as to the sister sites (see "Sister sites" in `functional-specifications.md`).
 
-## Contenu et structure
+## Content and structure
 
-### Hero (plein écran)
+### Hero (full screen)
 
-- Portrait circulaire de l'auteur, en lien vers l'accueil lui‑même.
-- Séparateur, puis navigation par icônes : une par section (plongée, street art, déambulations, dessins techniques), puis les trois liens externes (samettof.org, dataviz.heubes.io, social-graphs.heubes.io), dans cet ordre (voir `style-guide.md` pour le détail visuel).
-- Indicateur de défilement en bas de viewport, invitant à découvrir les bandes cinématiques sous le hero.
-- Pas de pied de page ni d'en‑tête compact visible dans le hero : ils apparaissent en défilant (voir "Composants UI de base" dans `style-guide.md`, l'en‑tête compact n'étant de toute façon jamais affiché sur l'accueil).
+- Circular portrait of the author, linking to the home page itself.
+- Separator, then icon navigation: one per section (diving, street art, wanderings, technical drawings), then the three external links (samettof.org, dataviz.heubes.io, social-graphs.heubes.io), in that order (see `style-guide.md` for the visual details).
+- Scroll indicator at the bottom of the viewport, inviting the visitor to discover the cinematic bands below the hero.
+- No footer or compact header visible in the hero: they appear on scroll (see "Core UI components" in `style-guide.md`, the compact header never being displayed on the home page anyway).
 
-### Bandes cinématiques
+### Cinematic bands
 
-Une bande pleine largeur par section, empilées verticalement, dans l'ordre suivant :
+One full-width band per section, stacked vertically, in the following order:
 
-1. Plongée sous‑marine (`under-water`)
+1. Scuba diving (`under-water`)
 2. Street art (`street-art`)
-3. Déambulations (`deambulations`)
-4. Dessins techniques (`technical-drawing`)
-5. samettof.org (lien externe)
-6. dataviz.heubes.io (lien externe)
-7. social-graphs.heubes.io (lien externe)
+3. Wanderings (`deambulations`)
+4. Technical drawings (`technical-drawing`)
+5. samettof.org (external link)
+6. dataviz.heubes.io (external link)
+7. social-graphs.heubes.io (external link)
 
-Chaque bande affiche : une image de fond (`gallery-band-bg.jpg` de la section pour les quatre premières, une image dédiée pour les trois liens externes), une icône suivie du titre de la section, une description, et un texte d'appel à l'action ("Voir la galerie →" pour les quatre sections du site, "Visiter →" pour les trois liens externes).
+Each band shows: a background image (the section's `gallery-band-bg.jpg` for the first four, a dedicated image for the three external links), an icon followed by the section title, a description, and a call-to-action text ("Voir la galerie →" / "View gallery →" for the four site sections, "Visiter →" / "Visit →" for the three external links).
 
-- Le titre et la description des quatre premières bandes sont repris directement du front matter de la page de la section correspondante (`h1` et `introduction`, voir `data-model.md`) : ils ne sont pas dupliqués dans le front matter de l'accueil.
-- Le titre et la description des trois bandes de sites soeurs sont propres à l'accueil (`about-s-t`, `about-dataviz`, `about-social-graphs`, voir `data-model.md`).
+- The title and description of the first four bands are taken directly from the front matter of the matching section page (`h1` and `introduction`, see `data-model.md`): they are not duplicated in the home page front matter.
+- The title and description of the three sister-site bands are specific to the home page (`about-s-t`, `about-dataviz`, `about-social-graphs`, see `data-model.md`).
 
-### Pied de page
+### Footer
 
-Commun à toutes les pages du site, voir "Pied de page" dans `style-guide.md`.
+Shared by every page of the site, see "Footer" in `style-guide.md`.
 
 ## Interactions
 
-- Clic sur une icône du hero ou sur une bande : navigue vers la section correspondante, ou ouvre le lien externe dans un nouvel onglet pour les trois dernières bandes.
-- Survol d'une bande : léger zoom de l'image de fond, assombrissement réduit du voile, éclaircissement du texte d'appel à l'action (voir `style-guide.md`).
-- Changement de langue (pied de page) : bascule vers `/en/` (page distincte, rechargement complet, pas de bascule dynamique).
+- Click on a hero icon or on a band: navigates to the matching section, or opens the external link in a new tab for the last three bands.
+- Hover on a band: slight zoom of the background image, lighter overlay darkening, brighter call-to-action text (see `style-guide.md`).
+- Language change (footer): switches to `/en/` (separate page, full reload, no dynamic switch).
 
-## États (chargement, erreur, vide)
+## States (loading, error, empty)
 
-- Pas d'état vide possible : les quatre sections et les trois bandes de sites soeurs sont fixes, non pilotées par une donnée qui pourrait être absente.
-- Pas d'état de chargement propre : page entièrement statique, les images de fond n'étant pas chargées en lazy loading (contrairement aux vignettes de galerie, voir `screens/gallery.md`) puisqu'elles sont visibles dès l'arrivée sur la page ou immédiatement après un court défilement.
+- No empty state possible: the four sections and the three sister-site bands are fixed, not driven by data that could be missing.
+- No dedicated loading state: fully static page, background images are not lazy-loaded (unlike gallery thumbnails, see `screens/gallery.md`) since they are visible as soon as the page loads or right after a short scroll.
 
 ## Responsive
 
-- Hero : `background-attachment: fixed` désactivé en dessous de 768 px (voir `style-guide.md`), pour éviter les artefacts de rendu propres à cette propriété sur mobile.
-- Bandes cinématiques : hauteur en unités de viewport avec un minimum fixe (300 px), largeur toujours pleine ; titre et texte d'appel à l'action en tailles fluides (`clamp()`) pour rester lisibles sur petit écran.
+- Hero: `background-attachment: fixed` disabled below 768 px (see `style-guide.md`), to avoid the rendering artifacts this property causes on mobile.
+- Cinematic bands: height in viewport units with a fixed minimum (300 px), always full width; title and call-to-action text in fluid sizes (`clamp()`) to stay readable on small screens.
