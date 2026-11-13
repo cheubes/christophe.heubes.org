@@ -157,20 +157,20 @@ drawing-title: Attelage pour crochet de traction
 
 ## Image metadata
 
-Each content image (gallery photo, its thumbnail, the two images of a technical drawing) carries the site's author and license in the file itself, as EXIF, IPTC and XMP, in addition to the page's JSON-LD (see "SEO" in `technical-specifications.md`): this metadata follows the image when it is downloaded or indexed on its own. Interface images (`gallery-band-bg.jpg`, band backgrounds in `content/`, `assets/img/`) are not concerned.
+Each content image (gallery photo, its thumbnail, the two images of a technical drawing) carries the site's author and license (CC0 1.0 public domain dedication, see `LICENSE`) in the file itself, as EXIF, IPTC and XMP, in addition to the page's JSON-LD (see "SEO" in `technical-specifications.md`): this metadata follows the image when it is downloaded or indexed on its own. Interface images (`gallery-band-bg.jpg`, band backgrounds in `content/`, `assets/img/`) are not concerned.
 
 ### Common fields
 
 | Field | Value |
 |---|---|
-| EXIF `Copyright` | `CC BY-NC-SA 4.0` |
+| EXIF `Copyright` | `CC0 1.0` |
 | IPTC `CodedCharacterSet` | `UTF8`, always required (the author's name contains an accent); without it, readers assume Latin-1 and display `Heubès` or `Œuvre` corrupted |
 | IPTC `By-line`, XMP `dc:creator`, XMP `photoshop:Credit` | `Christophe Heubès` |
-| IPTC `CopyrightNotice` | `CC Christophe Heubès` (same value as `copyrightNotice` in the JSON-LD) |
-| XMP `dc:rights` | `Christophe Heubès - CC BY-NC-SA 4.0` |
-| XMP `xmpRights:Marked` | `True` |
-| XMP `xmpRights:UsageTerms` | `CC BY-NC-SA 4.0` |
-| XMP `xmpRights:WebStatement` | `https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr` |
+| IPTC `CopyrightNotice` | `Christophe Heubès - CC0 1.0` (same value as `copyrightNotice` in the JSON-LD) |
+| XMP `dc:rights` | `Christophe Heubès - CC0 1.0` |
+| XMP `xmpRights:Marked` | `False`: in XMP, `False` means public domain, which is what a CC0 dedication is (`True` would mean rights-managed) |
+| XMP `xmpRights:UsageTerms` | `CC0 1.0` |
+| XMP `xmpRights:WebStatement` | `https://creativecommons.org/publicdomain/zero/1.0/deed.fr` |
 
 ### Family-specific fields
 
