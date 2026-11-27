@@ -2,7 +2,7 @@
 
 sitemap:
   priority: 0.7
-  lastmod: 2026-09-30
+  lastmod: 2026-11-27
 
 layout: gallery
 gallery: street-art

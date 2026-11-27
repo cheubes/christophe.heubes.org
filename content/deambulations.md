@@ -2,7 +2,7 @@
 
 sitemap:
   priority: 0.7
-  lastmod: 2026-08-04
+  lastmod: 2026-11-24
 
 layout: gallery
 gallery: deambulations
